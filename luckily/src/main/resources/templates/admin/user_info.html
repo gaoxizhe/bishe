@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head th:replace="/admin/common::head"></head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-md5">
+
+        <h3 style="text-align: center">个人信息修改</h3>
+
+        <form class="layui-form" action="">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名"
+                           autocomplete="off"
+                           style="" disabled
+                           class="layui-input" th:value="${userInfo.getUsername()}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="nickName" required lay-verify="required" placeholder="请输入昵称"
+                           autocomplete="off"
+                           class="layui-input" th:value="${userInfo.getNickName()}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">头像</label>
+
+                <div class="layui-input-block">
+
+                    <div class="layui-upload">
+                        <input id="avatarUrl" type="text" name="avatarUrl" required lay-verify="required"
+                               placeholder="请输入头像"
+                               autocomplete="off"
+                               class="layui-input" th:value="${userInfo.getAvatarUrl()}">
+                        <button type="button" class="layui-btn" style="float: left;margin: 10px 20px 0 0" id="test1">
+                            上传
+                        </button>
+                        <div class="layui-upload-list">
+                            <img class="layui-upload-img" id="demo1" style="width: 200px"
+                                 th:src="${userInfo.getAvatarUrl()}">
+                            <p id="demoText"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="email" required lay-verify="email" placeholder="请输入邮箱"
+                           autocomplete="off"
+                           class="layui-input" th:value='${userInfo.getEmail()}'>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">主页地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="homeUrl" required lay-verify="url" placeholder="请输入主页地址" autocomplete="off"
+                           class="layui-input" th:value="${userInfo.getHomeUrl()}">
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formUserInfo">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="layui-col-md1 " style="height:500px;border-right: 1px #01a252 dotted">
+
+    </div>
+    <form class="layui-form" th:action="12" method="post">
+
+        <div class="layui-col-md5">
+            <h3 style="text-align: center">密码修改</h3>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">新密码</label>
+                <div class="layui-input-block">
+                    <input type="password" name="newPass" required lay-verify="required" placeholder="新密码"
+                           autocomplete="off"
+                           style=""
+                           class="layui-input" value="">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">再次输入</label>
+                <div class="layui-input-block">
+                    <input type="password" name="newPass1" required lay-verify="required" placeholder="再次输入"
+                           autocomplete="off"
+                           class="layui-input" value="">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formPass">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+
+
+    //Demo
+    layui.use(['form', 'upload'], function () {
+
+        let $ = layui.jquery, upload = layui.upload;
+        let form = layui.form;
+
+        let fileUploadStatus = true;
+
+        //普通图片上传
+        let uploadInst = upload.render({
+            elem: '#test1'
+            , url: '/admin/file/upload' //改成您自己的上传接口
+            , field: 'editormd-image-file'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                fileUploadStatus = false;
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code === 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.info("upload success" + JSON.stringify(res));
+                layer.msg('文件上传成功',{icon:1});
+                $("#avatarUrl").val(res.url);
+                fileUploadStatus = true;
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                let demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+                fileUploadStatus = true;
+            }
+        });
+
+
+        //监听提交
+        form.on('submit(formUserInfo)', function (data) {
+            // layer.msg(JSON.stringify(data.field));
+            console.info(JSON.stringify(data));
+            if (fileUploadStatus) {
+                $.ajax({
+                    url: "/admin/user",
+                    type: "put",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(data.field),
+                    success: function (data) {
+                        if (data.code !== 0) {
+                            layer.msg(data.msg, {icon: 5});
+                        } else {
+                            layer.msg(data.msg);
+                            location.reload(); //删除成功后再刷新
+                        }
+                    },
+                    error: function (data) {
+                        layer.msg('错误', {icon: 5});
+                    }
+                });
+            } else {
+                layer.msg('文件正在上传中，请稍后...');
+            }
+            return false;
+        });
+        form.on('submit(formPass)', function (data) {
+            let field = data.field;
+            if (field.newPass !== field.newPass1) {
+                layer.msg("两次输入不一致，请重新输入！");
+            } else {
+                $.ajax({
+                    url: "/admin/user/password",
+                    type: "put",
+                    dataType: "json",
+                    // contentType: "application/json;charset=utf-8",
+                    data: data.field,
+                    success: function (data) {
+                        if (data.code !== 0) {
+                            layer.msg(data.msg, {icon: 5});
+                        } else {
+                            layer.msg(data.msg);
+                            location.reload(); //成功后再刷新
+                        }
+                    },
+                    error: function (data) {
+                        layer.msg('错误', {icon: 5});
+                    }
+                });
+            }
+
+            // layer.msg(JSON.stringify(field));
+            console.info(JSON.stringify(data));
+            return false;
+        });
+    });
+</script>
+<style>
+    .layui-input-block {
+        margin-top: 15px;
+        margin-right: 15px;
+    }
+</style>
+</html>

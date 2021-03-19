@@ -1,0 +1,200 @@
+<!doctype html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>blog-注册</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+</head>
+<style type="text/css">
+    /* 以下是CSS样式代码，具体样式按自己需求写 */
+    .btn_disable {
+        background-color: #d4d4d4;
+        border-color: #d4d4d4;
+        color: #fff;
+    }
+</style>
+<body class="login-bg">
+
+<div class="login layui-anim layui-anim-up">
+    <div class="message">blog-注册</div>
+    <div id="darkbannerwrap"></div>
+
+    <form method="post" class="layui-form" action="/admin/register" id="form1">
+        <p style="margin: 20px 0;color: red" id="error_msg"> sdf</p>
+        <input name="username" placeholder="用户名" type="text" lay-verify="required|username" class="layui-input"
+               value="">
+        <hr class="hr15">
+        <input id="password_one" name="password_one" lay-verify="pass|equals_pass" placeholder="密码" type="password"
+               value="" class="layui-input">
+        <hr class="hr15">
+        <input id="password_two" name="password_two" lay-verify="pass|equals_pass" placeholder="再次输入密码" type="password"
+               value="" class="layui-input">
+        <hr class="hr15 ">
+        <input name="email" lay-verify="required|email" placeholder="邮箱" type="email" class="layui-input" id="email">
+        <hr class="hr15 ">
+        <div>
+            <label>
+                <input name="code" lay-verify="required" placeholder="邮件验证码" type="text" class="layui-input"
+                       style="height:40px; width: 50%;float: left">
+            </label>
+            <p class="layui-btn" style="float: right;height: 40px;line-height: 40px" id="send-mail-button">发送验证码</p>
+        </div>
+        <hr class="hr15 ">
+        <input name="nick_name" lay-verify="required" placeholder="昵称" type="text" class="layui-input">
+        <hr class="hr15 ">
+
+        <!--        <input value=" 注册 " lay-filter="register" class="layui-btn layui-btn-primary" style="width:100%;height: 45px" type="submit">-->
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="register">注册</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+        <hr class="hr20">
+
+    </form>
+</div>
+
+
+<script>
+    let status = true;
+    $('#send-mail-button').click(function () {
+        console.info("mail_code");
+        let regExp = /^[A-Za-zd0-9]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/;
+
+        let email = $('#email').val();
+        if (!regExp.test(email)) {
+            alert("邮箱格式不正确");
+            return false;
+        } else if (status) {
+            status = false;
+            $(this).attr({'disabled': 'disabled'});
+            // 设置样式
+            $(this).addClass('btn_disable');
+            let that = $(this);
+            let time = 10;
+            let timer = setInterval(function () {
+
+                if (time == 0) {
+                    clearInterval(timer);
+                    that.removeClass('btn_disable');
+                    that.removeAttr('disabled');
+                    that.text('发送验证码');
+                    status = true;
+                } else {
+                    that.text('发送验证码 ' + (time--));
+                }
+            }, 1000);
+            // ajax 邮件发送
+            $.ajax({
+                url: "/sengEmail/"+email,
+                type: 'GET',
+                dataType: "json",
+                contentType: "application/json", //必须这样写
+                success: function (data) {
+                    console.info(data);
+                    if (data.code != 0) {
+                        layer.msg('错误', {icon: 5});
+                    } else {
+                        layer.msg('success');
+                    }
+                },
+                error: function (data) {
+                    console.info(data);
+                    layer.msg('错误', {icon: 5});
+                }
+            });
+        }
+
+
+    });
+
+    $(function () {
+
+
+        layui.use('form', function () {
+            var form = layui.form;
+            // layer.msg('玩命卖萌中', function(){
+            //   //关闭后的操作
+            //   });
+            form.verify({
+                username: function (value, item) { //value：表单的值、item：表单的DOM对象
+                    if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                        return '用户名不能有特殊字符';
+                    }
+                    if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+                        return '用户名首尾不能出现下划线\'_\'';
+                    }
+                    if (/^\d+\d+\d$/.test(value)) {
+                        return '用户名不能全为数字';
+                    }
+
+                    //如果不想自动弹出默认提示框，可以直接返回 true，这时你可以通过其他任意方式提示（v2.5.7 新增）
+                    if (value === 'xxx') {
+                        alert('用户名不能为敏感词');
+                        return true;
+                    }
+                }
+
+                //我们既支持上述函数式的方式，也支持下述数组的形式
+                //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+                , pass: [
+                    /^[\S]{6,12}$/
+                    , '密码必须6到12位，且不能出现空格'
+                ],
+
+                equals_pass: function (val, item) {
+                    if ($('#password_one').val() != $('#password_two').val()) {
+                        return '两次输入的密码不同，请检查后重新输入！';
+                    }
+                }
+            });
+
+            //监听提交
+            form.on('submit(register)', function (data) {
+                // alert(888)
+                console.info(data.field);
+
+
+                $.ajax({
+                    url: "/admin/user/register",
+                    type: 'POST',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify(data.field),
+                    success: function (data) {
+                        console.info(data);
+                        if (data.code != 0) {
+
+                            document.getElementById("error_msg").innerText = data.msg;
+                        } else {
+                            layer.msg('success');
+                            location.href = '/admin/toLogin';
+                        }
+
+                    },
+                    error: function (data) {
+                        console.info(data);
+                        layer.msg('错误', {icon: 5});
+                    }
+                });
+                return false;
+            });
+        });
+    })
+</script>
+<!-- 底部结束 -->
+
+<!--test-->
+</body>
+</html>

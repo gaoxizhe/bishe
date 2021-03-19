@@ -1,0 +1,4 @@
+mysql:
+  host: 47.94.175.90
+  username: root
+  password: root

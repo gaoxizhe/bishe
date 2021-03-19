@@ -1,0 +1,90 @@
+<!doctype html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>教研室质量管理系统</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+</head>
+<body class="login-bg">
+<div style="float: left;width: 70%;text-align: center">
+    <p style="color:  red">
+        教研室学生质量管理
+        要求存储信息：
+        ①学生导师分配情况：班级、学生、联系方式、教师、联系方式、辅导员、联系方式（每个班级一个文件）
+        ②大创项目：申请人、指导教师、项目名称、团队成员、批准情况、年份、完成情况、经费（无/校级/省级/国家级）、工作量
+        ③学生参赛：主持人、团队成员、指导教师、大赛名称、参赛项目名称、日期、获奖情况、工作量。
+        ④考研情况：年份、报考人数、录取人数
+        ⑤考研详细情况：学生姓名、报考学校、专业、学位类别（专硕/学硕）、录取类别（无/保送/直考/调剂）、应届/往届
+        ⑥毕业生就业情况：学生学号、姓名、就业单位、单位性质、从事工作、就业时间、联系方式、相关联系人、单位联系人
+        ⑦本专业校友联系：姓名、原班级、工作单位、职务、从事工作、联系方式。
+        功能：
+        ①管理员负责信息的录入、修改、删除、查询统计
+        ②教师可录入、修改、删除、大创项目和竞赛情况。
+    </p>
+</div>
+<div class="login layui-anim layui-anim-up">
+    <div class="message">教研室质量管理系统</div>
+    <div id="darkbannerwrap"></div>
+
+    <form method="post" class="layui-form" action="/admin/login" id="form1">
+        <!--        th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"  -->
+        <p style="margin: 20px 0;color: red" th:if="${param.error}" th:text="'账号或密码错误,请重新输入'"></p>
+        <input name="username" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
+        <hr class="hr15">
+        <input name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input">
+        <hr class="hr15">
+        <input type="checkbox" name="remember-me" title="记住我" value="true">
+        <hr class="hr15">
+        <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+        <hr class="hr20">
+    </form>
+    <a href="/admin/toRegister" class="layui-btn" style="width: 100%" target="_blank"> >>> 去注册 <<< </a>
+
+
+</div>
+
+
+<script>
+    $(function () {
+        layui.use('form', function () {
+            var form = layui.form;
+            // layer.msg('玩命卖萌中', function(){
+            //   //关闭后的操作
+            //   });
+            //监听提交
+            form.on('submit(login)', function (data) {
+                // alert(888)
+                console.info(data.field);
+
+
+                // $.ajax({
+                //     url: "/login",
+                //     type: 'POST',
+                //     dataType: "json",
+                //     // contentType: "application/json", //必须这样写
+                //     data: $('#form1').serialize(),
+                //     success: function (data) {
+                //         layer.msg('success');
+                //     },
+                //     error: function (data) {
+                //         layer.msg('错误', {icon: 5});
+                //     }
+                // });
+                return true;
+            });
+        });
+    })
+</script>
+<!-- 底部结束 -->
+
+</body>
+</html>

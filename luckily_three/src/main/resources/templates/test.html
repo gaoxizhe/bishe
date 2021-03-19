@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    ul, li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    div, ul, li {
+        border: 1px red solid;
+    }
+
+    #container {
+        width: 500px;
+        height: 30px;
+        line-height: 30px;
+        margin: 20px auto;
+        overflow: hidden;
+        border: 2px solid lightsteelblue;
+        border-radius: 5px;
+        white-space: nowrap;
+    }
+
+    #container ul {
+        display: inline-block;
+    }
+</style>
+
+<body>
+<div id="container">
+    <ul id="main">
+        <li>安静sssssss的感觉 还会有谁能够了解</li>
+    </ul>
+    <ul id="ext">
+        <!-- 安静这安静的夜 你身影依稀的浮现这种凄美的感觉 还会有谁能够了解 -->
+    </ul>
+</div>
+<script>
+    var container = document.getElementById('container'),
+        main = document.getElementById('main'),
+        ext = document.getElementById('ext');
+    ext.innerHTML = main.innerHTML;
+
+    function move() {
+        container.scrollLeft++;
+        if (container.scrollLeft >= main.scrollWidth) {
+            container.scrollLeft = 0;
+        }
+    }
+
+    var timer = window.setInterval(move, 10);
+    container.onmouseover = function () {
+        window.clearInterval(timer);
+    }
+    container.onmouseout = function () {
+        timer = window.setInterval(move, 10);
+    }
+</script>
+</body>
+
+</html>

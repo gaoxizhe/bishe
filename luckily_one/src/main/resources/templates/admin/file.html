@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch">
+
+<head th:replace="/admin/common::head"><title></title></head>
+
+<body>
+<div class="x-nav">
+            <span class="layui-breadcrumb">
+                <a href="">文件</a>
+                <a><cite>文件管理</cite></a>
+            </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+    </a>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>拖拽上传</legend>
+        </fieldset>
+
+        <div class=" " style="width: 100%;">
+            <div class="layui-upload-drag" style="width: 100%;height: 100%;margin-right: 20px" id="test10">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this">所有文件</li>
+            <li>分类查看</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-row layui-col-space15" style="margin-top: 20px" id="fileList">
+                    <h3 style="text-align: center">没有文件，上传一个试试把！</h3>
+                </div>
+                <div style="margin: 20px auto" id="demo7"></div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-form ">
+                    <div class="" style="width: 200px;float: left">
+                        <label>
+                            <select name="city" lay-verify="required" id="classify" lay-filter="changeSelectFileList">
+                                <option value=""></option>
+                                <option value="1" selected>我上传的</option>
+                                <option value="0">BLOG</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="layui-row layui-col-space15" style="margin-top: 20px" id="fileList2">
+                    <h3 style="text-align: center">没有文件，上传一个试试把！</h3>
+                </div>
+
+                <div style="margin: 20px auto" id="demo8"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+</body>
+
+
+<script>layui.use(['form', 'layer', 'table', 'util', 'upload', 'laypage', 'element'],
+
+    function () {
+        let table = layui.table;
+        let form = layui.form;
+        let util = layui.util;
+        let layer = layui.layer, upload = layui.upload;
+        let $ = layui.$;
+        let laypage = layui.laypage;
+        let element = layui.element;
+
+
+        let count = [[${count}]];
+        let count2 = [[${count2}]];
+
+
+        window.copyText = function (text, callback) {
+            var tag = document.createElement('input');
+            tag.setAttribute('id', 'cp_hgz_input');
+            tag.value = text;
+            document.getElementsByTagName('body')[0].appendChild(tag);
+            document.getElementById('cp_hgz_input').select();
+            document.execCommand('copy');
+            document.getElementById('cp_hgz_input').remove();
+            console.info(text);
+            if (callback) {
+                callback(text)
+            }
+        };
+
+        window.changeSelectFileList = function () {
+
+        };
+        window.deleteFileById = function (id, callback) {
+            layer.msg('你确定删除么？', {
+                time: 2000,//2秒自动关闭
+                btn: ['确定', '取消'],
+                yes: function (index) {
+                    $.ajax({
+                        url: "/admin/file/" + id,
+                        type: "delete",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.code !== 0) {
+                                layer.msg(res.message, {'icon': 5});
+                            } else {
+                                layer.msg('删除成功');
+                                $(".layui-laypage-btn").click();
+                                console.log(data)
+                            }
+                        },
+                        error: function (data) {
+                            layer.msg('错误', {icon: 5});
+                        }
+                    });
+                }
+            });
+
+
+            if (callback) {
+                callback(id)
+            }
+        };
+        window.loadFileList = function (fileList, pageNo, pageSize, obj, selectVal) {
+            // let fileList = document.getElementById('fileList');
+            let fileListHtml = '';
+            $.ajax({
+                url: "/admin/file/list",
+                type: "get",
+                data: {
+                    pageNo: pageNo,
+                    pageSize: pageSize,
+                    selectVal: selectVal
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.info(data);
+                    if (data.code !== 0) {
+                        layer.msg(data.msg, {icon: 5});
+                    } else {
+                        obj.count = data.page.totalCount;
+                        if (selectVal == null) {
+                            count = data.page.totalCount;
+                            console.info("count : " + count)
+                        } else {
+                            count2 = data.page.totalCount;
+                            console.info("count2 : " + count2)
+                        }
+
+                        if (obj.count === 0) {
+                            console.info("空数据")
+                        } else {
+                            let fileListData = data.data;
+                            for (let fileListDataKey in fileListData) {
+                                let datum = fileListData[fileListDataKey];
+                                fileListHtml += `
+                                <div class="layui-col-md2"  >
+                                    <div class="layui-card" align="center">
+
+                                        ${datum.fisImg ? ` <img class="layui-card-body"
+                                             src="${datum.fkey}?imageView2/1/w/100/h/100"
+                                             alt="" style="height: 100px;overflow: hidden">` :
+                                    ` <img class="layui-card-body"
+                                             src="/images/file.png"
+                                             alt="" style="height: 100px;overflow: hidden">`}
+
+
+                                        <div class="layui-card-header container-hover" id="container">
+                                            ${datum.fname}
+                                        </div>
+                                        <div style="margin-bottom: 20px;text-align: center">
+                                            <a class="layui-btn btn-primary" onclick="{
+                                                   copyText( '${datum.fkey}', function (){ layer.msg('复制成功');})
+                                            }">复制</a>
+                                            <a class="layui-btn layui-btn-danger" onclick="{
+                                                   deleteFileById('${datum.id}')
+                                            }">删除</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+                            }
+                            layer.msg(data.msg);
+                            fileList.innerHTML = fileListHtml;
+                        }
+
+
+                    }
+                },
+                error: function (data) {
+                    layer.msg('错误', {icon: 5});
+                }
+            });
+        };
+
+        function demo7() {
+            laypage.render({
+                elem: 'demo7'
+                , count: count
+                , limit: 18
+                , limits: [18, 24, 30, 36, 42]
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    let fileList = document.getElementById('fileList');
+                    let pageNo = obj.curr;
+                    let pageSize = obj.limit;
+                    loadFileList(fileList, pageNo, pageSize, obj, null);
+                }
+            });
+        }
+
+        function demo8() {
+            laypage.render({
+                elem: 'demo8'
+                , count: count2
+                , limit: 18
+                , limits: [18, 24, 30, 36, 42]
+                
+                ,curr: location.hash.replace('#!currentPage=', '') //获取起始页
+                ,hash: 'currentPage' //自定义hash值
+
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    let select_val = $("#classify").val();
+                    console.info(select_val);
+                    let fileList = document.getElementById('fileList2');
+                    let pageNo = obj.curr;
+                    let pageSize = obj.limit;
+                    loadFileList(fileList, pageNo, pageSize, obj, select_val);
+                }
+            });
+
+
+        }
+
+        /**
+         * 初始化分页组建的方法
+         */
+        demo7();
+        demo8();
+
+
+        form.on('select(changeSelectFileList)', function (data) {
+            $("#demo8").find(".layui-laypage-btn").click();
+
+        });
+
+        //拖拽上传
+        upload.render({
+            elem: '#test10'
+            , accept: 'file'
+            , url: '/admin/file/upload' //改成您自己的上传接口
+            , field: 'editormd-image-file'
+            , data: {
+                'status': 1
+            },
+            before: function (obj) { //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                layer.load(); //上传loading
+            }
+            , done: function (res) {
+                layer.closeAll('loading'); //关闭loading
+
+                if (res.success === 0) {
+                    layer.msg(res.message, {'icon': 5});
+                } else {
+                    layer.msg('上传成功');
+                    $(".layui-laypage-btn").click();
+                    console.log(res)
+                }
+
+            }, error: function () {
+                layer.msg('上传失败', {'icon': 5});
+                layer.closeAll('loading'); //关闭loading
+            }
+        });
+    });
+</script>
+
+<style>
+    .container-hover {
+        height: 42px;
+        line-height: 42px;
+        padding: 0 15px;
+        border-bottom: 1px solid #f6f6f6;
+        color: #333;
+        border-radius: 2px 2px 0 0;
+        font-size: 14px;
+        white-space: nowrap;
+        width: 85%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .container-hover:hover {
+        float: left;
+        color: red;
+        text-overflow: inherit;
+        overflow: visible;
+        z-index: 99;
+    }
+</style>
+</html>

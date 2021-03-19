@@ -1,0 +1,28 @@
+<!doctype html>
+<html class="x-admin-sm" lang="ch" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/common::head">
+    <title>错误</title>
+</head>
+<body>
+<div class="layui-container">
+    <div class="fly-panel">
+        <div class="fly-none">
+            <h2><i class="layui-icon layui-icon-release"></i></h2>
+            <p>页面或者数据被<a href=""> 纸飞机 </a>运到火星了，啥都看不到了…</p>
+        </div>
+    </div>
+</div>
+
+
+<!--          使用themyleaf模板在控制台以及网页源代码中打印错误信息，&lt转义字符。-->
+<div>
+    <div th:utext="'&lt;!--'" th:remove="tag"></div>
+    <div th:utext="'Failed Request URL : ' + ${url}" th:remove="tag"></div>
+    <div th:utext="'Exception message : ' + ${exception.message}" th:remove="tag"></div>
+    <ul th:remove="tag">
+        <li th:each="st : ${exception.stackTrace}" th:remove="tag"><span th:utext="${st}" th:remove="tag"></span></li>
+    </ul>
+    <div th:utext="'--&gt;'" th:remove="tag"></div>
+</div>
+</body>
+</html>
