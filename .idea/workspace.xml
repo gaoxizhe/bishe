@@ -4,9 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9397069-6378-4c0c-ab29-fbf0b13c907b" name="Default Changelist" comment="车位管理列表">
+    <list default="true" id="c9397069-6378-4c0c-ab29-fbf0b13c907b" name="Default Changelist" comment="修改项目模块名称">
+      <change afterPath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/model/StopCar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/car_edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/stop_car.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/controller/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/dao/CarDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/dao/CarDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/model/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/model/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/router/admin/AdminRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/router/admin/AdminRouter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/service/CarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/java/com/example/service/CarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/resources/mapper/CarDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/mapper/CarDao.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/car_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/car_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/common_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/common_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/user_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/user_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/user_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/user_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/user_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/user_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/user_password.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/user_password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin/welcome.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +52,7 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="localRepository" value="$MAVEN_REPOSITORY$" />
-        <option name="userSettingsFile" value="D:\Java\apache-maven-3.6.3\conf\settings.xml" />
+        <option name="userSettingsFile" value="/usr/local/maven/apache-maven-3.5.4/conf/settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -59,16 +77,17 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.obroom.plugin.mybatislog.indexNum" value="180" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/luckily_three/src/main/resources/mapper" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/luckily_three/src/main/resources/templates/admin" />
       <recent name="$PROJECT_DIR$/../luckily_three/src/main/resources/templates/admin" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -76,18 +95,7 @@
       <recent name="com.example.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.CarApplication (1)">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="luckily_three" />
       <option name="VM_PARAMETERS" />
@@ -135,7 +143,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="CarApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="luckily_three" />
       <extension name="coverage">
         <pattern>
@@ -143,42 +151,14 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.BlogApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CarApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="luckily_three" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.CarApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CarApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="luckily_three" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.CarApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudentsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="luckily_one" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.StudentsApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.StudentsApplication" />
-        <item itemvalue="Spring Boot.BlogApplication" />
+        <item itemvalue="Spring Boot.CarApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -203,6 +183,7 @@
       <workItem from="1616210236838" duration="1868000" />
       <workItem from="1616226104415" duration="414000" />
       <workItem from="1616226546431" duration="1938000" />
+      <workItem from="1616246633737" duration="12398000" />
     </task>
     <task id="LOCAL-00001" summary="车位管理列表">
       <created>1616211616573</created>
@@ -211,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616211616573</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="修改项目模块名称">
+      <created>1616246780895</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1616246780896</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +221,8 @@
     <MESSAGE value="123" />
     <MESSAGE value="fffffff" />
     <MESSAGE value="车位管理列表" />
-    <option name="LAST_COMMIT_MESSAGE" value="车位管理列表" />
+    <MESSAGE value="修改项目模块名称" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改项目模块名称" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -4,7 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.example.base.RestEntityResponse;
 import com.example.constant.BaseContextHandler;
 import com.example.constant.StatusConstant;
+import com.example.model.Car;
+import com.example.model.StopCar;
 import com.example.model.Users;
+import com.example.service.CarService;
 import com.example.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ClassName AdminRouter
@@ -28,6 +32,9 @@ public class AdminRouter {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private CarService carService;
 
     @GetMapping({"/index", "/", "index.html", ""})
     public String index() {
@@ -99,6 +106,32 @@ public class AdminRouter {
         return "admin/car_list";
     }
 
+    @GetMapping("/toCarEdit/{id}")
+    public String toCarEdit(Model model, @PathVariable("id") Integer id) {
+        RestEntityResponse restResponseBase = new RestEntityResponse<>();
+        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
+        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        if (id.equals(0)) {
+            restResponseBase.setData(new Car());
+        } else {
+            Car carById = carService.getCarById(id);
+            restResponseBase.setData(carById);
+        }
+//        restResponseBase.setCode(StatusConstant.Common.ERROR);
+//        restResponseBase.setMsg(StatusConstant.Common.PARAM_IS_EMPTY);
+        String o = JSON.toJSONString(restResponseBase);
+        System.err.println(o);
+        model.addAttribute("data", restResponseBase);
+        return "admin/car_edit";
 
+    }
+
+
+    @GetMapping("/toStopCar/{id}")
+    public String toStopCar(Model model, @PathVariable("id") Integer id) {
+        model.addAttribute("id", id);
+        return "admin/stop_car";
+
+    }
 
 }

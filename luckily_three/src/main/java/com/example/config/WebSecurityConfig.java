@@ -38,7 +38,7 @@ public class WebSecurityConfig  {
                         //配置无需拦截的访问请求
                         .antMatchers("/","/admin/toRegister","/admin/user/register").permitAll().
                         //配置权限访问请求
-                        antMatchers("/admin/**").hasAnyRole("admin","guest").
+                        antMatchers("/admin/**").hasAnyRole("admin","guest","user").
                         antMatchers("/guest/**").hasAnyRole("guest","user")
                         .anyRequest().permitAll()
                 ;

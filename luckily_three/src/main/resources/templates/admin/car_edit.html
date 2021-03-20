@@ -3,35 +3,35 @@
 <head th:replace="admin/common::head"></head>
 <body>
 
-<form class="layui-form" th:action="${actionUrl}" method="post">
+<form class="layui-form" action="/admin/car" method="post">
 
 
     <input type="hidden" name="id" class="layui-input" th:value="${data.data.id}">
 
     <div class="layui-form-item">
-        <label class="layui-form-label">分类名称</label>
+        <label class="layui-form-label">车位编号</label>
         <div class="layui-input-block">
-            <input type="text" name="name" required lay-verify="required" placeholder="请输入分类名称" autocomplete="off"
-                   class="layui-input" th:value="${data.data.name}">
-        </div>
-    </div>
-
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">描述</label>
-        <div class="layui-input-block">
-            <textarea name="description" placeholder="请输入内容" class="layui-textarea" th:text=" ${data.data.description}">
-
-            </textarea>
+            <input type="text" name="code" required lay-verify="required" placeholder="请输入分类名称" autocomplete="off"
+                   class="layui-input" th:value="${data.data.code}">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">排序</label>
+        <label class="layui-form-label">价格（整数）</label>
         <div class="layui-input-block">
-            <input type="text" name="shot" required lay-verify="number" placeholder="请输入序号" autocomplete="off"
-                   class="layui-input" style="width: 250px" th:value="${data.data.shot}">
+            <input type="text" name="price" required lay-verify="required" placeholder="请输入分类名称" autocomplete="off"
+                   class="layui-input" th:value="${data.data.price}">
         </div>
     </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+            <input type="text" name="remarks" required lay-verify="required" placeholder="请输入分类名称" autocomplete="off"
+                   class="layui-input" th:value="${data.data.remarks}">
+        </div>
+    </div>
+
 
 
     <div class="layui-form-item">

@@ -1,11 +1,11 @@
 package com.example.controller;
 
-
 import com.example.base.RestListResponse;
 import com.example.base.RestResponseBase;
 import com.example.base.RestResponsePage;
 import com.example.constant.StatusConstant;
 import com.example.model.Car;
+import com.example.model.StopCar;
 import com.example.model.Users;
 import com.example.service.CarService;
 import com.example.service.UserService;
@@ -22,7 +22,6 @@ import java.util.Map;
 @Slf4j
 public class CarController {
 
-
     //删除222222222222222222222222222222222
     @Resource
     private UserService userService;
@@ -34,7 +33,7 @@ public class CarController {
     //page=1&limit=10
     public RestListResponse<Car> CarList(@RequestParam(value = "page") Integer page,
                                          @RequestParam(value = "limit") Integer limit,
-                                         @PathVariable(value = "status",required = false) Integer status) {
+                                         @PathVariable(value = "status", required = false) Integer status) {
         if (page == null || page < 0) {
             page = 0;
         }
@@ -44,7 +43,7 @@ public class CarController {
 
         log.info("page: {} , limit : {}", page, limit);
 
-        PageInfo<Car> info = carService.getCarPageList(page, limit,status);
+        PageInfo<Car> info = carService.getCarPageList(page, limit, status);
 
         RestListResponse<Car> response = new RestListResponse<>();
         RestResponsePage responsePage = new RestResponsePage();
@@ -57,57 +56,32 @@ public class CarController {
         return response;
     }
 
-
+    @PostMapping("car")
     public RestResponseBase updateUser(@RequestParam Map<String, Object> params) {
 
-        Users users = new Users();
-        users.setId(params.get("id") == null || params.get("id").equals("") ? 0 : Integer.parseInt(params.get("id").toString()));
-        users.setUsername((String) params.get("username"));
-        users.setPassword((String) params.get("password"));
-        users.setName((String) params.get("name"));
-        users.setPhone((String) params.get("phone"));
-        users.setAddress((String) params.get("address"));
+        Car car = new Car();
+        car.setId(params.get("id") == null || params.get("id").equals("") ? 0 : Integer.parseInt(params.get("id").toString()));
+        car.setCode((String) params.get("code"));
+        car.setPrice(Integer.parseInt(String.valueOf(params.get("price"))));
+        car.setRemarks((String) params.get("remarks"));
 
         RestResponseBase restResponseBase = new RestResponseBase();
         restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
         restResponseBase.setCode(StatusConstant.Common.SUCCESS);
 
-        if (users == null || users.getUsername() == null) {
+        if (car == null || car.getId() == null || car.getId().equals("")) {
             restResponseBase.setMsg(StatusConstant.Common.PARAM_IS_EMPTY);
             restResponseBase.setCode(StatusConstant.Common.ERROR);
         }
 
-        userService.updateUserInfoByUsername(users);
+        carService.updateCar(car);
 
         return restResponseBase;
     }
 
-
-
-    public RestResponseBase updateUserPassword(@RequestParam Map<String, Object> params) {
-
-        Users users = new Users();
-        users.setId(params.get("id") == null || params.get("id").equals("") ? 0 : Integer.parseInt(params.get("id").toString()));
-        users.setPassword((String) params.get("password"));
-        RestResponseBase restResponseBase = new RestResponseBase();
-        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
-        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
-
-        if (users == null || users.getPassword() == null) {
-            restResponseBase.setMsg(StatusConstant.Common.PARAM_IS_EMPTY);
-            restResponseBase.setCode(StatusConstant.Common.ERROR);
-            return restResponseBase;
-        }
-
-        userService.updateUserPassword(users);
-
-        return restResponseBase;
-    }
-
-
-
-    public RestResponseBase updateUser(@PathVariable("id") Integer id) {
-
+    @PostMapping("/car/status/{id}/{status}")
+    public RestResponseBase updateUser(@PathVariable("id") Integer id,
+                                       @PathVariable("status") Integer status) {
 
         RestResponseBase restResponseBase = new RestResponseBase();
         restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
@@ -119,9 +93,37 @@ public class CarController {
             return restResponseBase;
         }
 
-        userService.deleteUserById(id);
+        carService.updateStatus(id, status);
 
         return restResponseBase;
     }
 
+
+
+    @GetMapping("/stopCar/list/{id}")
+    //page=1&limit=10
+    public RestListResponse<StopCar> stopCarList(@RequestParam(value = "page") Integer page,
+                                         @RequestParam(value = "limit") Integer limit,
+                                             @PathVariable("id") Integer id) {
+        if (page == null || page < 0) {
+            page = 0;
+        }
+        if (limit == null || limit < 0) {
+            limit = 0;
+        }
+
+        log.info("page: {} , limit : {}", page, limit);
+
+        PageInfo<StopCar> info = carService.getStopCarByPsId(page, limit,id);
+
+        RestListResponse<StopCar> response = new RestListResponse<>();
+        RestResponsePage responsePage = new RestResponsePage();
+        responsePage.setTotalCount(info.getSize());
+
+        response.setCode(StatusConstant.Common.SUCCESS);
+        response.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        response.setData(info.getList());
+        response.setPage(responsePage);
+        return response;
+    }
 }

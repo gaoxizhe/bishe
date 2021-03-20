@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.dao.CarDao">
+    <insert id="insertCar">
+        insert into parking_space(id, code, status, price, remarks)
+        values (#{id}, #{code}, 0, #{price}, #{remarks})
+    </insert>
+    <update id="updateCar">
+        update parking_space
+        <set>
+
+            <if test="code != null">
+                code = #{code},
+            </if>
+
+            <if test="price != null">
+                price=#{price},
+            </if>
+
+            <if test="remarks != null">
+                remarks=#{remarks},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateCarStatusById">
+        update parking_space
+        set status = ${status}
+        where id = #{id}
+    </update>
     <select id="getCarListByStatus" resultType="com.example.model.Car">
 
         select id, code, status, price, remarks
@@ -10,5 +37,21 @@
                 status = #{status}
             </if>
         </where>
+        order by status asc
+    </select>
+    <select id="selectCarById" resultType="com.example.model.Car">
+        select id, code, status, price, remarks
+        from parking_space
+        where id = #{id}
+
+    </select>
+    <select id="getStopCarByPsId" resultType="com.example.model.StopCar">
+        select sc.id as id, ps_id as psId, ps.code as psCode, sc.user_id userId,ui.name userName
+             , car_id carId ,c.number_plate carNumber, time
+        from stop_car sc
+        left join parking_space  as ps on ps.id = sc.ps_id
+        left join user_info ui on ui.id = sc.user_id
+        left join car c on sc.car_id = c.id
+        where ps_id = #{id}
     </select>
 </mapper>

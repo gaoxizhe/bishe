@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="x-admin-sm" lang="ch" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head th:replace="/admin/common::head"></head>
+<head th:replace="admin/common::head"></head>
 
 <body class="index">
 <!-- 顶部开始 -->
@@ -55,7 +55,7 @@
 <!--                </ul>-->
 <!--            </li>-->
 
-            <li>
+            <li sec:authorize="hasRole('ROLE_admin')">
                 <a onclick="xadmin.add_tab('用户管理','/admin/toUser')">
                     <i class="layui-icon layui-icon-username" lay-tips="用户管理"></i>
                     <cite>用户管理</cite>
@@ -63,7 +63,7 @@
                 </a>
             </li>
 
-            <li>
+            <li sec:authorize="hasRole('ROLE_admin')">
                 <a onclick="xadmin.add_tab('车位管理','/admin/toCar')">
                     <i class="layui-icon layui-icon-flag" lay-tips="车位管理"></i>
                     <cite>车位管理</cite>
