@@ -58,7 +58,7 @@
                 id: 'idTest',
                 elem: '#category'
                 ,page: true
-                , url: '/admin/car/list/'
+                , url: '/admin/car/list/' + -1
                 , height: 600
                 , parseData: function (res) { //res 即为原始返回的数据
 
@@ -76,7 +76,7 @@
                         , {field: 'code', title: '车位编号'}
                         , {field: 'status', title: '状态'}
                         , {field: 'price', title: '价格'}
-                        , {field: 'remark', title: '备注'}
+                        , {field: 'remarks', title: '备注'}
                         , {width: 250, align: 'center', toolbar: '#barDemo', title: '操作'}
                     ]
                 ]
