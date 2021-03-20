@@ -21,9 +21,9 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header">
-<!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
-<!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
-<!--                    </button>-->
+                    <!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
+                    <!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
+                    <!--                    </button>-->
                     <button class="layui-btn" onclick="xadmin.open('添加车位','toCarEdit/0',800,380)">
                         <i class="layui-icon layui-icon-add-1">
                         </i>添加车位
@@ -57,7 +57,7 @@
             table.render({
                 id: 'idTest',
                 elem: '#category'
-                ,page: true
+                , page: true
                 , url: '/admin/car/list/' + -1
                 , height: 600
                 , parseData: function (res) { //res 即为原始返回的数据
@@ -74,10 +74,42 @@
                         {checkbox: true, LAY_CHECKED: false, filter: 'test', width: 80}
                         , {field: 'id', width: 80, sort: true, title: 'id'}
                         , {field: 'code', title: '车位编号'}
-                        , {field: 'status', title: '状态'}
+                        , {
+                        field: 'status', title: '状态', templet: function (data) {
+                            let html = '';
+                            let stringify = JSON.stringify(data);
+                            let status = data.status;
+
+                            if (status == 0) {
+                                html += `<span class="layui-badge layui-bg-blue" style="margin-right: 10px">正常</span>`;
+                            }else if (status == 1) {
+                                html += `<span class="layui-badge layui-bg-orange" style="margin-right: 10px">审核中</span>`;
+                            }else if (status == 2) {
+                                html += `<span class="layui-badge layui-bg-red" style="margin-right: 10px">使用中</span>`;
+                            }
+
+                            return html;
+
+                        }
+                    }
                         , {field: 'price', title: '价格'}
                         , {field: 'remarks', title: '备注'}
                         , {width: 250, align: 'center', toolbar: '#barDemo', title: '操作'}
+
+                    //     , {
+                    //     field: 'label', title: '标签', templet: function (data) {
+                    //         console.info(JSON.stringify(data));
+                    //
+                    //         let contentLabels = data.contentLabels;
+                    //         let html = '';
+                    //         for (const aa in contentLabels) {
+                    //             console.info(`${aa}: ${JSON.stringify(contentLabels[aa])}`);
+                    //             html += `<span class="layui-badge layui-bg-blue" style="margin-right: 10px">${contentLabels[aa].labelName}</span>`
+                    //         }
+                    //
+                    //         return html;
+                    //     }
+                    // }
                     ]
                 ]
 
