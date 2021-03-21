@@ -3,7 +3,9 @@ package com.example.controller;
 import com.example.base.RestListResponse;
 import com.example.base.RestResponseBase;
 import com.example.base.RestResponsePage;
+import com.example.constant.BaseContextHandler;
 import com.example.constant.StatusConstant;
+import com.example.constant.UserInfo;
 import com.example.model.Users;
 import com.example.service.UserService;
 import com.github.pagehelper.PageInfo;
@@ -110,6 +112,22 @@ public class UserController {
         }
 
         userService.deleteUserById(id);
+
+        return restResponseBase;
+    }
+
+
+    @PutMapping("/user/userInfo")
+    public RestResponseBase updateUserInfo(@RequestBody Users users) {
+
+        users.setId(BaseContextHandler.getUser().getId());
+
+        RestResponseBase restResponseBase = new RestResponseBase();
+        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
+
+
+        userService.updateUserInfo(users);
 
         return restResponseBase;
     }

@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="layui-form-item" th:if="${trings.isEmpty(data.data.id)}">
+    <div class="layui-form-item" th:if="${#strings.isEmpty(data.data.id)}">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
             <input type="text" name="password" required lay-verify="required" placeholder="请输入分类名称" autocomplete="off"

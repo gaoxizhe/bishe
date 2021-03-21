@@ -20,15 +20,6 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">
-                    <!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
-                    <!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
-                    <!--                    </button>-->
-                    <button class="layui-btn" onclick="xadmin.open('添加车位','toCarEdit/0',800,380)">
-                        <i class="layui-icon layui-icon-add-1">
-                        </i>添加车位
-                    </button>
-                </div>
                 <div class="layui-card-body ">
 
 
@@ -42,31 +33,7 @@
 </body>
 
 <script type="text/html" id="barDemo">
-    <!--    <a class="layui-btn layui-btn-xs" lay-event="parkingRecord">停车记录</a>-->
-    <!--    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
-    <!--    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
-
-    {{d.status}}
-    {{# if(d.status=='0'){}}
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    {{# } else if(d.status=='1') { }}
-    <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
-    <a class="layui-btn layui-btn-xs" lay-event="notCheck">还原</a>
-
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    {{# } else if(d.status=='2') { }}
-    <a class="layui-btn layui-btn-xs" lay-event="notCheck">还原</a>
-    <a class="layui-btn layui-btn-xs" lay-event="parkingRecord">停车记录</a>
-
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    {{# } else { }}
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-xs" lay-event="parkingRecord">停车记录</a>
-    {{# } }}
-
-
+        <a class="layui-btn layui-btn-xs" lay-event="buy">购买</a>
 </script>
 
 <script>
@@ -80,7 +47,7 @@
                 id: 'idTest',
                 elem: '#category'
                 , page: true
-                , url: '/admin/car/list/' + -1
+                , url: '/admin/car/list/' + 0
                 , height: 600
                 , parseData: function (res) { //res 即为原始返回的数据
 
@@ -119,7 +86,7 @@
                         , {field: 'price', title: '价格', width: 100}
                         , {field: 'remarks', title: '备注'}
                         , {
-                        width: 300, align: 'center', toolbar: '#barDemo', title: '操作', templet: function (d) {
+                        width: 80, align: 'center', toolbar: '#barDemo', title: '操作', templet: function (d) {
                             console.info(d.status);
                             return d.status
                         }
@@ -148,14 +115,14 @@
                 let checkStatus = table.checkStatus(obj.data.id);
                 switch (obj.event) {
 
-                    case 'check':
-                        layer.msg('审核');
-                        layer.msg('你确定审核么？', {
+                    case 'buy':
+                        layer.msg('购买');
+                        layer.msg('你确定购买么？', {
                             time: 2000,//2秒自动关闭
                             btn: ['确定', '取消'],
                             yes: function (index) {
                                 $.ajax({
-                                    url: "/admin/car/status/" + obj.data.id + "/2",
+                                    url: "/admin/car/status/" + obj.data.id + "/1",
                                     type: "post",
                                     dataType: "json",
                                     success: function (data) {
@@ -173,70 +140,6 @@
                                 layer.close(index);
                             }
                         });
-                        break;
-
-                    case 'notCheck':
-                        layer.msg('取消审核');
-                        layer.msg('你确定取消审核么？', {
-                            time: 2000,//2秒自动关闭
-                            btn: ['确定', '取消'],
-                            yes: function (index) {
-                                $.ajax({
-                                    url: "/admin/car/status/" + obj.data.id + "/0",
-                                    type: "post",
-                                    dataType: "json",
-                                    success: function (data) {
-                                        if (data.code !== 0) {
-                                            layer.msg(data.msg, {icon: 5});
-                                        } else {
-                                            layer.msg(data.msg);
-                                            location.reload(); //删除成功后再刷新
-                                        }
-                                    },
-                                    error: function (data) {
-                                        layer.msg('错误', {icon: 5});
-                                    }
-                                });
-                                layer.close(index);
-                            }
-                        });
-                        break;
-                    case 'parkingRecord':
-                        layer.msg('停车记录');
-                        xadmin.open('停车记录', 'toStopCar/' + obj.data.id, 800, 380)
-                        break;
-                    case 'edit':
-                        layer.msg('编辑');
-                        xadmin.open('编辑分类', 'toCarEdit/' + obj.data.id, 800, 380)
-                        break;
-                    case 'del':
-                        layer.msg('删除');
-
-
-                        layer.msg('你确定删除么？', {
-                            time: 2000,//2秒自动关闭
-                            btn: ['确定', '取消'],
-                            yes: function (index) {
-                                $.ajax({
-                                    url: "/admin/car/status/" + obj.data.id + "/3",
-                                    type: "post",
-                                    dataType: "json",
-                                    success: function (data) {
-                                        if (data.code !== 0) {
-                                            layer.msg(data.msg, {icon: 5});
-                                        } else {
-                                            layer.msg(data.msg);
-                                            location.reload(); //删除成功后再刷新
-                                        }
-                                    },
-                                    error: function (data) {
-                                        layer.msg('错误', {icon: 5});
-                                    }
-                                });
-                                layer.close(index);
-                            }
-                        });
-
                         break;
                 }
             });

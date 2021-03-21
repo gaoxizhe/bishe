@@ -72,4 +72,15 @@ public class UserService {
     public void deleteUserById(Integer id) {
         userDao.deleteUserById(id);
     }
+
+    public void updateUserInfo(Users users) {
+        if (users.getPassword() != null && !users.getPassword().equals("")) {
+            PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+            String pass = passwordEncoder.encode(users.getPassword());
+            users.setPassword(pass);
+            userDao.updateUserPassword(users);
+        }
+        userDao.updateUserInfoById(users);
+
+    }
 }

@@ -4,7 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.example.base.RestEntityResponse;
 import com.example.constant.BaseContextHandler;
 import com.example.constant.StatusConstant;
+import com.example.dao.CarDao;
+import com.example.dao.UserDao;
 import com.example.model.Car;
+import com.example.model.MyCar;
 import com.example.model.StopCar;
 import com.example.model.Users;
 import com.example.service.CarService;
@@ -131,7 +134,40 @@ public class AdminRouter {
     public String toStopCar(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("id", id);
         return "admin/stop_car";
+    }
+    @GetMapping("/StopCar/{id}")
+    public String StopCar(Model model, @PathVariable("id") Integer id) {
+        model.addAttribute("id", id);
+        List<MyCar> carList = carService.selectMyCarList();
+        model.addAttribute("carList", carList);
+        return "admin/my_car";
+    }
 
+
+
+    @GetMapping("/toUserInfo")
+    public String toUserInfo(Model model) {
+        Integer id = BaseContextHandler.getUser().getId();
+        Users userById = userService.getUserById(id);
+        model.addAttribute("id", id);
+        model.addAttribute("userInfo", userById);
+
+        return "admin/user_info";
+
+    }
+
+    @GetMapping("/user/toMyCar")
+    public String toMyCar(Model model) {
+        return "admin/my_car_list";
+    }
+
+    @GetMapping("/user/toCarAdd")
+    public String toCarAdd(Model model) {
+        return "admin/my_car_add";
+    }
+    @GetMapping("/user/toBuyPs")
+    public String toBuyPs(Model model) {
+        return "admin/buy_car_list";
     }
 
 }

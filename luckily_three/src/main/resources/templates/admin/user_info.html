@@ -2,110 +2,70 @@
 <html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch">
 <head th:replace="admin/common::head"></head>
 <body>
-<div class="layui-row">
-    <div class="layui-col-md5">
+<div  style="border: 1px double black;border-radius: 2px;margin: 30px auto" >
 
-        <h3 style="text-align: center">个人信息修改</h3>
+    <h3 style="text-align: center">个人信息修改</h3>
 
-        <form class="layui-form" action="">
+    <form class="layui-form" action="">
 
-            <div class="layui-form-item">
-                <label class="layui-form-label">用户名</label>
-                <div class="layui-input-block">
-                    <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名"
-                           autocomplete="off"
-                           style="" disabled
-                           class="layui-input" th:value="${userInfo.getUsername()}">
-                </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input type="text" name="usernames" required lay-verify="required" placeholder="请输入用户名"
+                       autocomplete="off"
+                       style="" disabled
+                       class="layui-input" th:value="${userInfo.username}">
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">昵称</label>
-                <div class="layui-input-block">
-                    <input type="text" name="nickName" required lay-verify="required" placeholder="请输入昵称"
-                           autocomplete="off"
-                           class="layui-input" th:value="${userInfo.getNickName()}">
-                </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                <input type="text" name="password"   placeholder="请输入密码,不输入不修改"
+                       autocomplete="off"
+                       class="layui-input" >
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">头像</label>
+        </div>
 
-                <div class="layui-input-block">
-
-                    <div class="layui-upload">
-                        <input id="avatarUrl" type="text" name="avatarUrl" required lay-verify="required"
-                               placeholder="请输入头像"
-                               autocomplete="off"
-                               class="layui-input" th:value="${userInfo.getAvatarUrl()}">
-                        <button type="button" class="layui-btn" style="float: left;margin: 10px 20px 0 0" id="test1">
-                            上传
-                        </button>
-                        <div class="layui-upload-list">
-                            <img class="layui-upload-img" id="demo1" style="width: 200px"
-                                 th:src="${userInfo.getAvatarUrl()}">
-                            <p id="demoText"></p>
-                        </div>
-                    </div>
-                </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" required lay-verify="required" placeholder="请输入姓名"
+                       autocomplete="off"
+                       style=""
+                       class="layui-input" th:value="${userInfo.name}">
             </div>
-            <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">邮箱</label>
-                <div class="layui-input-block">
-                    <input type="text" name="email" required lay-verify="email" placeholder="请输入邮箱"
-                           autocomplete="off"
-                           class="layui-input" th:value='${userInfo.getEmail()}'>
-                </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">手机号</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" required  placeholder="请输入手机号"
+                       autocomplete="off"
+                       class="layui-input" th:value='${userInfo.phone}'>
             </div>
+        </div>
 
-            <div class="layui-form-item">
-                <label class="layui-form-label">主页地址</label>
-                <div class="layui-input-block">
-                    <input type="text" name="homeUrl" required lay-verify="url" placeholder="请输入主页地址" autocomplete="off"
-                           class="layui-input" th:value="${userInfo.getHomeUrl()}">
-                </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="address" required  placeholder="请输入地址" autocomplete="off"
+                       class="layui-input" th:value="${userInfo.address}">
             </div>
+        </div>
 
 
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formUserInfo">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="layui-col-md1 " style="height:500px;border-right: 1px #01a252 dotted">
-
-    </div>
-    <form class="layui-form" th:action="12" method="post">
-
-        <div class="layui-col-md5">
-            <h3 style="text-align: center">密码修改</h3>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">新密码</label>
-                <div class="layui-input-block">
-                    <input type="password" name="newPass" required lay-verify="required" placeholder="新密码"
-                           autocomplete="off"
-                           style=""
-                           class="layui-input" value="">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">再次输入</label>
-                <div class="layui-input-block">
-                    <input type="password" name="newPass1" required lay-verify="required" placeholder="再次输入"
-                           autocomplete="off"
-                           class="layui-input" value="">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formPass">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formUserInfo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
     </form>
+</div>
+
+
+
+
 </div>
 
 </body>
@@ -161,7 +121,7 @@
             console.info(JSON.stringify(data));
             if (fileUploadStatus) {
                 $.ajax({
-                    url: "/admin/user",
+                    url: "/admin/user/userInfo",
                     type: "put",
                     dataType: "json",
                     contentType: "application/json;charset=utf-8",

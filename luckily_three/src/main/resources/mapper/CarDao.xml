@@ -5,6 +5,19 @@
         insert into parking_space(id, code, status, price, remarks)
         values (#{id}, #{code}, 0, #{price}, #{remarks})
     </insert>
+    <insert id="insertMyCar">
+        insert into car(user_id, number_plate)
+        values (#{userId}, #{numberPlate})
+
+    </insert>
+    <insert id="insertMyCarBox">
+        insert into my_carbox(ps_id, user_id, status)
+        values (#{psId}, #{userId}, #{status})
+    </insert>
+    <insert id="insertStopCar">
+        insert into stop_car(ps_id, user_id, car_id, time)
+        VALUES (#{ps_id}, #{user_id}, #{car_id}, #{time})
+    </insert>
     <update id="updateCar">
         update parking_space
         <set>
@@ -28,6 +41,18 @@
         set status = ${status}
         where id = #{id}
     </update>
+    <update id="updateMyCarBox">
+        update my_carbox
+        set status = #{status}
+        where user_id = #{userId}
+          and ps_id = #{psId}
+    </update>
+    <delete id="deleteMyCarBox">
+        delete
+        from my_carbox
+        where ps_id = #{psId}
+          and user_id = #{userId}
+    </delete>
     <select id="getCarListByStatus" resultType="com.example.model.Car">
 
         select id, code, status, price, remarks
@@ -46,12 +71,30 @@
 
     </select>
     <select id="getStopCarByPsId" resultType="com.example.model.StopCar">
-        select sc.id as id, ps_id as psId, ps.code as psCode, sc.user_id userId,ui.name userName
-             , car_id carId ,c.number_plate carNumber, time
+        select sc.id   as     id
+             , ps_id   as     psId
+             , ps.code as     psCode
+             , sc.user_id     userId
+             , ui.name        userName
+             , car_id         carId
+             , c.number_plate carNumber
+             , time
         from stop_car sc
-        left join parking_space  as ps on ps.id = sc.ps_id
-        left join user_info ui on ui.id = sc.user_id
-        left join car c on sc.car_id = c.id
+                 left join parking_space as ps on ps.id = sc.ps_id
+                 left join user_info ui on ui.id = sc.user_id
+                 left join car c on sc.car_id = c.id
         where ps_id = #{id}
+        order by sc.time desc
+    </select>
+    <select id="getMyCarPageList" resultType="com.example.model.Car">
+        select mc.id, ps.code, mc.status, ps.price, ps.remarks
+        from my_carbox mc
+                 left join parking_space ps on mc.ps_id = ps.id
+        where mc.user_id = #{id}
+    </select>
+    <select id="selectMyCarList" resultType="com.example.model.MyCar">
+        select *
+        from car
+        where user_id = #{userId}
     </select>
 </mapper>

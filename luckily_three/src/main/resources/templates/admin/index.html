@@ -16,7 +16,7 @@
             <a href="javascript:;"><span sec:authentication="name"></span></a>
             <dl class="layui-nav-child">
                 <dd>
-                    <a href="/admin/logout" onclick="xadmin.del_tab()">退出</a></dd>
+                    <a href="/admin/logout" onclick="closeAll()">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item to-index">
@@ -71,6 +71,22 @@
                 </a>
             </li>
 
+            <li sec:authorize="hasAnyRole('ROLE_user','ROLE_admin')">
+                <a onclick="xadmin.add_tab('个人信息','/admin/toUserInfo')">
+                    <i class="layui-icon layui-icon-edit" lay-tips="个人信息"></i>
+                    <cite>个人信息</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+            </li>
+
+
+            <li sec:authorize="hasRole('ROLE_user')">
+                <a onclick="xadmin.add_tab('我的车位','/admin/user/toMyCar')">
+                    <i class="layui-icon layui-icon-cart-simple" lay-tips="我的车位"></i>
+                    <cite>我的车位</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+            </li>
 
         </ul>
     </div>
@@ -89,7 +105,7 @@
             <dl>
                 <dd data-type="this">关闭当前</dd>
                 <dd data-type="other">关闭其它</dd>
-                <dd data-type="all">关闭全部</dd>
+                <dd data-type="all" id="clickme">关闭全部</dd>
             </dl>
         </div>
         <div class="layui-tab-content">
@@ -105,5 +121,12 @@
 <!-- 右侧主体结束 -->
 <!-- 中部结束 -->
 </body>
+<script type="text/javascript">
+    function closeAll() {
+        var e = document.createEvent("MouseEvents");
+        e.initEvent("click", true, true);
+        document.getElementById("clickme").dispatchEvent(e);
+    }
+</script>
 
 </html>
