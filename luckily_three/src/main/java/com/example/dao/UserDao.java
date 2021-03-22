@@ -14,8 +14,6 @@ public interface UserDao {
 
     public Users getUserInfoByUserName(@Param("username") String username);
 
-
-
     void updateUserInfoByUsername(Users users);
 
     int insertUser(Users users);

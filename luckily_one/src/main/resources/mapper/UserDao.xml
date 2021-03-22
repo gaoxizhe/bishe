@@ -2,43 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.dao.UserDao">
 
-    <update id="updateUserInfoByUsername">
-        update t_users
+    <update id="updateUserInfoById">
+        update user_info
         <set>
-            <if test="email != null">
-                email = #{email},
+            <if test="username != null">
+                username = #{username},
             </if>
-            <if test="avatarUrl != null">
-                avatar_url = #{avatarUrl},
-            </if>
-
-            <if test="homeUrl != null">
-                home_url = #{homeUrl},
+            <if test="name != null">
+                `name` = #{name},
             </if>
 
-            <if test="nickName != null">
-                nick_name = #{nickName},
+            <if test="phone != null">
+                phone = #{phone},
             </if>
 
-            <if test="password != null and password !=''">
-                `password` = #{password},
+            <if test="address != null">
+                address = #{address},
+            </if>
+
+
+
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateUserPassword">
+        update user_info
+        <set>
+            <if test="password != null">
+                password = #{password},
             </if>
         </set>
-
-        where username = #{username}
+        where id = #{id}
     </update>
+    <delete id="deleteUserById">
+        delete  from user_info where id = #{id}
+    </delete>
     <select id="getUserInfoByUserName" resultType="com.example.model.Users">
         select ui.id, username, password, name, phone, role, role_name, `describe` as role_describe
         from user_info as ui
         left join role r on r.id=ui.role
         where username = #{username}
     </select>
-    <select id="findEmailCount" resultType="java.lang.Integer" parameterType="java.lang.String">
-        select count(1) from t_users where email = #{email}
-    </select>
+
 
     <insert id="insertUser">
-        insert into t_users (username, password, email, avatar_url, home_url, nick_name,group_name)
-        values (#{username}, #{password}, #{email}, #{avatarUrl}, #{homeUrl}, #{nickName},#{groupName})
+        insert into user_info (username, password, name, phone, role, address)
+        values (#{username}, #{password}, #{name}, #{phone}, #{role},#{address})
     </insert>
+
+    <select id="getUserPageByRole" resultType="com.example.model.Users">
+        select ui.id, username, name, phone, role, role_name, `describe` as role_describe ,address
+        from user_info as ui
+                 left join role r on r.id=ui.role
+        where role = #{roleId}
+    </select>
+    <select id="getUserById" resultType="com.example.model.Users">
+        select ui.id, username, name, phone, role, role_name, `describe` as role_describe ,address
+        from user_info as ui
+                 left join role r on r.id=ui.role
+        where ui.id = #{id}
+    </select>
 </mapper>

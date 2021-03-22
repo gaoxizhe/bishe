@@ -32,24 +32,6 @@ public class AdminRouter {
         return "admin/welcome";
     }
 
-
-    @GetMapping("/toCategoryList")
-    public String toCategoryList(Model model) {
-        return "admin/category_list";
-    }
-
-
-    @GetMapping("/toLabelList")
-    public String toLabelList() {
-        return "admin/label_list";
-    }
-
-    @GetMapping("/toArticleList")
-    public String toArticleList() {
-        return "admin/article_list";
-    }
-
-
     @GetMapping("/toLogin")
     public String toLogin() {
         BaseContextHandler.remove();

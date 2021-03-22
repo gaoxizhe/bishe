@@ -6,8 +6,6 @@ package com.example.model;
 
 import lombok.Data;
 
-import java.sql.Timestamp;
-
 /**
  * @ClassName User
  * @Author Mr.Gao
@@ -25,4 +23,5 @@ public class Users {
     private Integer role;
     private String roleName;
     private String roleDescribe;
+    private String address;
 }
