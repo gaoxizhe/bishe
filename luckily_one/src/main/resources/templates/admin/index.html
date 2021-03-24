@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="x-admin-sm" lang="ch" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head th:replace="/admin/common::head"></head>
+<head th:replace="admin/common::head"></head>
 
 <body class="index">
 <!-- 顶部开始 -->
@@ -19,8 +19,7 @@
                     <a href="/admin/logout" onclick="closeAll()">退出</a></dd>
             </dl>
         </li>
-        <li class="layui-nav-item to-index">
-            <a href="/">前台首页</a></li>
+
     </ul>
 </div>
 <!-- 顶部结束 -->
@@ -38,24 +37,24 @@
                 </a>
             </li>
 
-            <li>
+            <li sec:authorize="hasRole('ROLE_admin')">
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="设置">&#xe6ae;</i>
                     <cite>设置</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('用户管理','/admin/toCategoryList',true)">
+                        <a onclick="xadmin.add_tab('用户管理','/admin/toUserList')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>用户管理</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('专业管理','/admin/toLabelList',true)">
+                        <a onclick="xadmin.add_tab('专业管理','/admin/toProfessionList')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>专业管理</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('班级管理','/admin/toUserInfo',true)">
+                        <a onclick="xadmin.add_tab('班级管理','/admin/toClassList')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>班级管理</cite></a>
                     </li>

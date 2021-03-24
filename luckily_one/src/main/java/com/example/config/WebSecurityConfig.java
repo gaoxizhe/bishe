@@ -13,12 +13,11 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig  {
+public class WebSecurityConfig {
 
     //认证成功处理类
     @Resource
     MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
-
 
     @Bean
     public WebSecurityConfigurerAdapter webSecurityConfigurerAdapter() {
@@ -31,15 +30,15 @@ public class WebSecurityConfig  {
                         .headers().frameOptions().disable().and().
                         formLogin()
                         .loginPage("/admin/toLogin").loginProcessingUrl("/admin/login")
-                            .successHandler(myAuthenticationSuccessHandler).failureUrl("/admin/toLogin?error=true")
+                        .successHandler(myAuthenticationSuccessHandler).failureUrl("/admin/toLogin?error=true")
                         .permitAll().and()
                         .logout().logoutUrl("/admin/logout").logoutSuccessUrl("/admin/toLogin").clearAuthentication(true).permitAll().and().
                         authorizeRequests()
                         //配置无需拦截的访问请求
-                        .antMatchers("/","/admin/toRegister","/admin/user/register").permitAll().
+                        .antMatchers("/", "/admin/toRegister", "/admin/user/register").permitAll().
                         //配置权限访问请求
-                        antMatchers("/admin/**").hasAnyRole("admin","user","guest").
-                        antMatchers("/guest/**").hasRole("guest")
+                                antMatchers("/admin/**").hasAnyRole("admin", "user", "teacher").
+                                antMatchers("/guest/**").hasRole("guest")
                         .anyRequest().permitAll()
                 ;
 
@@ -65,11 +64,6 @@ public class WebSecurityConfig  {
     }
 
     // ...
-
-
-
-
-
 
 }
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.ProFessionDao">
+    <insert id="insertProfession">
+        insert into profession (name)
+        values (#{name})
+    </insert>
+    <update id="updateProfessionById">
+        update profession
+        set name = #{name}
+        where id = #{id}
+    </update>
+    <delete id="deleteProfessionById">
+        delete
+        from profession
+        where id = #{id}
+    </delete>
+    <select id="getProfessionPageList" resultType="com.example.model.Profession">
+        select id, name
+        from profession
+    </select>
+    <select id="getProfessionById" resultType="com.example.model.Profession">
+        select id, name
+        from profession
+        where id = #{id}
+    </select>
+</mapper>

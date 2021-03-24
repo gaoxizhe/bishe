@@ -9,8 +9,7 @@
 
 <div class="x-nav">
             <span class="layui-breadcrumb">
-                <a href="">设置</a>
-                <a><cite>分类管理</cite></a>
+                <a><cite>用户管理</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
        onclick="location.reload()" title="刷新">
@@ -22,10 +21,10 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">
-                        <i class="layui-icon layui-icon-delete"></i>批量删除
-                    </button>
-                    <button class="layui-btn" onclick="xadmin.open('添加分类','common-edit/1/2/0',800,380)">
+<!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
+<!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
+<!--                    </button>-->
+                    <button class="layui-btn" onclick="xadmin.open('添加','toUserEdit/0',800,380)">
                         <i class="layui-icon layui-icon-add-1">
                         </i>添加
                     </button>
@@ -43,6 +42,7 @@
 </body>
 
 <script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="password">修改密码</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
@@ -57,14 +57,15 @@
             table.render({
                 id: 'idTest',
                 elem: '#category'
-                , url: '/admin/category/list/'
+                ,page: true
+                , url: '/admin/user/list/'
                 , height: 600
                 , parseData: function (res) { //res 即为原始返回的数据
 
                     return {
                         "code": res.code, //解析接口状态
                         "msg": res.msg, //解析提示文本
-                        "count": res.total, //解析数据长度
+                        "count": res.page.totalCount, //解析数据长度
                         "data": res.data //解析数据列表
                     };
                 }
@@ -72,20 +73,12 @@
                     [
                         {checkbox: true, LAY_CHECKED: false, filter: 'test', width: 80}
                         , {field: 'id', width: 80, sort: true, title: 'id'}
-                        , {field: 'name', title: '分类名称', width: 200}
-                        , {field: 'description', title: '描述'}
-                        , {field: 'shot', title: '排序', sort: true, width: 80, align: "center"}
-                        , {
-                        field: 'createTime', title: '创建时间', width: 200, templet: function (d) {
-                            return xadmin.TimeToDate(d.createTime);
-                        }
-                    }
-                        , {
-                        field: 'updateTime', title: '修改时间', width: 200, templet: function (d) {
-                            return xadmin.TimeToDate(d.updateTime);
-                        }
-                    }
-                        , {width: 200, align: 'center', toolbar: '#barDemo', title: '操作'}
+                        , {field: 'username', title: '用户名'}
+                        , {field: 'name', title: '姓名'}
+                        , {field: 'phone', title: '电话'}
+                        , {field: 'address', title: '地址'}
+                        , {field: 'roleDescribe', title: '角色',width: 80}
+                        , {width: 250, align: 'center', toolbar: '#barDemo', title: '操作'}
                     ]
                 ]
 
@@ -94,13 +87,13 @@
             table.on('tool(test)', function (obj) {
                 let checkStatus = table.checkStatus(obj.data.id);
                 switch (obj.event) {
-                    case 'detail':
-                        layer.msg('查看');
-                        xadmin.open('编辑分类', 'common-edit/1/1/' + obj.data.id, 800, 380)
+                    case 'password':
+                        layer.msg('修改密码');
+                        xadmin.open('编辑分类', 'toUserPassword/' + obj.data.id, 800, 380)
                         break;
                     case 'edit':
                         layer.msg('编辑');
-                        xadmin.open('编辑分类', 'common-edit/1/1/' + obj.data.id, 800, 380)
+                        xadmin.open('编辑分类', 'toUserEdit/' + obj.data.id, 800, 380)
                         break;
                     case 'del':
                         layer.msg('删除');
@@ -111,7 +104,7 @@
                             btn: ['确定', '取消'],
                             yes: function (index) {
                                 $.ajax({
-                                    url: "/admin/category/" + obj.data.id,
+                                    url: "/admin/user/" + obj.data.id,
                                     type: "delete",
                                     dataType: "json",
                                     success: function (data) {
