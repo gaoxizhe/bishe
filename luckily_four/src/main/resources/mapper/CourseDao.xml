@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.CourseDao">
+    <insert id="insertCourse">
+        insert into course(course_name, p_id, c_id, user_id, content)
+        VALUES (#{courseName}, #{professionId}, #{classId},
+                #{userId}, #{content})
+    </insert>
+    <update id="updateCourseById">
+        update course
+        <set>
+            <if test="professionId != null">
+                p_id = #{professionId},
+            </if>
+
+            <if test="classId != null">
+                c_id = #{classId},
+            </if>
+
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+
+            <if test="content != null">
+                content = #{content},
+            </if>
+
+            <if test="courseName != null">
+                course_name = #{courseName},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="deleteCourseById">
+        delete
+        from course
+        where id = #{id}
+    </delete>
+    <select id="getCoursePageList" resultType="com.example.model.Course">
+        select c.id as id, course_name courseName, c.p_id professionId, c_id classId, user_id userId, content,
+               p.name professionName,c2.name className ,ui.name userName
+        from course c
+                 left join profession p on p.id = c.p_id
+                 left join class c2 on c.c_id = c2.id
+                 left join user_info ui on c.user_id = ui.id
+
+    </select>
+    <select id="getCourseById" resultType="com.example.model.Course">
+        select c.id as id, course_name courseName, c.p_id professionId, c_id classId, user_id userId, content,
+               p.name professionName,c2.name className ,ui.name userName
+        from course c
+                 left join profession p on p.id = c.p_id
+                 left join class c2 on c.c_id = c2.id
+                 left join user_info ui on c.user_id = ui.id
+        where c.id = #{id}
+
+    </select>
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.UserDao">
+
+    <update id="updateUserInfoById">
+        update user_info
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="name != null">
+                `name` = #{name},
+            </if>
+
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+
+            <if test="address != null">
+                address = #{address},
+            </if>
+
+
+
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateUserPassword">
+        update user_info
+        <set>
+            <if test="password != null">
+                password = #{password},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="deleteUserById">
+        delete  from user_info where id = #{id}
+    </delete>
+    <select id="getUserInfoByUserName" resultType="com.example.model.Users">
+        select ui.id, username, password, name, phone, role, role_name, `describe` as role_describe
+        from user_info as ui
+        left join role r on r.id=ui.role
+        where username = #{username}
+    </select>
+
+
+    <insert id="insertUser">
+        insert into user_info (username, password, name, phone, role, address)
+        values (#{username}, #{password}, #{name}, #{phone}, #{role},#{address})
+    </insert>
+
+    <select id="getUserPageByRole" resultType="com.example.model.Users">
+        select ui.id, username, name, phone, role, role_name, `describe` as role_describe ,address
+        from user_info as ui
+                 left join role r on r.id=ui.role
+        where role = #{roleId}
+    </select>
+    <select id="getUserById" resultType="com.example.model.Users">
+        select ui.id, username, name, phone, role, role_name, `describe` as role_describe ,address
+        from user_info as ui
+                 left join role r on r.id=ui.role
+        where ui.id = #{id}
+    </select>
+
+    <select id="selectUserListByRole" resultType="com.example.model.Users">
+        select ui.id, username, name, phone, role, role_name, `describe` as role_describe ,address
+        from user_info as ui
+                 left join role r on r.id=ui.role
+        where role = #{roleId}
+    </select>
+</mapper>

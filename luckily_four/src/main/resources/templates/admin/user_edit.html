@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head th:replace="admin/common::head"></head>
+<body>
+
+<form class="layui-form" action="/admin/user" method="post">
+
+
+    <input type="hidden" name="id" class="layui-input" th:value="${data.data.id}">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+            <input type="text" name="username" required lay-verify="required" placeholder="请输入分类名称" autocomplete="off"
+                   class="layui-input" th:value="${data.data.username}">
+        </div>
+    </div>
+
+    <div class="layui-form-item" th:if="${#strings.isEmpty(data.data.id)}">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+            <input type="text" name="password" required lay-verify="required" placeholder="请输入分类名称" autocomplete="off"
+                   class="layui-input" th:value="${data.data.password}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" required lay-verify="required" placeholder="请输入分类名称" autocomplete="off"
+                   class="layui-input" th:value="${data.data.name}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机号</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone" required lay-verify="required" placeholder="请输入分类名称" autocomplete="off"
+                   class="layui-input" th:value="${data.data.phone}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">住址</label>
+        <div class="layui-input-block">
+            <input type="text" name="address" required lay-verify="required" placeholder="请输入分类名称" autocomplete="off"
+                   class="layui-input" th:value="${data.data.address}">
+        </div>
+    </div>
+
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+    //Demo
+    layui.use('form', function () {
+
+        let data = [[${data}]];
+
+        if (data.code != 0) {
+            layer.msg(JSON.stringify(data.msg));
+            setInterval(function () {
+                xadmin.close();
+            }, 2000);
+
+        }
+
+        let form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            xadmin.close();
+            xadmin.father_reload();
+            return true;
+        });
+    });
+</script>
+<style>
+    .layui-input-block {
+        margin-top: 15px;
+        margin-right: 15px;
+    }
+</style>
+</html>

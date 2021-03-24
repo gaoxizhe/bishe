@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head th:replace="admin/common::head"></head>
+<body>
+
+<form class="layui-form" action="/admin/class" method="post">
+
+
+    <input type="hidden" name="id" class="layui-input" th:value="${data.data.id}">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">班级名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" required lay-verify="required" placeholder="请输入专业名称" autocomplete="off"
+                   class="layui-input" th:value="${data.data.name}">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">请选择专业</label>
+        <div class="layui-input-block">
+            <select name="pId" lay-filter="aihao">
+                <option th:each="class,Stat:${pList}" th:value="${class.id}" th:text="${class.name}"></option>
+            </select>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+    //Demo
+    layui.use('form', function () {
+
+        let form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            xadmin.close();
+            xadmin.father_reload();
+            return true;
+        });
+    });
+</script>
+<style>
+    .layui-input-block {
+        margin-top: 15px;
+        margin-right: 15px;
+    }
+</style>
+</html>

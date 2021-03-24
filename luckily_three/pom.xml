@@ -13,7 +13,7 @@
     <artifactId>luckily_three</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>luckily_three</name>
-    <description>Demo project for Spring Boot</description>
+    <description>小区车位管理系统</description>
 
     <properties>
         <java.version>1.8</java.version>
