@@ -179,4 +179,9 @@ public class AdminRouter {
         return "admin/course_list";
     }
 
+    @GetMapping("/toStudyPlan")
+    public String toStudyPlan() {
+        return "admin/study_plan_list";
+    }
+
 }
