@@ -42,6 +42,14 @@ public class AdminRouter {
     @Resource
     private StudyPlanService studyPlanService;
 
+    @Resource
+    private ClassResourceService classResourceService;
+
+    @Resource
+    private TaskService taskService;
+
+
+
 
     @GetMapping({"/index", "/", "index.html", ""})
     public String index() {
@@ -201,6 +209,59 @@ public class AdminRouter {
     @GetMapping("/toStudyPlan")
     public String toStudyPlan() {
         return "admin/study_plan_list";
+    }
+
+
+
+
+    @GetMapping("/toClassResource")
+    public String toClassResource() {
+        return "admin/class_resource_list";
+    }
+
+    @GetMapping("/toTask")
+    public String toTask() {
+        return "admin/task_list";
+    }
+
+    @GetMapping("/toClassResourceEdit/{id}")
+    public String toClassResourceEdit(Model model, @PathVariable("id") Integer id) {
+        RestEntityResponse restResponseBase = new RestEntityResponse<>();
+        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
+        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        if (id.equals(0)) {
+            restResponseBase.setData(new ClassResource());
+        } else {
+            ClassResource classResource = classResourceService.getClassResourceById(id);
+            restResponseBase.setData(classResource);
+        }
+        String o = JSON.toJSONString(restResponseBase);
+        System.err.println(o);
+        model.addAttribute("data", restResponseBase);
+        model.addAttribute("cList", courseService.getCourseList());
+        model.addAttribute("uList", userService.getuserListByRole(2));
+        return "admin/class_resource_edit";
+
+    }
+
+    @GetMapping("/toTaskEdit/{id}")
+    public String toTaskEdit(Model model, @PathVariable("id") Integer id) {
+        RestEntityResponse restResponseBase = new RestEntityResponse<>();
+        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
+        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        if (id.equals(0)) {
+            restResponseBase.setData(new Task());
+        } else {
+            Task task = taskService.getTaskById(id);
+            restResponseBase.setData(task);
+        }
+        String o = JSON.toJSONString(restResponseBase);
+        System.err.println(o);
+        model.addAttribute("data", restResponseBase);
+        model.addAttribute("cList", courseService.getCourseList());
+        model.addAttribute("uList", userService.getuserListByRole(2));
+        return "admin/task_edit";
+
     }
 
 }
