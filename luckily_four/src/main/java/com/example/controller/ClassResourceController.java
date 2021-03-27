@@ -7,10 +7,11 @@ import com.example.base.RestListResponse;
 import com.example.base.RestResponseBase;
 import com.example.base.RestResponsePage;
 import com.example.constant.StatusConstant;
+import com.example.dao.ClassResourceDao;
+import com.example.model.ClassResource;
 import com.example.model.Course;
-import com.example.model.StudyPlan;
+import com.example.service.ClassResourceService;
 import com.example.service.CourseService;
-import com.example.service.StudyPlanService;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -18,20 +19,27 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Map;
 
+/**
+ * @ClassName ProfessionController
+ * @Author Mr.Gao
+ * @Date 2021/3/23 下午10:12
+ * @Description TODO | 
+ */
+
 @RestController
 @RequestMapping("/admin")
 @Slf4j
-public class StudyPlanController {
+public class ClassResourceController {
 
 
     @Resource
-    private StudyPlanService studyPlanService;
+    private ClassResourceService classResourceService;
 
 
 
-    @GetMapping("/study_plan/list")
+    @GetMapping("/class_resource/list")
     //page=1&limit=10
-    public RestListResponse<StudyPlan> StudyPlanList(@RequestParam(value = "page") Integer page, @RequestParam(value = "limit") Integer limit) {
+    public RestListResponse<ClassResource> ClassResourceList(@RequestParam(value = "page") Integer page, @RequestParam(value = "limit") Integer limit) {
         if (page == null || page < 0) {
             page = 0;
         }
@@ -41,9 +49,9 @@ public class StudyPlanController {
 
         log.info("page: {} , limit : {}", page, limit);
 
-        PageInfo<StudyPlan> info = studyPlanService.getStudyPlanList(page, limit);
+        PageInfo<ClassResource> info = classResourceService.getClassResourceList(page, limit);
 
-        RestListResponse<StudyPlan> response = new RestListResponse<>();
+        RestListResponse<ClassResource> response = new RestListResponse<>();
         RestResponsePage responsePage = new RestResponsePage();
         responsePage.setTotalCount(info.getSize());
 
@@ -55,16 +63,14 @@ public class StudyPlanController {
     }
 
 
-    @PostMapping("/study_plan")
-    public RestResponseBase updateStudyPlan(@RequestParam Map<String, Object> params) {
+    @PostMapping("/class_resource")
+    public RestResponseBase updateClassResource(@RequestParam Map<String, Object> params) {
 
-        StudyPlan studyPlan = new StudyPlan();
-        studyPlan.setId(params.get("id") == null || params.get("id").equals("") ? 0 : Integer.parseInt(params.get("id").toString()));
-        studyPlan.setCourseId(params.get("courseId") == null || params.get("courseId").equals("") ? 0 : Integer.parseInt(params.get("courseId").toString()));
-        studyPlan.setUserId(params.get("userId") == null || params.get("userId").equals("") ? 0 : Integer.parseInt(params.get("userId").toString()));
-        studyPlan.setTime((String) params.get("time") );
-        studyPlan.setContent((String) params.get("content"));
-        studyPlan.setName((String) params.get("name"));
+        ClassResource classResource = new ClassResource();
+        classResource.setId(params.get("id") == null || params.get("id").equals("") ? 0 : Integer.parseInt(params.get("id").toString()));
+        classResource.setCourseId(params.get("courseId") == null || params.get("courseId").equals("") ? 0 : Integer.parseInt(params.get("courseId").toString()));
+        classResource.setUserId(params.get("userId") == null || params.get("userId").equals("") ? 0 : Integer.parseInt(params.get("userId").toString()));
+        classResource.setResourceAddress((String) params.get("resourceAddress"));
 
 
         RestResponseBase restResponseBase = new RestResponseBase();
@@ -72,14 +78,14 @@ public class StudyPlanController {
         restResponseBase.setCode(StatusConstant.Common.SUCCESS);
 
 
-        studyPlanService.updateStudyPlan(studyPlan);
+        classResourceService.updateClassResource(classResource);
 
         return restResponseBase;
     }
 
 
-    @DeleteMapping("/study_plan/{id}")
-    public RestResponseBase updateStudyPlan(@PathVariable("id") Integer id) {
+    @DeleteMapping("/class_resource/{id}")
+    public RestResponseBase updateClassResource(@PathVariable("id") Integer id) {
 
 
         RestResponseBase restResponseBase = new RestResponseBase();
@@ -92,7 +98,7 @@ public class StudyPlanController {
             return restResponseBase;
         }
 
-        studyPlanService.deleteStudyPlanById(id);
+        classResourceService.deleteClassResourceById(id);
         return restResponseBase;
     }
 }

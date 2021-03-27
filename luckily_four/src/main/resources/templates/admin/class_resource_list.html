@@ -9,7 +9,7 @@
 
 <div class="x-nav">
             <span class="layui-breadcrumb">
-                <a><cite>班级管理</cite></a>
+                <a><cite>课程资源管理</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
        onclick="location.reload()" title="刷新">
@@ -24,7 +24,7 @@
 <!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
 <!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
 <!--                    </button>-->
-                    <button class="layui-btn" onclick="xadmin.open('添加','toStudyPlanEdit/0',800,300)">
+                    <button class="layui-btn" onclick="xadmin.open('添加','toClassResourceEdit/0',800,300)">
                         <i class="layui-icon layui-icon-add-1">
                         </i>添加
                     </button>
@@ -57,7 +57,7 @@
                 id: 'idTest',
                 elem: '#category'
                 ,page: true
-                , url: '/admin/study_plan/list'
+                , url: '/admin/class_resource/list'
                 , height: 600
                 , parseData: function (res) { //res 即为原始返回的数据
 
@@ -72,11 +72,9 @@
                     [
                         {checkbox: true, LAY_CHECKED: false, filter: 'test', width: 80}
                         , {field: 'id', width: 80, sort: true, title: 'id'}
-                        , {field: 'name', title: '计划名'}
                         , {field: 'courseName', title: '课程名'}
                         , {field: 'userName', title: '老师'}
-                        , {field: 'time', title: '时间'}
-                        , {field: 'content', title: '内容'}
+                        , {field: 'resourceAddress', title: '资源地址'}
                         , {width: 250, align: 'center', toolbar: '#barDemo', title: '操作'}
                     ]
                 ]
@@ -88,7 +86,7 @@
                 switch (obj.event) {
                     case 'edit':
                         layer.msg('编辑');
-                        xadmin.open('编辑分类', 'toStudyPlanEdit/' + obj.data.id, 800,300)
+                        xadmin.open('编辑分类', 'toClassResourceEdit/' + obj.data.id, 800,300)
                         break;
                     case 'del':
                         layer.msg('删除');
@@ -99,7 +97,7 @@
                             btn: ['确定', '取消'],
                             yes: function (index) {
                                 $.ajax({
-                                    url: "/admin/study_plan/" + obj.data.id,
+                                    url: "/admin/class_resource/" + obj.data.id,
                                     type: "delete",
                                     dataType: "json",
                                     success: function (data) {

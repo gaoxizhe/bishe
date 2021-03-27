@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.TaskDao">
+    <insert id="insertTask">
+        insert into task(c_id, user_id, name, content)
+        VALUES (#{courseId}, #{userId}, #{name}, #{content})
+    </insert>
+    <update id="updateTaskById">
+        update task
+        <set>
+            <if test="courseId != null">
+                c_id = #{courseId},
+            </if>
+
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+
+            <if test="content != null">
+                content = #{content},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="deleteTaskById">
+        delete
+        from task
+        where id = #{id}
+    </delete>
+    <select id="getTaskPageList" resultType="com.example.model.Task">
+        select ts.id,
+               ts.c_id       courseId,
+               c.course_name courseName,
+               ts.user_id,
+               ui.name       userName,
+               ts.content,
+               ts.name
+        from task ts
+                 left join course c on c.id = ts.c_id
+                 left join user_info ui on ui.id = ts.user_id
+    </select>
+    <select id="getTaskById" resultType="com.example.model.Task">
+        select ts.id,
+               ts.c_id       courseId,
+               c.course_name courseName,
+               ts.user_id,
+               ui.name       userName,
+               ts.content,
+               ts.name
+        from task ts
+                 left join course c on c.id = ts.c_id
+                 left join user_info ui on ui.id = ts.user_id
+        where ts.id = #{id}
+    </select>
+</mapper>

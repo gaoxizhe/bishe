@@ -5,8 +5,6 @@ package com.example.model;/**
 
 import lombok.Data;
 
-import java.sql.Timestamp;
-
 /**
  * @ClassName Class
  * @Author Mr.Gao
@@ -14,13 +12,12 @@ import java.sql.Timestamp;
  * @Description TODO |
  */
 @Data
-public class StudyPlan {
+public class Task {
     private Integer id;
-    private String name;
     private Integer courseId;
     private String courseName;
     private Integer userId;
     private String userName;
-    private String time;
+    private String name;
     private String content;
 }

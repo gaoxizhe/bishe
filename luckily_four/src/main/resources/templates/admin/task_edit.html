@@ -3,13 +3,13 @@
 <head th:replace="admin/common::head"></head>
 <body>
 
-<form class="layui-form" action="/admin/study_plan" method="post">
+<form class="layui-form" action="/admin/task" method="post">
 
 
     <input type="hidden" name="id" class="layui-input" th:value="${data.data.id}">
 
     <div class="layui-form-item">
-        <label class="layui-form-label">计划名称</label>
+        <label class="layui-form-label">作业名称</label>
         <div class="layui-input-block">
             <input type="text" name="name" required lay-verify="required" placeholder="请输入课程名称" autocomplete="off"
                    class="layui-input" th:value="${data.data.name}">
@@ -47,13 +47,7 @@
                    class="layui-input" th:value="${data.data.content}">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">时间</label>
-        <div class="layui-input-block">
-            <input type="text" name="time" required lay-verify="required" placeholder="请输入内容" autocomplete="off"
-                   class="layui-input" th:value="${data.data.time}">
-        </div>
-    </div>
+
 
 
     <div class="layui-form-item">

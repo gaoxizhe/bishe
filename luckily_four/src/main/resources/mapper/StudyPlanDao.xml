@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.StudyPlanDao">
+    <insert id="insertStudyPlan">
+        insert into study_plan(name, c_id, user_id, time, content)
+        VALUES (#{name}, #{courseId}, #{userId}, #{time}, #{content})
+    </insert>
+    <update id="updateStudyPlanById">
+        update study_plan
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+
+            <if test="courseId != null">
+                c_id = #{courseId},
+            </if>
+
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+
+            <if test="time != null">
+                time = #{time},
+            </if>
+
+            <if test="content != null">
+                content = #{content},
+            </if>
+        </set>
+            where id = #{id}
+    </update>
+    <delete id="deleteStudyPlanById">
+        delete
+        from study_plan
+        where id = #{id}
+    </delete>
+    <select id="getStudyPlanPageList" resultType="com.example.model.StudyPlan">
+        select sp.id, sp.c_id courseId, c.course_name courseName, sp.user_id, ui.name userName, time, sp.content, sp.name
+        from study_plan sp
+                 left join course c on c.id = sp.c_id
+                 left join user_info ui on ui.id = sp.user_id
+    </select>
+    <select id="getStudyPlanById" resultType="com.example.model.StudyPlan">
+        select sp.id, sp.c_id courseId, c.course_name courseName, sp.user_id, ui.name userName, time, sp.content , sp.name
+        from study_plan sp
+                 left join course c on c.id = sp.c_id
+                 left join user_info ui on ui.id = sp.user_id
+        where sp.id = #{id}
+    </select>
+</mapper>

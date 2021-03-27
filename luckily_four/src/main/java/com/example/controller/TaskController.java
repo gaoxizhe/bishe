@@ -8,9 +8,9 @@ import com.example.base.RestResponseBase;
 import com.example.base.RestResponsePage;
 import com.example.constant.StatusConstant;
 import com.example.model.Course;
-import com.example.model.StudyPlan;
+import com.example.model.Task;
 import com.example.service.CourseService;
-import com.example.service.StudyPlanService;
+import com.example.service.TaskService;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -18,20 +18,26 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Map;
 
+/**
+ * @ClassName ProfessionController
+ * @Author Mr.Gao
+ * @Date 2021/3/23 下午10:12
+ * @Description TODO | 
+ */
+
 @RestController
 @RequestMapping("/admin")
 @Slf4j
-public class StudyPlanController {
-
+public class TaskController {
 
     @Resource
-    private StudyPlanService studyPlanService;
+    private TaskService taskService;
 
 
 
-    @GetMapping("/study_plan/list")
+    @GetMapping("/task/list")
     //page=1&limit=10
-    public RestListResponse<StudyPlan> StudyPlanList(@RequestParam(value = "page") Integer page, @RequestParam(value = "limit") Integer limit) {
+    public RestListResponse<Task> TaskList(@RequestParam(value = "page") Integer page, @RequestParam(value = "limit") Integer limit) {
         if (page == null || page < 0) {
             page = 0;
         }
@@ -41,9 +47,9 @@ public class StudyPlanController {
 
         log.info("page: {} , limit : {}", page, limit);
 
-        PageInfo<StudyPlan> info = studyPlanService.getStudyPlanList(page, limit);
+        PageInfo<Task> info = taskService.getTaskList(page, limit);
 
-        RestListResponse<StudyPlan> response = new RestListResponse<>();
+        RestListResponse<Task> response = new RestListResponse<>();
         RestResponsePage responsePage = new RestResponsePage();
         responsePage.setTotalCount(info.getSize());
 
@@ -55,16 +61,15 @@ public class StudyPlanController {
     }
 
 
-    @PostMapping("/study_plan")
-    public RestResponseBase updateStudyPlan(@RequestParam Map<String, Object> params) {
+    @PostMapping("/task")
+    public RestResponseBase updateTask(@RequestParam Map<String, Object> params) {
 
-        StudyPlan studyPlan = new StudyPlan();
-        studyPlan.setId(params.get("id") == null || params.get("id").equals("") ? 0 : Integer.parseInt(params.get("id").toString()));
-        studyPlan.setCourseId(params.get("courseId") == null || params.get("courseId").equals("") ? 0 : Integer.parseInt(params.get("courseId").toString()));
-        studyPlan.setUserId(params.get("userId") == null || params.get("userId").equals("") ? 0 : Integer.parseInt(params.get("userId").toString()));
-        studyPlan.setTime((String) params.get("time") );
-        studyPlan.setContent((String) params.get("content"));
-        studyPlan.setName((String) params.get("name"));
+        Task task = new Task();
+        task.setId(params.get("id") == null || params.get("id").equals("") ? 0 : Integer.parseInt(params.get("id").toString()));
+        task.setCourseId(params.get("courseId") == null || params.get("courseId").equals("") ? 0 : Integer.parseInt(params.get("courseId").toString()));
+        task.setUserId(params.get("userId") == null || params.get("userId").equals("") ? 0 : Integer.parseInt(params.get("userId").toString()));
+        task.setContent((String) params.get("content"));
+        task.setName((String) params.get("name"));
 
 
         RestResponseBase restResponseBase = new RestResponseBase();
@@ -72,14 +77,14 @@ public class StudyPlanController {
         restResponseBase.setCode(StatusConstant.Common.SUCCESS);
 
 
-        studyPlanService.updateStudyPlan(studyPlan);
+        taskService.updateTask(task);
 
         return restResponseBase;
     }
 
 
-    @DeleteMapping("/study_plan/{id}")
-    public RestResponseBase updateStudyPlan(@PathVariable("id") Integer id) {
+    @DeleteMapping("/task/{id}")
+    public RestResponseBase updateTask(@PathVariable("id") Integer id) {
 
 
         RestResponseBase restResponseBase = new RestResponseBase();
@@ -92,7 +97,7 @@ public class StudyPlanController {
             return restResponseBase;
         }
 
-        studyPlanService.deleteStudyPlanById(id);
+        taskService.deleteTaskById(id);
         return restResponseBase;
     }
 }

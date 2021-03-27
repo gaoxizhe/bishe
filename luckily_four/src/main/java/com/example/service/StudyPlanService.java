@@ -1,5 +1,4 @@
 package com.example.service;
-
 import com.alibaba.fastjson.JSON;
 import com.example.dao.CourseDao;
 import com.example.dao.StudyPlanDao;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+
 @Service
 @Slf4j
 public class StudyPlanService {
@@ -21,17 +21,17 @@ public class StudyPlanService {
     private StudyPlanDao studyPlanDao;
 
 
-    public PageInfo<StudyPlan> getCourseList(Integer page, Integer limit) {
+    public PageInfo<StudyPlan> getStudyPlanList(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
-        List<StudyPlan> studyPlanPageList = studyPlanDao.getStudyPlanPageList();
+        List<StudyPlan> studyPlans = studyPlanDao.getStudyPlanPageList();
 
-        return new PageInfo<>(studyPlanPageList);
+        return new PageInfo<>(studyPlans);
 
     }
 
-    public List<StudyPlan> getStudyPlanList() {
+    public List<StudyPlan> getCourseList() {
         List<StudyPlan> studyPlans = studyPlanDao.getStudyPlanPageList();
-        return studyPlans;
+        return studyPlans ;
     }
 
     public StudyPlan getStudyPlanById(Integer id) {

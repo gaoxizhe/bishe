@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.ClassResourceDao">
+    <insert id="insertClassResource">
+        insert into class_resources(c_id, user_id, resource_address)
+        VALUES (#{courseId}, #{userId}, #{resourceAddress})
+    </insert>
+    <update id="updateClassResourceById">
+        update class_resources
+        <set>
+            <if test="courseId != null">
+                c_id = #{courseId},
+            </if>
+
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="resourceAddress != null">
+                resource_address = #{resourceAddress},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="deleteClassResourceById">
+        delete
+        from class_resources
+        where id = #{id}
+    </delete>
+
+    <select id="getClassResourcePageList" resultType="com.example.model.ClassResource">
+        select cc.id id,
+               cc.c_id       courseId,
+               c.course_name courseName,
+               cc.user_id userId,
+               ui.name       userName,
+               cc.resource_address resourceAddress
+        from class_resources cc
+                 left join course c on c.id = c.c_id
+                 left join user_info ui on ui.id = c.user_id
+    </select>
+    <select id="getClassResourceById" resultType="com.example.model.ClassResource">
+        select cc.id id,
+               cc.c_id       courseId,
+               c.course_name courseName,
+               cc.user_id userId,
+               ui.name       userName,
+               cc.resource_address resourceAddress
+        from class_resources cc
+                 left join course c on c.id = c.c_id
+                 left join user_info ui on ui.id = c.user_id
+        where cc.id = #{id}
+    </select>
+</mapper>
