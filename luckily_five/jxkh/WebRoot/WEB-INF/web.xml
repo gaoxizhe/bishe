@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>This is the display name of my J2EE component</display-name>
+  <servlet-name>LoginServlet</servlet-name>
+  <servlet-class>servlet.LoginServlet</servlet-class>
+ </servlet>
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>This is the display name of my J2EE component</display-name>
+  <servlet-name>JXKH</servlet-name>
+  <servlet-class>servlet.JXKH</servlet-class>
+ </servlet>
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>用户退出</display-name>
+  <servlet-name>OutServlet</servlet-name>
+  <servlet-class>servlet.OutServlet</servlet-class>
+ </servlet>
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>用户退出</display-name>
+  <servlet-name>JxkhSub</servlet-name>
+  <servlet-class>servlet.JxkhSub</servlet-class>
+ </servlet>
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>更改密码</display-name>
+  <servlet-name>RpasswordServlet</servlet-name>
+  <servlet-class>servlet.RpasswordServlet</servlet-class>
+ </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>给老师的建议</display-name>
+    <servlet-name>SuggestSub</servlet-name>
+    <servlet-class>servlet.SuggestSub</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <servlet-name>AuthImage</servlet-name>
+    <servlet-class>servlet.AuthImage</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <servlet-name>RTeapasswordServlet</servlet-name>
+    <servlet-class>servlet.RTeapasswordServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>SuggestDelServlet</display-name>
+    <servlet-name>SuggestDelServlet</servlet-name>
+    <servlet-class>servlet.SuggestDelServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>RAdminpasswordServlet</display-name>
+    <servlet-name>RAdminpasswordServlet</servlet-name>
+    <servlet-class>servlet.RAdminpasswordServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>DelPerformanceServlet</display-name>
+    <servlet-name>DelPerformanceServlet</servlet-name>
+    <servlet-class>servlet.DelPerformanceServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>EditPerformanceServlet</display-name>
+    <servlet-name>EditPerformanceServlet</servlet-name>
+    <servlet-class>servlet.EditPerformanceServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>EditPerfSubServlet</display-name>
+    <servlet-name>EditPerfSubServlet</servlet-name>
+    <servlet-class>servlet.EditPerfSubServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>AddPerformanceServlet</display-name>
+    <servlet-name>AddPerformanceServlet</servlet-name>
+    <servlet-class>servlet.AddPerformanceServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>AddPerfSubServlet</display-name>
+    <servlet-name>AddPerfSubServlet</servlet-name>
+    <servlet-class>servlet.AddPerfSubServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>AddPerfSubServlet</display-name>
+    <servlet-name>NoticeAddServlet</servlet-name>
+    <servlet-class>servlet.NoticeAddServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>AddPerfSubServlet</display-name>
+    <servlet-name>NoticeDelServlet</servlet-name>
+    <servlet-class>servlet.NoticeDelServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>NoticeEditServlet</display-name>
+    <servlet-name>NoticeEditServlet</servlet-name>
+    <servlet-class>servlet.NoticeEditServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>NoticeUpdataServlet</display-name>
+    <servlet-name>NoticeUpdataServlet</servlet-name>
+    <servlet-class>servlet.NoticeUpdataServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>StudentDelServlet</display-name>
+    <servlet-name>StudentDelServlet</servlet-name>
+    <servlet-class>servlet.StudentDelServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>StudentEditServlet</display-name>
+    <servlet-name>StudentEditServlet</servlet-name>
+    <servlet-class>servlet.StudentEditServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>StudentEditServlet</display-name>
+    <servlet-name>StudentUpdataServlet</servlet-name>
+    <servlet-class>servlet.StudentUpdataServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>StudentAddServlet</display-name>
+    <servlet-name>StudentAddServlet</servlet-name>
+    <servlet-class>servlet.StudentAddServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <servlet-mapping>
+  <servlet-name>LoginServlet</servlet-name>
+  <url-pattern>/LoginServlet</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>JXKH</servlet-name>
+  <url-pattern>/JXKH</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>OutServlet</servlet-name>
+  <url-pattern>/OutServlet</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>JxkhSub</servlet-name>
+  <url-pattern>/JxkhSub</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>RpasswordServlet</servlet-name>
+  <url-pattern>/RpasswordServlet</url-pattern>
+ </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SuggestSub</servlet-name>
+    <url-pattern>/SuggestSub</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AuthImage</servlet-name>
+    <url-pattern>/AuthImage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RTeapasswordServlet</servlet-name>
+    <url-pattern>/RTeapasswordServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SuggestDelServlet</servlet-name>
+    <url-pattern>/SuggestDelServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RAdminpasswordServlet</servlet-name>
+    <url-pattern>/RAdminpasswordServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelPerformanceServlet</servlet-name>
+    <url-pattern>/DelPerformanceServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditPerformanceServlet</servlet-name>
+    <url-pattern>/EditPerformanceServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditPerfSubServlet</servlet-name>
+    <url-pattern>/EditPerfSubServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddPerformanceServlet</servlet-name>
+    <url-pattern>/AddPerformanceServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddPerfSubServlet</servlet-name>
+    <url-pattern>/AddPerfSubServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NoticeAddServlet</servlet-name>
+    <url-pattern>/NoticeAddServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NoticeDelServlet</servlet-name>
+    <url-pattern>/NoticeDelServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NoticeEditServlet</servlet-name>
+    <url-pattern>/NoticeEditServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NoticeUpdataServlet</servlet-name>
+    <url-pattern>/NoticeUpdataServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>StudentDelServlet</servlet-name>
+    <url-pattern>/StudentDelServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>StudentEditServlet</servlet-name>
+    <url-pattern>/StudentEditServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>StudentUpdataServlet</servlet-name>
+    <url-pattern>/StudentUpdataServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>StudentAddServlet</servlet-name>
+    <url-pattern>/StudentAddServlet</url-pattern>
+  </servlet-mapping>
+  
+ <welcome-file-list>
+  <welcome-file>index.jsp</welcome-file>
+ </welcome-file-list>
+ <login-config>
+  <auth-method>BASIC</auth-method>
+ </login-config>
+</web-app>

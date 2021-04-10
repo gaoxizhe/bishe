@@ -1,0 +1,276 @@
+/**
+ * This is a style for exam sytem
+ * By lingxuan
+ * http://www.lingxuanweb.com
+ * 2013-4-22
+*/
+/******************common*************************************************************************/
+.common-box{width:970px; margin:auto;}
+.h3{font-size:16px; font-family:"Microsoft YaHei","SimHei"; line-height:1.5em; }
+.common-title{font-size:16px; font-family:"Microsoft YaHei","SimHei";}
+.p{font-size:14px; line-height:1.5em;}
+.frm_submit, .frm_back{display:block; width:90px; height:35px; line-height:35px; text-align:center; color:#FFF; font-size:16px; font-family:"Microsoft YaHei","SimHei";   float:left; cursor:pointer;  *display:inline;  /*修复IE6双倍margin问题*/ }
+.frm_submit{background:url(images/icons.png) -5px -85px; }
+.frm_back{background:url(images/icons.png) -5px -132px; margin-left:20px;}
+form label{font-size:14px; color:#333; font-family:"Microsoft YaHei","SimHei"; }
+form input.form-text{ padding:7px 10px; font-size:14px; color:#333; border:1px solid #CCC; }
+.ul-hasde {padding-left:20px; margin-top:10px;}
+.ul-hasde li{list-style-type:square; }
+.note-list{font-size:14px; line-height:1.5em; width:600px; margin:auto;}
+.note-list li{padding:5px 0px; color:#333;}
+a.blue{color:#3083c6; text-decoration:underline;}
+/****************header***************************************************************************/
+#header{padding:20px 0px 10px 0px; overflow:hidden; background:#FFF;}
+#logo{width:312px; height:66px; float:left;  }
+#logo h1{background:url(images/logo.png) no-repeat; overflow:hidden;  height:66px;}
+#logo h1 a{display:block; float:left;  _display:inline;  width:152px; height:66px; text-indent:-10000px;}
+#link-weibo{width:280px; height:40px; float:right; margin-top:20px;}
+#link-weibo a{font-size:18px; line-height:35px; display:block; color:#666; background:url(images/icons.png) no-repeat  120px 0px; font-family:"Microsoft YaHei","SimHei"; }
+#link-weibo #index{float:left; width:60px; _display:inline;}
+#link-weibo #weibo{float:left; width:200px; _display:inline;}
+#link-weibo a:hover{color:#000;}
+/**************** login-pannel ************************************************************************/
+#login-content{height:475px; width:100%; background:url(images/login-banner.jpg) no-repeat center; overflow:hidden; }
+#login-content .common-box{position:relative;} /*相对布局快速定位登录框*/
+#login_form{width:300px; position:absolute; top:100px; right:70px; }
+#login_form label{line-height:30px; width:55px; display:block; float:left; }
+label.passLable{letter-spacing:0.8em;} /*分散对齐密码*/
+#login_form ul li{padding:9px 20px; overflow:hidden;  float:left; /*for IE6*/ }
+#login_form input.form-text{display:block; width:165px;  float:left;}
+#login_form input.txtVcode{width:90px;} /*验证码输入框*/
+#login-submit{width:100px;  font-size:14px; background:url(images/icons.png) no-repeat -5px -178px; margin-left:53px; }
+a.foget-pass{ padding-left:30px; line-height:2.5em; color:#0088cc; }
+li.noReg{margin-top:12px; width:240px; text-align:center; color:#999;}
+li.noReg a{color:#0088cc;}
+.Vcode{height:20px; margin-left:10px; margin-top:5px;}
+/***************footer****************/
+#footer{margin-top:30px; border-top:1px dotted #999;}
+#footer p,#footer p a{padding-top:10px; text-align:center; font-size:14px; color:#999; padding-bottom:20px;}
+#footer p a:hover{color:#333;}
+/***************reg*************************************************************************************/
+#reg-banner{width:100%; height:146px;  background:url(images/sub-banner.jpg) center;}
+#reg-banner p{text-indent:-10000px;}
+.reg-content{display:none;}
+.reg-content h2{background:url(images/reg-title.jpg) no-repeat; width:968px; height:45px; text-indent:-10000px; margin-top:30px;}
+#reg-step{width:842px; height:66px; background:#f0f8ff; margin:auto; margin-top:20px;}
+#reg-step li{float:left; display:inline;  height:35px; line-height:35px; margin-left:30px; padding:0px 30px; color:#b7b7b7; margin-top:17px;  font-size:16px; font-family:"Microsoft YaHei","SimHei";}
+#reg-step li.now-step{background:#699f72; color:#FFF;}
+.reg-sub-content{width:600px; margin-left:240px;  padding:30px 10px; }
+.reg-sub-content h3{font-size:16px; font-family:"Microsoft YaHei","SimHei"; }
+.reg-sub-contentul{margin-top:10px;padding-left:20px;}
+.reg-sub-content ul li{line-height:30px; font-size:14px;  }
+#reg-note-content ul li{padding-left:15px; background:url(images/dot.png) left center no-repeat;  font-family:"Microsoft YaHei","SimHei"; }
+.reg-control #reg-start-btn{display:block; height:40px; text-align:center; line-height:40px; font-size:16px;  color:#FFF; width:150px; background:url(images/icons.png) -3px -37px; font-family:"Microsoft YaHei","SimHei"; margin-top:30px; margin-left:15px;}
+#reg-login-ver-btn,#reg-login-back-btn{height:40px; line-height:35px;}
+.reg-login ul li{margin-top:10px; }
+.reg-login li input.reg-form-text{border:1px solid #CCC; padding:8px 20px;  font-size:16px; color:#666; width:300px; padding-left:10px;}
+.reg-login ul li label{display:block;  padding-right:10px; line-height:1.8em; color:#666; }
+.reg-login ul li span{color:#F00; padding-right:5px;}
+.reg-login ul li span.reg-error{line-height:35px; padding-left:25px; background:url(images/icons.png) -120px -190px no-repeat ;}
+.reg-radio{line-height:35px; height:35px; float:left;}
+.sex-intro{ line-height:35px !important; height:35px; float:left; font-size:14px; color:#666 !important; }
+.select-box{padding:8px 20px; height:35px; width:330px; }
+#select-school{margin-left:100px;}
+.reg-hr-btn,.reg-info-btn{margin-left:100px; _margin-left:50px;}
+#reg-login-content{width:600px;}
+#reg-login-content ul li  p{clear:both; color:#888; font-size:12px;}
+#reg-hr-ver-btn,#reg-hr-back-btn{height:35px; line-height:35px;}
+#reg-start-btn.disabledBtn, #reg-login-ver-btn.disabledBtn{background:#CCC !important;}
+.frmInput{clear:both; }
+.Validform_checktip{margin-left:5px;}
+.frmInput p{line-height:1.5em;}
+#DealBox-content h3{line-height:1.8em; font-size:14px;}
+#DealBox-content p{line-height:1.5em; text-indent:2em; color:#333;}
+/*********exam*****************************/
+#exam-banner{width:100%; height:146px;  background:url(images/sub-banner.jpg) center; text-indent:-10000px;}
+#exam-note h2{background:url(images/exam-note-bg.png) no-repeat; width:960px; height:135px; font-size:18px;  color:#1f5a87; margin-top:20px;  font-weight:normal;  font-family:"Microsoft YaHei","SimHei";  padding-left:20px;;}
+#exam-note-content{padding-top:10px; width:700px;}
+.none{display: none;}
+#exam-note-content p{line-height:1.5em; font-size:14px; }
+#exam-note-content h3{margin-top:15px;}
+#bodyer-online-exam{background:url(images/exam-bg.png);}
+#q_timezone{background:#e9e8e4; height:50px; line-height:50px;}
+#time-box{width:150px; height:50px; padding-left:45px; background:url(images/clock.png) 0px 5px no-repeat; font-size:20px; line-height:50px; color:#108ece; font-family:"Microsoft YaHei","SimHei"; }
+#test_submit{width:195px; height:39px; background:url(images/icons.png) -6px  -374px no-repeat; font-family:"Microsoft YaHei","SimHei"; font-size:16px; color:#FFF; margin-top:5px;}
+#q_content{background:#FFF; border:1px solid #CCC; margin-top:10px; padding:20px; font-size:16px; font-family:"Microsoft YaHei","SimHei"; line-height:1.8em; }
+#q_content input{border:1px solid #CCC; padding:5px 0px; }
+#q_button{margin-top:10px; overflow:hidden;}
+#q_button .frm_submit{background:url(images/icons.png) -5px -131px; width:88px; margin-left:0;}
+#q_button .nextq{background:url(images/icons.png) -5px -277px; width:172px; margin-left:10px;}
+#q_button .pause{float:right;background:url(images/icons.png) -6px  -374px; width:200px; margin-left:10px;height: 39px;}
+#q_button .resume{float:right;background:url(images/icons.png) -5px -132px; margin-left:10px;height: 39px;}
+#exam-record-title{clear:both; padding-top:40px;font-size:16px; line-height:30px; color:#4e95be; font-family:"Microsoft YaHei","SimHei";}
+.grid_table td{border:1px solid #DDD; padding:8px; font-size:16px;  }
+.grid_table a{color:#4e95be;}
+/*****exam header****/
+#showInfo{width:270px; height:50px; float:right; margin-top:10px;  font-family:"Microsoft YaHei","SimHei"; font-size:18px; text-align:right;  }
+#showInfo a, #showInfo .mywelcome{line-height:50px; vertical-align:sub; float:left;}
+#showInfo .n_info{color:#108ece; padding:0px 2px 0 5px; }
+a.n_message{background:url(images/message.png) -1px -5px no-repeat; line-height:16px !important; height:20px; padding:0px 5px 0px 4px; color:#FFF; font-size:12px;  }
+a.n_examdown{color:#108ece !important; padding:0px 10px;}
+/******show box******/
+.showBox{display:none; width:561px;  top:0px;}
+#showInfoBox{height:675px;}
+.showBox-top{height:49px; line-height:49px; background:url(images/showbox-topbar.png) no-repeat;  }
+.showBox-top h3{float:left; color:#696969; width:520px; text-align:center;}
+.showBox-top  a.closeBtn{line-height:30px;  color:#FFF;  width:20px; text-indent:-10000px; float:right; margin-right:10px;}
+.showBox iframe{border:none;  width:480px;  margin-left:10px; margin-top:10px; }
+.showBox-body{background:url(images/showbox-body.png) repeat-y; padding:0px 20px; }
+.showBox-body #submitControl .frm_submit{margin-left:85px;}
+#InfoBox-content{padding-bottom:20px;}
+.showBox-bottom{height:21px; background:url(images/showbox-bottom.png) no-repeat;}
+#side_content{padding:20px;}
+#side_content .anOver{width:700px; margin-left:100px; line-height:2em; font-size:16px;  font-family:"Microsoft YaHei","SimHei"; }
+#side_content .anOver a{color:#3083c6; text-decoration:underline;}
+.logout{color:#333; padding-left:5px;}
+/********对信息表单修改样式***********/
+#frm_view_detail{width:99%;}
+#frm_view_detail .f_head h3{font-size:14px; color:#4e95be; line-height:30px; border-bottom:1px dotted #CCC; }
+#frm_view_detail  .f_label{font-family:"Microsoft YaHei","SimHei"; font-weight:bold;  height:30px; line-height:30px; text-align:right;  padding-right:10px; }
+#frm_view_detail  table{width:100%; }
+#frm_view_detail  .f_input{color:#666; }
+#frm_view_detail  .btnOn,#frm_view_detail  .btnOff{color:#3083c6; }
+#frm_view_detail   input{border:1px solid #CCC; padding:2px 5px;}
+#frm_view_detail  .f_label2{font-family:"Microsoft YaHei","SimHei"; font-weight:bold;  height:30px; line-height:30px; width:75px; padding-left:90px; }
+#frm_view_detail  #school_id{ text-align:left;}
+#frm_view_detail  .select-box{padding:2px 5px; height:22px; }
+#frm_view_detail  #school_id #userSchool{margin:0;}
+#frm_view_detail #frm_submit{border:none; width:165px; height:40px; line-height:40px; margin-left:0px; margin-top:20px; background:url(images/icons.png) -5px -324px no-repeat;} 
+
+#messageList{padding:10px 0px 20px 0px; }
+#messageList li a{font-size:14px; line-height:30px; display:block; height:30px; float:left; width:73%;}
+#messageList li span{float:right; width:25%; line-height:30px; display:block; height:30px; text-align:right; }
+#messageList  li{border-bottom:1px #CCC dotted; height:30px;}
+#show-message-content li.sendTime{line-height:20px; color:#999; border-top:1px dotted #CCC; border-bottom:1px dotted #CCC; text-align:center; }
+#show-message-content{overflow:hidden; padding:10px 0px 20px 0px;}
+#show-message-content p{padding:5px 0px;}
+#show-message-content li h3{color:#333; line-height:40px; height:40px; text-align:center;}
+#show-message-content .message-content{color:#333;   font-size:14px; line-height:1.5em; padding-top:10px;  }
+#show-message-content li .frm_submit{border:none; width:165px; height:40px; line-height:40px; margin-left:170px; margin-top:20px; background:url(images/icons.png) -5px -324px no-repeat;}
+
+#main_note h3{font-size:18px; line-height:2em; border-bottom:1px dotted #666;}
+#main_note  li{line-height:30px; font-size:14px; color:#333;}
+#application_frm{padding:20px 40px; background:#FFF; border:1px solid #CCC; font-size:14px; line-height:1.5em;}
+#application_frm tr.q{border:0px dotted #108ece; padding:5px; display:block; background:#EEE; font-family:"Microsoft YaHei","SimHei";}
+#application_frm tr.answer,#application_frm tr.answer td{display:block; padding:10px;}
+#application_frm tr.answer textarea{width:80%; padding:5px; border:1px solid #CCC; height:100px;}
+#user-plan{margin:auto; margin-top:20px;}
+#user-plan td{border:1px solid #CCC; text-align:center; padding:5px;}
+#user-plan td input{background:#EFEFEF; height:25px; line-height:20px; }
+#save_button2, #save_button3, #save_button{float:right; margin-bottom:20px; margin-top:5px; background:url(images/icons.png) -5px -130px no-repeat;}
+#application_frm #apply_view{margin-left:380px;}
+#resume-start ul,#resume-start{width:700px !important;}
+#soft-exam-download{padding-left:20px;}
+#soft-exam-download li{font-size:16px; }
+#soft-exam-download li a{font-size:16px; color:#266392;}
+#RegBox-content{height:50px; padding:20px; padding-left:110px;}
+#q_content{color:#666;}
+#q_content .qs{color:#333; line-height:35px; }
+#q_content .ans{line-height:45px;}
+.reg-control a{text-decoration:none !important;}
+#normal-qs li{color:#666; padding-left:15px; background:url(images/dot.png) left 12px no-repeat; }
+#frm_password{margin-top:10px;}
+#frm_password ul li{height:50px;}
+#forget-pass .reg-sub-content h3{line-height:40px;}
+#forget-pass .reg-sub-content p{padding-bottom:10px;}
+#exam-note h2.step3-1{background:url(images/y-1.png) no-repeat; text-indent:-10000px;}
+#exam-note h2.step3-2{background:url(images/y-2.png) no-repeat; text-indent:-10000px;}
+#exam-note h2.step3-3{background:url(images/y-3.png) no-repeat; text-indent:-10000px;}
+.eaxmoverbody{background:#FFF;}
+#exam-note h2.step1-1{background:url(images/y-3.png) no-repeat; text-indent:-10000px;}
+#exam-note h2.step2-1{background:url(images/s-1.png) no-repeat; text-indent:-10000px;}
+#exam-note h2.step2-2{background:url(images/s-2.png) no-repeat; text-indent:-10000px;}
+#exam-note h2.step2-3{background:url(images/s-3.png) no-repeat; text-indent:-10000px;}
+#showSubmit #showSubmit-content{height:80px;}
+#showSubmit #showSubmit-content p{text-align:center; font-size:16px; font-family:"Microsoft YaHei","SimHei"; line-height:40px;}
+
+#showSubmit #submitControl{margin-left:130px;}
+
+/* 日期输入框
+------------------------------ */
+input.input_cxcalendar{width:78px;height:18px;padding:1px 5px;border:1px solid #555;background:url(../img/cxcalendar.png) no-repeat right center;font:12px/18px Arial;cursor:pointer;}
+
+/* 日期选择器
+------------------------------ */
+.cxcalendar{display:none;position:absolute;width:200px;font:12px Arial;border:1px solid #ccc;background:#fff;box-shadow:2px 2px 5px rgba(0,0,0,0.3);z-index:10000;}
+.cxcalendar .date_hd{position:relative;height:20px;padding:8px 6px 2px 6px;background:#fff;}
+
+.cxcalendar .date_pre,
+.cxcalendar .date_next{position:absolute;top:9px;width:9px;height:10px;padding:3px 4px;border:1px solid #fff;border-radius:2px;color:#333;font:0/0 Arial;text-decoration:none;outline:0;
+*top:7px;
+*height:14px;
+*font:bold 14px/14px Arial;}
+.cxcalendar .date_pre{left:8px;}
+.cxcalendar .date_next{right:8px;}
+.cxcalendar .date_pre:before,
+.cxcalendar .date_next:before{content:'';display:block;font:0/0 Arial;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;}
+.cxcalendar .date_pre:before{border-right:9px solid #333;}
+.cxcalendar .date_next:before{border-left:9px solid #333;}
+.cxcalendar .date_pre:hover,
+.cxcalendar .date_next:hover{border:1px solid #999;background:#eee;}
+
+.cxcalendar .date_txt{width:120px;margin:0 auto;border:1px solid #fff;border-radius:2px;color:#333;font:bold 14px/18px Arial;text-align:center;cursor:pointer;}
+.cxcalendar .date_txt:hover{border:1px solid #999;background:#eee;}
+.cxcalendar .date_txt .y{padding:0 6px 0 0;}
+.cxcalendar .date_txt .m{padding:0 6px;}
+
+.cxcalendar .date_set{display:none;width:120px;margin:0 auto;text-align:center;}
+.cxcalendar .year_set,
+.cxcalendar .month_set{margin:0;padding:0;border:1px solid #999;border-radius:2px;background:#fff;font:12px/20px Arial;}
+
+.cxcalendar table{position:relative;border-collapse:collapse;table-layout:fixed;empty-cells:show;text-align:center;z-index:1;}
+.cxcalendar thead th,
+.cxcalendar tbody td{width:24px;height:20px;padding:0;border:4px solid #fff;font:12px/20px Arial;text-align:center;}
+.cxcalendar thead th{color:#999;}
+.cxcalendar tbody td{position:static;}
+.cxcalendar tbody .sat{color:#06f}
+.cxcalendar tbody .sun{color:#e00;}
+.cxcalendar tbody .now{background:#ddd;}
+.cxcalendar tbody .num:hover{background:#aaa;color:#333;text-decoration:none;cursor:pointer;}
+.cxcalendar table .selected{background:#090;color:#fff;}
+
+.cxcalendar_lock{display:none;position:absolute;top:0;left:0;background:#fff;z-index:9999;filter:alpha(opacity=0);opacity:0;}
+/**
+ * resume
+ **************************************/
+ #resume_detail label{line-height:1.7em; color:#666;}
+ #resume_detail .frmInput textarea{width:600px; height:90px; padding:5px; border:1px solid #CCC;}
+ #resume_detail li{margin-top:10px;}
+ #resume-tabel th, #resume-tabel td{border:1px solid #EEE; padding:8px;}
+ #resume-tabel th{background:#EEE;  border:1px solid #FFF; text-align:center;}
+ #resume-tabel td input{border:1px solid #EEE; width:95%; padding:4px;}
+ /**
+ * all resume
+ ***********************************/
+ #resume-top-table{width:100%;}
+ #resume-top-table td{width:16.3%;border:1px solid #DDD; padding:2px 10px;}
+ #resume-top{overflow:hidden; margin-top:10px;}
+ #resume-top-left{width:800px; float:left; }
+ h2#resume-top-title{font-size:24px; line-height:80px; font-family:"Microsoft YaHei"; font-weight:normal; text-align:center;}
+ #resume-images{border:1px solid #CCC; margin-top:16px; margin-right:20px; float:right; line-height:145px; text-align:center; width:120px; height:145px; }
+ .section-tilte{background:#EEE; overflow:hidden; height:20px; padding:10px 20px; }
+ .section-tilte h3{font-size:18px; font-family:"Microsoft YaHei"; letter-spacing:0.1em; color:#333;}
+ .section-tilte span{margin-top:5px; margin-left:5px; font-size:14px;}
+ .resume-table{margin-top:15px;}
+ .resume-table .grayText{color:#666; font-size:16px;}
+ .resume-table .blodText{color:#000; font-weight:bold;}
+ .resume-table td{padding:10px; border:1px solid #DDD;  font-size:16px; line-height:1.5em;}
+ .section{overflow:hidden;}
+ #info-table{float:left; width:800px;}
+ #work-table{margin-top:10px; width:100%;}
+ .resumeP{margin-top:10px;}
+ #otherResume{margin-top:20px; width:100%;}
+#resume-tabel th, #resume-tabel td{font-size:16px;}
+#showSubmit #submitControl{margin-left:130px;}
+
+.resetUL li{height:auto !important; overflow: hidden;}
+.resetBtn {display:block; float: right; margin-right: 20px; height:40px; text-align:center; line-height:40px; font-size:16px;  color:#FFF; width:100px; background:url(images/icons.png) -5px -176px; font-family:"Microsoft YaHei","SimHei";  margin-left:15px;}
+#exam-note-start{display:block; float: right; margin-right: 20px; height:40px; text-align:center; line-height:40px; font-size:16px;  color:#FFF; width:150px; background:url(images/icons.png) -3px -37px; font-family:"Microsoft YaHei","SimHei"; margin-left:15px;}
+
+.webcam {position: fixed;left: 0px;margin-top: 10px;margin-left:20px;width: 160px;height: 120px}
+
+#showRegBox #RegBox-content .frm_submit{margin-left:70px;}
+#fixMenu{position:fixed; top:120px; right:5%; width:80px; height:140px; border-top:5px solid #CCC; background:#FFF;}
+#fixMenu ul li{width:100%; line-height:68px; text-align:center; font-size:16px; font-family:"Microsoft YaHei","SimHei";border-bottom:1px solid #EEE; }
+#fixMenu ul li span, #fixMenu ul li #resume-print-btn{cursor:pointer; display:block;}
+#fixMenu ul li span:hover, #resume-print-btn:hover{background:#EEE;}

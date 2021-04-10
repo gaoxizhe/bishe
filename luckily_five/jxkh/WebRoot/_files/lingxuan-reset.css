@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+/*This document is written by Linson 4.27 2011; It is created to include the commom stylesheet.*/
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td{margin:0;padding:0} /*初始化页面*/
+body{font-family:Arial, Helvetica, sans-serif; -webkit-text-size-adjust:none; font-size:12px; word-spacing:0.2em;} /*To standard the body margin and font in different broswer -webkit-text-size-adjust help fix chrome broswer font-size:12px; program*/
+button,img,hr,input{border:none}
+input,textarea{outline:none}
+/*define a <a href="">*/
+a{text-decoration:none; color:#000; outline:none;}
+a:focus{outline:none;}
+hr{height:1px; background:#3F0; color:#3CF;} 
+ul,li,ol,li{list-style:none}
+/*Define the table*/
+table{border-collapse:collapse; border-spacing:0;}
+/*reset h and span*/
+h1,h2,h3,h4,h5,h6,span{margin:0px;padding:0px;}
+p{word-wrap:break-word}
+
+/*define the h1*/
+h1,h2,h3,h4,h5,h6{font-size:100%}
+.h1{font-size:24px;}.h2{font-size:18px;}.h3{font-size:16px;}.h4{font-size:14px;}
+/*fix float bug*/
+.clear{clear:both;}
+.cLeft{clear:left;}
+.cRight{clear:right;}
+/*fix IE6 float double margin*/
+.fL{float:left; _display:inline;}
+.fR{float:right; _display:inline;}
+
+
+.onOverflow{overflow:hidden;}/*for the empty element*/
+.center{margin:auto;}
+.tcenter{text-align:center;}
+.standardForm input{width:140px; margin:5px;}
+.standardForm textarea{width:500px;}
+.standardForm .submit,.standardForm .reset{width:50px; margin-left:20px;}
+.standardForm .file{width:215px;}
+.noneBorder{border:none !important;}
