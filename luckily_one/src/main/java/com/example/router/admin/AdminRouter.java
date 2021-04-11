@@ -4,12 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.example.base.RestEntityResponse;
 import com.example.constant.BaseContextHandler;
 import com.example.constant.StatusConstant;
-import com.example.model.Class;
 import com.example.model.Profession;
+import com.example.model.Student;
 import com.example.model.Users;
 import com.example.service.ClassService;
 import com.example.service.ProfessionService;
+import com.example.service.StudentService;
 import com.example.service.UserService;
+
+import com.example.model.Class;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +41,10 @@ public class AdminRouter {
 
     @Resource
     private ClassService classService;
+
+    @Resource
+    private StudentService studentService;
+
 
     @GetMapping({"/index", "/", "index.html", ""})
     public String index() {
@@ -100,24 +107,7 @@ public class AdminRouter {
 
     }
 
-    @GetMapping("/toClassEdit/{id}")
-    public String toClassEdit(Model model, @PathVariable("id") Integer id) {
-        RestEntityResponse restResponseBase = new RestEntityResponse<>();
-        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
-        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
-        if (id.equals(0)) {
-            restResponseBase.setData(new Users());
-        } else {
-            Class classById = classService.getClassById(id);
-            restResponseBase.setData(classById);
-        }
-        String o = JSON.toJSONString(restResponseBase);
-        System.err.println(o);
-        model.addAttribute("data", restResponseBase);
-        model.addAttribute("pList", professionService.getProfessionList());
-        return "admin/class_edit";
 
-    }
 
     @GetMapping("/toUserPassword/{id}")
     public String toUserPassword(Model model, @PathVariable("id") Integer id) {
@@ -147,6 +137,54 @@ public class AdminRouter {
     @GetMapping("/toClassList")
     public String toClassList() {
         return "admin/class_list";
+    }
+
+    @GetMapping("/toClassEdit/{id}")
+    public String toClassEdit(Model model, @PathVariable("id") Integer id) {
+        RestEntityResponse restResponseBase = new RestEntityResponse<>();
+        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
+        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        if (id.equals(0)) {
+            restResponseBase.setData(new Users());
+        } else {
+            Class classById = classService.getClassById(id);
+            restResponseBase.setData(classById);
+        }
+        String o = JSON.toJSONString(restResponseBase);
+        System.err.println(o);
+        model.addAttribute("data", restResponseBase);
+        model.addAttribute("pList", professionService.getProfessionList());
+        return "admin/class_edit";
+
+    }
+
+
+
+
+
+    @GetMapping("/toStudentList")
+    public String toStudentList() {
+        return "admin/student_list";
+    }
+
+    @GetMapping("/toStudentEdit/{id}")
+    public String toStudentEdit(Model model, @PathVariable("id") Integer id) {
+        RestEntityResponse restResponseBase = new RestEntityResponse<>();
+        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
+        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        if (id.equals(0)) {
+            restResponseBase.setData(new Student());
+        } else {
+            Student student = studentService.getStudentById(id);
+            restResponseBase.setData(student);
+        }
+        String o = JSON.toJSONString(restResponseBase);
+        System.err.println(o);
+        model.addAttribute("data", restResponseBase);
+        model.addAttribute("cList", classService.getClassList());
+        model.addAttribute("uList", userService.getUserList());
+        return "admin/student_edit";
+
     }
 
 }
