@@ -28,10 +28,11 @@
     <!-- Skin -->
     <style type="text/css">
         body {
-            background-image: url(img/bj.png) ;
+            background-image: url(img/bj.png);
             background-color: #f5f5f5;
             background-size: 100% 100%;
-            background-repeat:no-repeat;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
 
         .form-signin {
@@ -127,38 +128,38 @@
                             <b><%out.print(request.getAttribute("err").toString());%></b>
                         </div>
                         <% } %>
-<%--                        <img src="img/url.png">--%>
-<%--                        <div class="text-center alert alert-success fade in">--%>
-<%--                            <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#"--%>
-<%--                                                                                                              class="bds_qzone"--%>
-<%--                                                                                                              data-cmd="qzone"></a><a--%>
-<%--                                    href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq"--%>
-<%--                                                                                       data-cmd="tqq"></a><a href="#"--%>
-<%--                                                                                                             class="bds_renren"--%>
-<%--                                                                                                             data-cmd="renren"></a><a--%>
-<%--                                    href="#" class="bds_weixin" data-cmd="weixin"></a></div>--%>
-<%--                            <script>window._bd_share_config = {--%>
-<%--                                "common": {--%>
-<%--                                    "bdSnsKey": {},--%>
-<%--                                    "bdText": "",--%>
-<%--                                    "bdMini": "2",--%>
-<%--                                    "bdPic": "",--%>
-<%--                                    "bdStyle": "0",--%>
-<%--                                    "bdSize": "16"--%>
-<%--                                },--%>
-<%--                                "share": {},--%>
-<%--                                "image": {--%>
-<%--                                    "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],--%>
-<%--                                    "viewText": "分享到：",--%>
-<%--                                    "viewSize": "16"--%>
-<%--                                },--%>
-<%--                                "selectShare": {--%>
-<%--                                    "bdContainerClass": null,--%>
-<%--                                    "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]--%>
-<%--                                }--%>
-<%--                            };--%>
-<%--                            with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>--%>
-<%--                        </div>--%>
+                        <%--                        <img src="img/url.png">--%>
+                        <%--                        <div class="text-center alert alert-success fade in">--%>
+                        <%--                            <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#"--%>
+                        <%--                                                                                                              class="bds_qzone"--%>
+                        <%--                                                                                                              data-cmd="qzone"></a><a--%>
+                        <%--                                    href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq"--%>
+                        <%--                                                                                       data-cmd="tqq"></a><a href="#"--%>
+                        <%--                                                                                                             class="bds_renren"--%>
+                        <%--                                                                                                             data-cmd="renren"></a><a--%>
+                        <%--                                    href="#" class="bds_weixin" data-cmd="weixin"></a></div>--%>
+                        <%--                            <script>window._bd_share_config = {--%>
+                        <%--                                "common": {--%>
+                        <%--                                    "bdSnsKey": {},--%>
+                        <%--                                    "bdText": "",--%>
+                        <%--                                    "bdMini": "2",--%>
+                        <%--                                    "bdPic": "",--%>
+                        <%--                                    "bdStyle": "0",--%>
+                        <%--                                    "bdSize": "16"--%>
+                        <%--                                },--%>
+                        <%--                                "share": {},--%>
+                        <%--                                "image": {--%>
+                        <%--                                    "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],--%>
+                        <%--                                    "viewText": "分享到：",--%>
+                        <%--                                    "viewSize": "16"--%>
+                        <%--                                },--%>
+                        <%--                                "selectShare": {--%>
+                        <%--                                    "bdContainerClass": null,--%>
+                        <%--                                    "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]--%>
+                        <%--                                }--%>
+                        <%--                            };--%>
+                        <%--                            with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>--%>
+                        <%--                        </div>--%>
 
                     </form>
 

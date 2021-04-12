@@ -46,6 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        		<b>
 	       			 修改成功
 	      			 </b>
+				   	<a href="${pageContext.request.contextPath}/">去首页</a>
 	       		</div>
  				<% }
  			} %>
