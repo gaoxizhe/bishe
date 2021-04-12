@@ -25,7 +25,9 @@ public class Student {
 
     private Integer teacherId;
     private String teacherName;
+    private String teacherPhone;
 
     private Integer instructorId;
     private String instructorName;
+    private String instructorPhone;
 }

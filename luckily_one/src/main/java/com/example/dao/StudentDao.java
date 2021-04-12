@@ -4,6 +4,7 @@ package com.example.dao;/**
  */
 
 import com.example.model.Class;
+import com.example.model.Student;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -17,13 +18,13 @@ import java.util.List;
  */
 @Repository
 public interface StudentDao {
-    List<Class> getClassPageList();
+    List<Student> getStudentPageList();
 
-    Class getClassById(@Param("id") Integer id);
+    Student getStudentById(@Param("id") Integer id);
 
-    void insertClass(@Param("pId") Integer professionId, @Param("name") String name);
+    void insertStudent(Student student);
 
-    void updateClassById(@Param("id") Integer clazzId, @Param("pId") Integer id, @Param("name") String name);
+    void updateStudentById(Student student);
 
-    void deleteClassById(@Param("id") Integer id);
+    void deleteStudentById(@Param("id") Integer id);
 }

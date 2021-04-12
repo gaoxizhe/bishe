@@ -4,7 +4,9 @@ package com.example.service;/**
  */
 
 import com.example.dao.ClassDao;
+import com.example.dao.StudentDao;
 import com.example.model.Class;
+import com.example.model.Student;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -23,36 +25,36 @@ import java.util.List;
 public class StudentService {
 
     @Resource
-    private ClassDao classDao;
+    private StudentDao studentDao;
 
 
 
-    public PageInfo<Class> getClassList(Integer page, Integer limit) {
+    public PageInfo<Student> getStudentList(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
-        List<Class> professionPageList = classDao.getClassPageList();
+        List<Student> pageList = studentDao.getStudentPageList();
 
-        return new PageInfo<>(professionPageList);
+        return new PageInfo<>(pageList);
 
     }
 
-    public List<Class> getClassList() {
-        List<Class> classList = classDao.getClassPageList();
-        return classList ;
+    public List<Student> getStudentList() {
+        List<Student> students = studentDao.getStudentPageList();
+        return students ;
     }
 
-    public Class getClassById(Integer id) {
-        return classDao.getClassById(id);
+    public Student getStudentById(Integer id) {
+        return studentDao.getStudentById(id);
     }
 
-    public void updateClass(Class clazz) {
-        if (clazz.getId() == null || clazz.getId().equals(0)) {
-            classDao.insertClass(clazz.getProfessionId(),clazz.getName());
+    public void updateStudent(Student student) {
+        if (student.getId() == null || student.getId().equals(0)) {
+            studentDao.insertStudent(student);
         } else {
-            classDao.updateClassById(clazz.getId(), clazz.getProfessionId(),clazz.getName());
+            studentDao.updateStudentById(student);
         }
     }
 
-    public void deleteClassById(Integer id) {
-        classDao.deleteClassById(id);
+    public void deleteStudentById(Integer id) {
+        studentDao.deleteStudentById(id);
     }
 }
