@@ -37,6 +37,10 @@ public class UserService {
 
         return new PageInfo<>(usersList);
     }
+    public List<Users> getUserList() {
+        List<Users> usersList = userDao.getUserPageByRole(2);
+        return usersList;
+    }
 
     public Users getUserById(Integer id) {
         return userDao.getUserById(id);
