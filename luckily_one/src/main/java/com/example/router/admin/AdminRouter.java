@@ -4,15 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.example.base.RestEntityResponse;
 import com.example.constant.BaseContextHandler;
 import com.example.constant.StatusConstant;
-import com.example.model.Profession;
-import com.example.model.Student;
-import com.example.model.Users;
+import com.example.model.*;
+import com.example.model.Class;
 import com.example.service.ClassService;
 import com.example.service.ProfessionService;
 import com.example.service.StudentService;
 import com.example.service.UserService;
 
-import com.example.model.Class;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -184,6 +182,33 @@ public class AdminRouter {
         model.addAttribute("cList", classService.getClassList());
         model.addAttribute("uList", userService.getUserList());
         return "admin/student_edit";
+
+    }
+
+
+
+    @GetMapping("/toProjectList")
+    public String toProjectList() {
+        return "admin/project_list";
+    }
+
+    @GetMapping("/toProjectEdit/{id}")
+    public String toProjectEdit(Model model, @PathVariable("id") Integer id) {
+        RestEntityResponse restResponseBase = new RestEntityResponse<>();
+        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
+        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        if (id.equals(0)) {
+            restResponseBase.setData(new Project());
+        } else {
+//            Project student =(Project) studentService.getStudentById(id);
+//            restResponseBase.setData(student);
+            restResponseBase.setData(new Project());
+        }
+        String o = JSON.toJSONString(restResponseBase);
+        System.err.println(o);
+        model.addAttribute("data", restResponseBase);
+        model.addAttribute("uList", userService.getUserList());
+        return "admin/project_edit";
 
     }
 
