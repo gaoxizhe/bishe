@@ -5,14 +5,15 @@ import lombok.Data;
 @Data
 public class Project {
 
-  private long id;
+  private Integer id;
   private String applicant;
-  private long instructor;
+  private String instructor;
+
   private String name;
   private String member;
-  private long approvalStatus;
+  private Integer approvalStatus;
   private String year;
-  private long completion;
+  private Integer completion;
   private String funding;
   private String workload;
 

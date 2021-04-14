@@ -17,11 +17,10 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">请选择指导老师</label>
+        <label class="layui-form-label">指导老师</label>
         <div class="layui-input-block">
-            <select name="teacherId" lay-filter="aihao" lay-search>
-                <option th:each="class,Stat:${uList}" th:value="${class.id}" th:text="${class.name}"></option>
-            </select>
+            <input type="text" name="instructor" required lay-verify="required" placeholder="请输入姓名" autocomplete="off"
+                   class="layui-input" th:value="${data.data.instructor}">
         </div>
     </div>
 
@@ -43,9 +42,15 @@
 
     <div class="layui-form-item">
         <label class="layui-form-label">批准情况</label>
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" name="approvalStatus" required lay-verify="required" placeholder="请输入姓名" autocomplete="off"-->
+<!--                   class="layui-input" th:value="${data.data.approvalStatus}">-->
+<!--        </div>-->
         <div class="layui-input-block">
-            <input type="text" name="approvalStatus" required lay-verify="required" placeholder="请输入姓名" autocomplete="off"
-                   class="layui-input" th:value="${data.data.approvalStatus}">
+            <select name="approvalStatus" lay-filter="aihao" lay-search>
+                <option value="0" th:selected="${data.data.approvalStatus == 0}" >未批准</option>
+                <option value="1" th:selected="${data.data.approvalStatus == 1}" >已批准</option>
+            </select>
         </div>
     </div>
 
@@ -59,16 +64,23 @@
     <div class="layui-form-item">
         <label class="layui-form-label">完成情况</label>
         <div class="layui-input-block">
-            <input type="text" name="completion" required lay-verify="required" placeholder="请输入姓名" autocomplete="off"
-                   class="layui-input" th:value="${data.data.completion}">
+            <select name="completion" lay-filter="aihao" lay-search>
+                <option value="0" th:selected="${data.data.completion == 0}">未完成</option>
+                <option value="1" th:selected="${data.data.completion == 1}" >已完成</option>
+            </select>
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">经费</label>
         <div class="layui-input-block">
-            <input type="text" name="funding" required lay-verify="required" placeholder="请输入姓名" autocomplete="off"
-                   class="layui-input" th:value="${data.data.funding}">
+<!--            funding 无/校级/省级/国家级-->
+            <select name="funding" lay-filter="aihao" lay-search>
+                <option value="无" th:selected="${data.data.funding == '无'}">无</option>
+                <option value="校级" th:selected="${data.data.funding == '校级'}" >校级</option>
+                <option value="省级" th:selected="${data.data.funding == '省级'}" >省级</option>
+                <option value="国家级" th:selected="${data.data.funding == '国家级'}" >国家级</option>
+            </select>
         </div>
     </div>
 

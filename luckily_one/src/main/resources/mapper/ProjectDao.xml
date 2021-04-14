@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.ProjectDao">
+    <insert id="insertProject" parameterType="com.example.model.Project">
+        insert into project (applicant, instructor, name, member,
+                                        approval_status, year, completion, funding,
+                                        workload)
+        values (#{applicant}, #{instructor}, #{name}, #{member},
+            #{approvalStatus}, #{year}, #{completion}, #{funding},
+            #{workload})
+    </insert>
+    <update id="updateProjectById" parameterType="com.example.model.Project">
+        update project
+        <set>
+            <if test="applicant != null">
+                applicant = #{applicant},
+            </if>
+            <if test="instructor != null">
+                instructor = #{instructor},
+            </if>
+
+            <if test="name != null">
+                name = #{name},
+            </if>
+
+            <if test="member != null">
+                member = #{member},
+            </if>
+
+            <if test="approvalStatus != null">
+                approval_status = #{approvalStatus},
+            </if>
+
+            <if test="year != null">
+                year = #{year},
+            </if>
+
+            <if test="completion != null">
+                completion = #{completion},
+            </if>
+
+            <if test="funding != null">
+                funding = #{funding},
+            </if>
+            <if test="workload != null">
+                workload = #{workload},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="deleteProjectById" parameterType="java.lang.Integer">
+        delete
+        from project
+        where id = #{id}
+    </delete>
+    <select id="getProjectPageList" resultType="com.example.model.Project">
+        select * from project
+    </select>
+    <select id="getProjectById" resultType="com.example.model.Project" parameterType="java.lang.Integer">
+        select * from project where id = #{id}
+    </select>
+</mapper>

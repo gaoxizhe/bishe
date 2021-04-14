@@ -73,15 +73,41 @@
                         {checkbox: true, LAY_CHECKED: false, filter: 'test', width: 80}
                         , {field: 'id', width: 80, sort: true, title: 'id'}
                         , {field: 'applicant', title: '申请人'}
-                        , {field: 'Instructor', title: '指导教师'}
+                        , {field: 'instructor', title: '指导教师'}
                         , {field: 'name', title: '项目名称'}
                         , {field: 'member', title: '团队成员'}
-                        , {field: 'approvalStatus', title: '批准情况'}
+                        , {field: 'approvalStatus', title: '批准情况',templet: function (data) {
+                            let html = '';
+                            let stringify = JSON.stringify(data);
+                            let approvalStatus = data.approvalStatus;
+
+                            if (approvalStatus == 1) {
+                                html += `<span class="layui-badge layui-bg-blue" style="margin-right: 10px">已批准</span>`;
+                            } else if (approvalStatus == 0) {
+                                html += `<span class="layui-badge layui-bg-orange" style="margin-right: 10px">未批准</span>`;
+                            }
+
+                            return html;
+
+                        }}
                         , {field: 'year', title: '年份'}
-                        , {field: 'completion', title: '完成情况'}
+                        , {field: 'completion', title: '完成情况',templet: function (data) {
+                            let html = '';
+                            let stringify = JSON.stringify(data);
+                            let completion = data.completion;
+
+                            if (completion == 1) {
+                                html += `<span class="layui-badge layui-bg-blue" style="margin-right: 10px">已完成</span>`;
+                            } else if (completion == 0) {
+                                html += `<span class="layui-badge layui-bg-orange" style="margin-right: 10px">未完成</span>`;
+                            }
+
+                            return html;
+
+                        }}
                         , {field: 'funding', title: '经费'}
                         , {field: 'workload', title: '工作量'}
-                        , {width: 250, align: 'center', toolbar: '#barDemo', title: '操作'}
+                        , {width: 200, align: 'center', toolbar: '#barDemo', title: '操作'}
                     ]
                 ]
 

@@ -6,10 +6,7 @@ import com.example.constant.BaseContextHandler;
 import com.example.constant.StatusConstant;
 import com.example.model.*;
 import com.example.model.Class;
-import com.example.service.ClassService;
-import com.example.service.ProfessionService;
-import com.example.service.StudentService;
-import com.example.service.UserService;
+import com.example.service.*;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -42,6 +39,9 @@ public class AdminRouter {
 
     @Resource
     private StudentService studentService;
+
+    @Resource
+    private ProjectService projectService;
 
 
     @GetMapping({"/index", "/", "index.html", ""})
@@ -200,14 +200,12 @@ public class AdminRouter {
         if (id.equals(0)) {
             restResponseBase.setData(new Project());
         } else {
-//            Project student =(Project) studentService.getStudentById(id);
-//            restResponseBase.setData(student);
-            restResponseBase.setData(new Project());
+            Project project =(Project) projectService.getProjectById(id);
+            restResponseBase.setData(project);
         }
         String o = JSON.toJSONString(restResponseBase);
         System.err.println(o);
         model.addAttribute("data", restResponseBase);
-        model.addAttribute("uList", userService.getUserList());
         return "admin/project_edit";
 
     }
