@@ -45,6 +45,8 @@ public class AdminRouter {
     @Resource
     private StudentCompetitionService studentCompetitionService;
 
+    @Resource
+    private GraduateStudentService graduateStudentService;
 
     @GetMapping({"/index", "/", "index.html", ""})
     public String index() {
@@ -80,8 +82,6 @@ public class AdminRouter {
             userById.setPassword("密码无法修改");
             restResponseBase.setData(userById);
         }
-//        restResponseBase.setCode(StatusConstant.Common.ERROR);
-//        restResponseBase.setMsg(StatusConstant.Common.PARAM_IS_EMPTY);
         String o = JSON.toJSONString(restResponseBase);
         System.err.println(o);
         model.addAttribute("data", restResponseBase);
@@ -107,8 +107,6 @@ public class AdminRouter {
 
     }
 
-
-
     @GetMapping("/toUserPassword/{id}")
     public String toUserPassword(Model model, @PathVariable("id") Integer id) {
         RestEntityResponse restResponseBase = new RestEntityResponse<>();
@@ -121,8 +119,6 @@ public class AdminRouter {
             data.setId(id);
             restResponseBase.setData(data);
         }
-//        restResponseBase.setCode(StatusConstant.Common.ERROR);
-//        restResponseBase.setMsg(StatusConstant.Common.PARAM_IS_EMPTY);
         String o = JSON.toJSONString(restResponseBase);
         System.err.println(o);
         model.addAttribute("data", restResponseBase);
@@ -158,10 +154,6 @@ public class AdminRouter {
 
     }
 
-
-
-
-
     @GetMapping("/toStudentList")
     public String toStudentList() {
         return "admin/student_list";
@@ -187,8 +179,6 @@ public class AdminRouter {
 
     }
 
-
-
     @GetMapping("/toProjectList")
     public String toProjectList() {
         return "admin/project_list";
@@ -202,7 +192,7 @@ public class AdminRouter {
         if (id.equals(0)) {
             restResponseBase.setData(new Project());
         } else {
-            Project project =(Project) projectService.getProjectById(id);
+            Project project = (Project) projectService.getProjectById(id);
             restResponseBase.setData(project);
         }
         String o = JSON.toJSONString(restResponseBase);
@@ -211,12 +201,6 @@ public class AdminRouter {
         return "admin/project_edit";
 
     }
-
-
-
-
-
-
 
     @GetMapping("/toStudentCompetitionList")
     public String toStudentCompetitionList() {
@@ -242,5 +226,29 @@ public class AdminRouter {
 
     }
 
+
+
+    @GetMapping("/toGraduateStudentList")
+    public String toGraduateStudentList() {
+        return "admin/graduate_student_list";
+    }
+
+    @GetMapping("/toGraduateStudentEdit/{id}")
+    public String toGraduateStudentEdit(Model model, @PathVariable("id") Integer id) {
+        RestEntityResponse restResponseBase = new RestEntityResponse<>();
+        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
+        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        if (id.equals(0)) {
+            restResponseBase.setData(new GraduateStudent());
+        } else {
+            GraduateStudent graduateStudentById = graduateStudentService.getGraduateStudentById(id);
+            restResponseBase.setData(graduateStudentById);
+        }
+        String o = JSON.toJSONString(restResponseBase);
+        System.err.println(o);
+        model.addAttribute("data", restResponseBase);
+        return "admin/graduate_student_edit";
+
+    }
 
 }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head th:replace="admin/common::head"></head>
+<body>
+
+<form class="layui-form" action="/admin/graduate_student" method="post">
+
+
+    <input type="hidden" name="id" class="layui-input" th:value="${data.data.id}">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">学生姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" required lay-verify="required" placeholder="请输入学生姓名" autocomplete="off"
+                   class="layui-input" th:value="${data.data.name}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">报考学校</label>
+        <div class="layui-input-block">
+            <input type="text" name="school" required lay-verify="required" placeholder="请输入报考学校" autocomplete="off"
+                   class="layui-input" th:value="${data.data.school}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">专业</label>
+        <div class="layui-input-block">
+            <input type="text" name="major" required lay-verify="required" placeholder="请输入专业" autocomplete="off"
+                   class="layui-input" th:value="${data.data.major}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">学位类别</label>
+        <div class="layui-input-block">
+            <select name="degree" lay-filter="aihao">
+                <!--                无/保送/直考/调剂   -->
+                <option value="专硕" th:selected="${data.data.degree == '专硕'}">专硕</option>
+                <option value="学硕" th:selected="${data.data.degree == '学硕'}" >学硕</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">录取类别</label>
+        <div class="layui-input-block">
+            <select name="admissionCategory" lay-filter="aihao">
+<!--                无/保送/直考/调剂   -->
+                <option value="无" th:selected="${data.data.admissionCategory == '无'}">无</option>
+                <option value="保送" th:selected="${data.data.admissionCategory == '保送'}" >保送</option>
+                <option value="直考" th:selected="${data.data.admissionCategory == '直考'}" >直考</option>
+                <option value="调剂" th:selected="${data.data.admissionCategory == '调剂'}" >调剂</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">生源类型</label>
+        <div class="layui-input-block">
+            <select name="studentType" lay-filter="aihao">
+                <option value="应届" th:selected="${data.data.studentType == '应届'}">应届</option>
+                <option value="往届" th:selected="${data.data.studentType == '往届'}" >往届</option>
+            </select>
+        </div>
+    </div>
+
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+    //Demo
+    layui.use('form', function () {
+
+        let form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            xadmin.close();
+            xadmin.father_reload();
+            return true;
+        });
+    });
+</script>
+<style>
+    .layui-input-block {
+        margin-top: 15px;
+        margin-right: 15px;
+    }
+</style>
+</html>

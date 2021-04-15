@@ -13,7 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "com.example.*")
 public class StudentsApplication {
 
-
     public static void main(String[] args) {
         SpringApplication.run(StudentsApplication.class, args);
     }
