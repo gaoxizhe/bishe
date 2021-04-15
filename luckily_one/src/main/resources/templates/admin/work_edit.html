@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head th:replace="admin/common::head"></head>
+<body>
+
+<form class="layui-form" action="/admin/work" method="post">
+
+
+    <input type="hidden" name="id" class="layui-input" th:value="${data.data.id}">
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">学生</label>
+        <div class="layui-input-block">
+            <select name="student" lay-filter="aihao" lay-search>
+                <option th:each="class,Stat:${uList}" th:value="${class.id}" th:text="${class.name}"></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">就业单位</label>
+        <div class="layui-input-block">
+            <input type="text" name="employmentUnit" required lay-verify="required" placeholder="请输入就业单位"
+                   autocomplete="off"
+                   class="layui-input" th:value="${data.data.employmentUnit}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">单位性质</label>
+        <div class="layui-input-block">
+            <input type="text" name="unitNature" required lay-verify="required" placeholder="请输入单位性质" autocomplete="off"
+                   class="layui-input" th:value="${data.data.unitNature}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">从事工作</label>
+        <div class="layui-input-block">
+            <input type="text" name="work" required lay-verify="required" placeholder="请输入从事工作" autocomplete="off"
+                   class="layui-input" th:value="${data.data.work}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">就业时间</label>
+        <div class="layui-input-block">
+            <input type="text" name="time" required lay-verify="required" placeholder="请输入就业时间(yyyy-MM-dd)" autocomplete="off"
+                   class="layui-input" th:value="${data.data.time}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系方式</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone" required lay-verify="required" placeholder="请输入联系方式" autocomplete="off"
+                   class="layui-input" th:value="${data.data.phone}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">相关联系人</label>
+        <div class="layui-input-block">
+            <input type="text" name="contacts" required lay-verify="required" placeholder="请输入相关联系人" autocomplete="off"
+                   class="layui-input" th:value="${data.data.contacts}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">单位联系人</label>
+        <div class="layui-input-block">
+            <input type="text" name="contactUnit" required lay-verify="required" placeholder="请输入单位联系人"
+                   autocomplete="off"
+                   class="layui-input" th:value="${data.data.contactUnit}">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+    //Demo
+    layui.use('form', function () {
+
+        let form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            xadmin.close();
+            xadmin.father_reload();
+            return true;
+        });
+    });
+</script>
+<style>
+    .layui-input-block {
+        margin-top: 15px;
+        margin-right: 15px;
+    }
+</style>
+</html>

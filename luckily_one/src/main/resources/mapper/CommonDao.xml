@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.CommonDao">
+    <select id="getWelcomeCount" resultType="com.example.model.Welcome">
+        select s.s1 as student, u.s2 as teacher, p.s3 as project, g.s4 as graduate
+        from (select count(id) as s1 from student_info) s,
+             (select count(id) as s2 from user_info where role = 2) u,
+             (select count(id) as s3 from project) p,
+             (select count(id) as s4 from graduate_student) g
+    </select>
+
+</mapper>

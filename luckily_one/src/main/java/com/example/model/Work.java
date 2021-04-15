@@ -8,8 +8,8 @@ import lombok.Data;
 @Data
 public class Work {
     private Integer id;
-    private Integer number;
-    private String name;
+    private Integer student;
+    private String studentName;
     private String employmentUnit;
     private String unitNature;
     private String work;

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ClassName AdminRouter
@@ -48,13 +49,21 @@ public class AdminRouter {
     @Resource
     private GraduateStudentService graduateStudentService;
 
+    @Resource
+    private WorkService workService;
+
+    @Resource
+    private CommonService commonService;
+
     @GetMapping({"/index", "/", "index.html", ""})
     public String index() {
         return "admin/index";
     }
 
     @GetMapping({"/welcome"})
-    public String welcome() {
+    public String welcome(Model model) {
+        Welcome welcome = commonService.getCount();
+        model.addAttribute("data", welcome);
         return "admin/welcome";
     }
 
@@ -248,6 +257,36 @@ public class AdminRouter {
         System.err.println(o);
         model.addAttribute("data", restResponseBase);
         return "admin/graduate_student_edit";
+
+    }
+
+
+
+    @GetMapping("/toWorkList")
+    public String toWorkList() {
+        return "admin/work_list";
+    }
+
+    @GetMapping("/toWorkEdit/{id}")
+    public String toWorkEdit(Model model, @PathVariable("id") Integer id) {
+        RestEntityResponse restResponseBase = new RestEntityResponse<>();
+        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
+        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        if (id.equals(0)) {
+            restResponseBase.setData(new Work());
+        } else {
+            Work work = workService.getWorkById(id);
+            restResponseBase.setData(work);
+        }
+        String o = JSON.toJSONString(restResponseBase);
+        System.err.println(o);
+        model.addAttribute("data", restResponseBase);
+        List<Student> studentList = studentService.getStudentList();
+        studentList.stream().forEach(student -> {
+            student.setName(student.getName() + "-" + student.getId());
+        });
+        model.addAttribute("uList", studentList);
+        return "admin/work_edit";
 
     }
 
