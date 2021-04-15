@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head th:replace="admin/common::head"></head>
+<body>
+
+<form class="layui-form" action="/admin/student_competition" method="post">
+
+
+    <input type="hidden" name="id" class="layui-input" th:value="${data.data.id}">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">主持人</label>
+        <div class="layui-input-block">
+            <input type="text" name="host" required lay-verify="required" placeholder="请输入主持人姓名" autocomplete="off"
+                   class="layui-input" th:value="${data.data.host}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">团队成员</label>
+        <div class="layui-input-block">
+            <input type="text" name="team" required lay-verify="required" placeholder="请输入团队成员" autocomplete="off"
+                   class="layui-input" th:value="${data.data.team}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">指导教师</label>
+        <div class="layui-input-block">
+            <input type="text" name="teacher" required lay-verify="required" placeholder="请输入指导教师" autocomplete="off"
+                   class="layui-input" th:value="${data.data.teacher}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">大赛名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="competitionName" required lay-verify="required" placeholder="请输入大赛名称" autocomplete="off"
+                   class="layui-input" th:value="${data.data.competitionName}">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">参赛项目名称</label>
+        <div class="layui-input-block">
+            <select name="projectId" lay-filter="aihao">
+                <option th:each="class,Stat:${pList}"
+                        th:value="${class.id}"
+                        th:text="${class.name}"
+                        th:selected="${data.data.projectId == class.id}"></option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">日期</label>
+        <div class="layui-input-block">
+            <input type="text" name="date" required lay-verify="required" placeholder="请输入日期(yyyy-MM-dd)" autocomplete="off"
+                   class="layui-input" th:value="${data.data.date}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">获奖情况</label>
+        <div class="layui-input-block">
+            <input type="text" name="awards" required lay-verify="required" placeholder="请输入获奖情况" autocomplete="off"
+                   class="layui-input" th:value="${data.data.awards}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">工作量</label>
+        <div class="layui-input-block">
+            <input type="text" name="workload" required lay-verify="required" placeholder="请输入工作量" autocomplete="off"
+                   class="layui-input" th:value="${data.data.workload}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+    //Demo
+    layui.use('form', function () {
+
+        let form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            xadmin.close();
+            xadmin.father_reload();
+            return true;
+        });
+    });
+</script>
+<style>
+    .layui-input-block {
+        margin-top: 15px;
+        margin-right: 15px;
+    }
+</style>
+</html>

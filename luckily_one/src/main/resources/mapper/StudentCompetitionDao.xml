@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.StudentCompetitionDao">
+    <insert id="insertStudentCompetition" parameterType="com.example.model.StudentCompetition">
+        insert into student_competition(host, team, teacher,
+                                        competition_name, project_id, date,
+                                        awards, workload)
+        values (#{host}, #{team}, #{teacher},
+                #{competitionName}, #{projectId}, #{date},
+                #{awards}, #{workload})
+    </insert>
+    <update id="updateStudentCompetitionById" parameterType="com.example.model.StudentCompetition">
+        update student_competition
+        <set>
+            <if test="host != null">
+                host = #{host},
+            </if>
+            <if test="team != null">
+                team = #{team},
+            </if>
+            <if test="teacher != null">
+                teacher = #{teacher},
+            </if>
+            <if test="competitionName != null">
+                competition_name = #{competitionName},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId},
+            </if>
+            <if test="date != null">
+                date = #{date},
+            </if>
+            <if test="awards != null">
+                awards = #{awards},
+            </if>
+            <if test="workload != null">
+                workload = #{workload},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="deleteStudentCompetitionById" parameterType="java.lang.Integer">
+        delete
+        from student_competition
+        where id = #{id}
+    </delete>
+    <select id="getStudentCompetitionPageList" resultType="com.example.model.StudentCompetition">
+        select sc.id,
+               sc.host,
+               sc.team,
+               sc.teacher,
+               sc.competition_name competitionName,
+               sc.project_id projectId,
+               sc.date,
+               sc.awards,
+               sc.workload,
+               p.name projectName
+
+        from student_competition sc
+                 left join project p on sc.project_id = p.id
+    </select>
+    <select id="getStudentCompetitionById" resultType="com.example.model.StudentCompetition"
+            parameterType="java.lang.Integer">
+        select sc.id,
+               sc.host,
+               sc.team,
+               sc.teacher,
+               sc.competition_name competitionName,
+               sc.project_id projectId,
+               sc.date,
+               sc.awards,
+               sc.workload,
+               p.name projectName
+
+        from student_competition sc
+                 left join project p on sc.project_id = p.id
+        where sc.id = #{id}
+    </select>
+</mapper>

@@ -42,6 +42,8 @@ public class AdminRouter {
 
     @Resource
     private ProjectService projectService;
+    @Resource
+    private StudentCompetitionService studentCompetitionService;
 
 
     @GetMapping({"/index", "/", "index.html", ""})
@@ -209,5 +211,36 @@ public class AdminRouter {
         return "admin/project_edit";
 
     }
+
+
+
+
+
+
+
+    @GetMapping("/toStudentCompetitionList")
+    public String toStudentCompetitionList() {
+        return "admin/student_competition_list";
+    }
+
+    @GetMapping("/toStudentCompetitionEdit/{id}")
+    public String toStudentCompetitionEdit(Model model, @PathVariable("id") Integer id) {
+        RestEntityResponse restResponseBase = new RestEntityResponse<>();
+        restResponseBase.setCode(StatusConstant.Common.SUCCESS);
+        restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);
+        if (id.equals(0)) {
+            restResponseBase.setData(new StudentCompetition());
+        } else {
+            StudentCompetition competitionById = studentCompetitionService.getStudentCompetitionById(id);
+            restResponseBase.setData(competitionById);
+        }
+        String o = JSON.toJSONString(restResponseBase);
+        System.err.println(o);
+        model.addAttribute("data", restResponseBase);
+        model.addAttribute("pList", projectService.getProjectList());
+        return "admin/student_competition_edit";
+
+    }
+
 
 }
