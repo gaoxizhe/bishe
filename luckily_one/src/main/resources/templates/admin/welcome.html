@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org" lang="ch" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="admin/common::head"></head>
-
 <body>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
@@ -57,14 +56,14 @@
             <div class="layui-card">
                 <div class="layui-card-header">其他信息</div>
                 <div class="layui-card-body ">
-                    <div>考研信息</div>
-                    <div th:each="detail,Stat:${data.graduateDetails}">
-                        <span><p th:text="${detail.year}"></p>  学年</span>录取人数: <span th:text="${detail.LNumber}"></span> /报名人数: <span th:text="${detail.BNumber}"></span>
-                        <div class="layui-progress layui-progress-big" lay-showPercent="true">
-                            <div class="layui-progress-bar layui-bg-orange" lay-percent="50%">[[${detail.getPercentage()}]]</div>
-                        </div>
-                        <br/>
-                    </div>
+<!--                    <div th:each="detail,Stat:${data.graduateDetails}" id="">-->
+<!--                        <span><p th:text="${detail.year}"></p>  学年</span>录取人数: <span th:text="${detail.LNumber}"></span> /报名人数: <span th:text="${detail.BNumber}"></span>-->
+<!--                        <div class="layui-progress layui-progress-big" lay-showPercent="true">-->
+<!--                            <div class="layui-progress-bar layui-bg-orange" lay-percent="50%">${detail.getPercentage()}</div>-->
+<!--                        </div>-->
+<!--                        <br/>-->
+<!--                    </div>-->
+                    <div id="container" style="height: 200px"></div>
 
                 </div>
             </div>
@@ -72,5 +71,77 @@
 
     </div>
 </div>
+<!--<script type="text/javascript" th:src="@{/lib/eachts.min.js}"></script>-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    var option;
+
+
+
+    option = {
+        title: {
+            text: '考研信息',
+            subtext: '数据来统计'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {
+            data: ['报名人数', '录取人数']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+            type: 'category',
+            // data: ['2020届', '2021届']
+            data: []
+        },
+        series: [
+            {
+                name: '报名人数',
+                type: 'bar',
+                // data: [22, 44]
+                data: []
+            },
+            {
+                name: '录取人数',
+                type: 'bar',
+                // data: [33, 55]
+                data: []
+            }
+        ]
+    };
+
+    var graduateDetails = [[${dataJson}]];
+    graduateDetails = JSON.parse(graduateDetails);
+    //[{"bNumber":2,"lNumber":1,"percentage":0,"year":"2021"},
+    // {"bNumber":1,"lNumber":1,"percentage":100,"year":"2020"}]
+    for (const key in graduateDetails) {
+        // console.info(key);
+        let graduateDetail = graduateDetails[key];
+        option.yAxis.data.push(graduateDetail.year + ' 届')
+        option.series[0].data.push(graduateDetail.bNumber)
+        option.series[1].data.push(graduateDetail.lNumber)
+    }
+
+    if (option && typeof option === 'object') {
+        myChart.setOption(option);
+    }
+
+</script>
 </body>
 </html>
