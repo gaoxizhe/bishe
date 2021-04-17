@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserDao">
+<!--  1.6.6 用户注册	-->
+    <insert id="register" parameterType="Buser">
+		insert into busertable (id, bemail, bpwd) values (null, #{bemail}, #{bpwd})
+	</insert>
+<!--  1.6.7  用户登录	-->
+	<select id="login"  resultType="Buser" parameterType="Buser">
+		select * from busertable where bemail =  #{bemail} and bpwd = #{bpwd}
+	</select>
+</mapper>
