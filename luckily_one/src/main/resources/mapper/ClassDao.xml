@@ -19,6 +19,7 @@
         select class.id, class.name,p_id professionId, p.name professionName
         from class
         left join profession p on class.p_id = p.id
+        order by class.id asc
     </select>
     <select id="getClassById" resultType="com.example.model.Class">
         select class.id, class.name,p_id professionId, p.name professionName

@@ -13,7 +13,8 @@
         <label class="layui-form-label">学生</label>
         <div class="layui-input-block">
             <select name="student" lay-filter="aihao" lay-search>
-                <option th:each="class,Stat:${uList}" th:value="${class.id}" th:text="${class.name}"></option>
+                <option th:each="class,Stat:${uList}" th:value="${class.id}" th:text="${class.name}"
+                        th:selected="${data.data.student == class.id}"></option>
             </select>
         </div>
     </div>
@@ -35,6 +36,14 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">就业时间</label>
+        <div class="layui-inline">
+            <!--            <input type="text" name="time" required lay-verify="required" placeholder="请输入就业时间(yyyy-MM-dd)" autocomplete="off"-->
+            <!--                   class="layui-input" th:value="${data.data.time}">-->
+            <input type="text" class="layui-input" id="test1" name="time" th:value="${data.data.time}">
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">从事工作</label>
         <div class="layui-input-block">
             <input type="text" name="work" required lay-verify="required" placeholder="请输入从事工作" autocomplete="off"
@@ -42,13 +51,6 @@
         </div>
     </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">就业时间</label>
-        <div class="layui-input-block">
-            <input type="text" name="time" required lay-verify="required" placeholder="请输入就业时间(yyyy-MM-dd)" autocomplete="off"
-                   class="layui-input" th:value="${data.data.time}">
-        </div>
-    </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">联系方式</label>
@@ -85,10 +87,14 @@
 </body>
 <script type="text/javascript" th:inline="javascript">
     //Demo
-    layui.use('form', function () {
+    layui.use(['form', 'laydate'], function () {
 
         let form = layui.form;
-
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
         //监听提交
         form.on('submit(formDemo)', function (data) {
             layer.msg(JSON.stringify(data.field));

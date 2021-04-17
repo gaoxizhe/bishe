@@ -58,6 +58,7 @@
 
         from student_competition sc
                  left join project p on sc.project_id = p.id
+        order by sc.id asc
     </select>
     <select id="getStudentCompetitionById" resultType="com.example.model.StudentCompetition"
             parameterType="java.lang.Integer">

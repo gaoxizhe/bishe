@@ -58,6 +58,7 @@
                si.name as studentName
         from work w
                  left join student_info si on si.id = w.student
+        order  by w.id asc
     </select>
     <select id="getWorkById" resultType="com.example.model.Work">
         select w.id,

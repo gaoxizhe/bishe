@@ -24,7 +24,7 @@
 <!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
 <!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
 <!--                    </button>-->
-                    <button class="layui-btn" onclick="xadmin.open('添加','toWorkEdit/0',900,400)">
+                    <button class="layui-btn" onclick="xadmin.open('添加','toWorkEdit/0',1000,600)">
                         <i class="layui-icon layui-icon-add-1">
                         </i>添加
                     </button>
@@ -92,7 +92,7 @@
                 switch (obj.event) {
                     case 'edit':
                         layer.msg('编辑');
-                        xadmin.open('编辑分类', 'toWorkEdit/' + obj.data.id, 800,300)
+                        xadmin.open('编辑分类', 'toWorkEdit/' + obj.data.id, 900,600)
                         break;
                     case 'del':
                         layer.msg('删除');

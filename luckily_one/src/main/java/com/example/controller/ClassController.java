@@ -51,7 +51,7 @@ public class ClassController {
 
         RestListResponse<Class> response = new RestListResponse<>();
         RestResponsePage responsePage = new RestResponsePage();
-        responsePage.setTotalCount(info.getSize());
+        responsePage.setTotalCount(Integer.parseInt(String.valueOf(info.getTotal())));
 
         response.setCode(StatusConstant.Common.SUCCESS);
         response.setMsg(StatusConstant.Common.SUCCESS_MSG);
