@@ -21,7 +21,8 @@
         <label class="layui-form-label">请选择专业</label>
         <div class="layui-input-block">
             <select name="pId" lay-filter="aihao">
-                <option th:each="class,Stat:${pList}" th:value="${class.id}" th:text="${class.name}"></option>
+                <option th:each="class,Stat:${pList}" th:value="${class.id}" th:text="${class.name}"
+                        th:selected="${data.data.professionId == class.id}"></option>
             </select>
         </div>
     </div>

@@ -13,7 +13,8 @@
         <label class="layui-form-label">学生</label>
         <div class="layui-input-block">
             <select name="student" lay-filter="aihao" lay-search>
-                <option th:each="class,Stat:${uList}" th:value="${class.id}" th:text="${class.name}"></option>
+                <option th:each="class,Stat:${uList}" th:value="${class.id}" th:text="${class.name}"
+                        th:selected="${data.data.student == class.id}"></option>
             </select>
         </div>
     </div>
