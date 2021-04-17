@@ -17,7 +17,7 @@
     </delete>
     <select id="getProfessionPageList" resultType="com.example.model.Profession">
         select id, name
-        from profession
+        from profession order by id asc
     </select>
     <select id="getProfessionById" resultType="com.example.model.Profession">
         select id, name

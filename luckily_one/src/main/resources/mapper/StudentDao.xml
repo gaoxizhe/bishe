@@ -55,6 +55,7 @@
                  left join profession p on p.id = c.p_id
                  left join user_info u on u.id = si.teacher_id
                  left join user_info u2 on u2.id = si.instructor_id
+        order by si.id asc
     </select>
     <select id="getStudentById" resultType="com.example.model.Student">
         select si.id,

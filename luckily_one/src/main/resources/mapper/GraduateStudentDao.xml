@@ -41,7 +41,7 @@
         delete from graduate_student where  id = #{id}
     </delete>
     <select id="getGraduateStudentPageList" resultType="com.example.model.GraduateStudent">
-        select * from graduate_student
+        select * from graduate_student order by id asc
     </select>
     <select id="getGraduateStudentById" resultType="com.example.model.GraduateStudent">
         select * from graduate_student where id = #{id}

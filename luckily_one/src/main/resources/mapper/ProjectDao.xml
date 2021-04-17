@@ -54,7 +54,7 @@
         where id = #{id}
     </delete>
     <select id="getProjectPageList" resultType="com.example.model.Project">
-        select * from project
+        select * from project order by id asc
     </select>
     <select id="getProjectById" resultType="com.example.model.Project" parameterType="java.lang.Integer">
         select * from project where id = #{id}

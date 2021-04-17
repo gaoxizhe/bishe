@@ -55,6 +55,7 @@
         from user_info as ui
                  left join role r on r.id=ui.role
         where role = #{roleId}
+        order by ui.id asc
     </select>
     <select id="getUserById" resultType="com.example.model.Users">
         select ui.id, username, name, phone, role, role_name, `describe` as role_describe ,address
