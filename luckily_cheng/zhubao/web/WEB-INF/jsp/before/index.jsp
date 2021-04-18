@@ -198,7 +198,7 @@
                         this.$notify({
                             title: success.body.ntitle,
                             dangerouslyUseHTMLString: true,
-                            message: h('i', {style: 'color: teal'}, success.body.ncontent + success.body.ntime)
+                            message: h('i', {style: 'color: #409EFF'}, success.body.ncontent + success.body.ntime)
                         });
                     }, (error) => {
                         console.log(error);
