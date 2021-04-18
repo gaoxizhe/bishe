@@ -53,19 +53,43 @@
     <!--end-->
     <!--logo 搜索-->
     <div class="all_zong_logo">
-        <div class="all_zong_logo2">
-            <img src="images/before/mylogo.png"/>
+        <div class="all_zong_logo2" style="height: 50px">
+            <img src="images/before/logo.png" height="100%"/>
         </div>
         <div class="back_search">
-            <div class="back_search_red">
-                <form action="search" name="myForm" method="post">
-                    <div class="div2">
-                        <input type="text" name="mykey" class="txt" value="请输入您要查询的内容" onfocus="clearValue()"/>
-                    </div>
-                    <div class="div1">
-                        <input type="submit" class="an" value="搜索"/>
-                    </div>
-                </form>
+            <div class="back_search_red" style="height: 50px;float:  right">
+                <el-form :inline="true" class="demo-form-inline"   action="search" method="post" >
+                    <el-form-item  label-width="120px">
+                        <el-input v-model="input" placeholder="请输入您要查询的内容"
+                                  prefix-icon="el-icon-search" style="width:400px" name="mykey"
+                        ></el-input>
+                    </el-form-item>
+
+                    <el-form-item>
+                        <el-input type="submit"   style="width: 60px;color: #409EFF" value="查询">查询</el-input>
+                    </el-form-item>
+                </el-form>
+<%--                <form action="search" name="myForm" method="post">--%>
+<%--                    &lt;%&ndash;                    <div class="div2">&ndash;%&gt;--%>
+<%--                    &lt;%&ndash;                        <input type="text" name="mykey" class="txt" value="请输入您要查询的内容" onfocus="clearValue()"/>&ndash;%&gt;--%>
+<%--                    &lt;%&ndash;                    </div>&ndash;%&gt;--%>
+<%--                    &lt;%&ndash;                    <div class="div1">&ndash;%&gt;--%>
+<%--                    &lt;%&ndash;                        <input type="submit" class="an" value="搜索"/>&ndash;%&gt;--%>
+<%--                    &lt;%&ndash;                    </div>&ndash;%&gt;--%>
+<%--                    <span>--%>
+<%--                          <el-input--%>
+<%--                                  placeholder="请输入搜索内容"--%>
+<%--                                  v-model="input"--%>
+<%--                                  prefix-icon="el-icon-search"--%>
+<%--                                  @focus="clearValue">--%>
+<%--                        </el-input>--%>
+<%--                    </span>--%>
+<%--                    <span>--%>
+<%--                             <el-input slot="append" type="submit" value="搜索"></el-input>--%>
+<%--                        </span>--%>
+
+
+<%--                </form>--%>
             </div>
         </div>
         <!--end-->
@@ -77,7 +101,7 @@
                 <div class="front_daohang">
                     <ul>
                         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal"
-                                 @select="handleSelect" active-text-color="#ffd04b">
+                                 @select="handleSelect" active-text-color="#409EFF">
                             <a href="before?id=0&activeIndex=1">
                                 <el-menu-item index="1">首页</el-menu-item>
                             </a>
@@ -107,18 +131,26 @@
 </div>
 </body>
 
+<style>
+    .el-input {
+        width: 130px;
+    }
+</style>
+
 
 <!-- 先引入 Vue -->
 <!-- 引入组件库 -->
 <script src="css/vue.js"></script>
 <script src="css/element-ui.js"></script>
+<script src="css/vue-resource.js"></script>
 <script>
     new Vue({
         el: '#app-head',
         data: function () {
             return {
                 visible: false,
-                activeIndex: this.getUrlKey('activeIndex')
+                activeIndex: this.getUrlKey('activeIndex'),
+                input: ''
             }
         },
         methods: {
@@ -128,7 +160,24 @@
             getUrlKey(name) {
                 let newVar = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null;
                 return newVar == null || newVar == '' ? '1' : newVar;
+            },
+            clearValue() {
+                this.input = "";
+            },
+            onSubmit() {
+                this.$http.post('search?mykey=' + this.input)
+                    .then((success) => {
+                        console.log(success);
+                        // this.$notify({
+                        //     title: success.body.ntitle,
+                        //     dangerouslyUseHTMLString: true,
+                        //     message: h('i', {style: 'color: teal'}, success.body.ncontent + success.body.ntime)
+                        // });
+                    }, (error) => {
+                        console.log(error);
+                    })
             }
+
         }
     })
 </script>

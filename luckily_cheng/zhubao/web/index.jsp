@@ -1,4 +1,4 @@
-<%--
+<%@ page import="org.springframework.http.HttpRequest" %><%--
   Created by IntelliJ IDEA.
   User: hp
   Date: 2020/7/11
@@ -11,6 +11,8 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <%
+
+    %>
   </body>
 </html>

@@ -5,19 +5,19 @@
 <mapper namespace="com.dao.IndexDao">
     <!-- 查询销售排行 -->
     <select id="getSaleOrder"  resultType="map">
-		select sum(od.SHOPPINGNUM) shopnumber,
+		select sum(od.shoppingnum) shopnumber,
 				gd.id id,
-				gd.GNAME gname,
-				gd.GOPRICE goprice,
-				gd.GRPRICE grprice,
-				gd.GPICTURE  gpicture
-		from goodstable gd   LEFT JOIN orderdetail  od  ON od.goodstable_id=gd.id
+				gd.gname gname,
+				gd.goprice goprice,
+				gd.grprice grprice,
+				gd.gpicture  gpicture
+		from goodstable gd   left join orderdetail  od  on od.goodstable_id=gd.id
 				 group by
 				 gd.id,
-				 gd.GNAME,
-				 gd.GOPRICE,
-				 gd.GRPRICE,
-				 gd.GPICTURE
+				 gd.gname,
+				 gd.goprice,
+				 gd.grprice,
+				 gd.gpicture
 		order by shopnumber desc limit 10
 	</select>
     <!-- 人气排行 -->

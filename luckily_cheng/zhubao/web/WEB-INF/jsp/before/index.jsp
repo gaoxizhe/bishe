@@ -121,7 +121,7 @@
             <div class="box">
                 <div class="box_color ared">
                     <div class="title_bt">
-                        <span><a href="#">更多</a></span>
+                        <%--                        <span><a href="#">更多</a></span>--%>
                         <h3>最新商品</h3>
                     </div>
                     <div class="itemgood_nr clearfix">
