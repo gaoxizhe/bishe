@@ -7,4 +7,6 @@ public interface AdminNoticeService {
     public String deleteNoticeSelect(Model model);
     public String selectANotice(Model model, Integer id);
     public String deleteNotice(Integer id);
+
+    public String selectANotice(Integer id);
 }

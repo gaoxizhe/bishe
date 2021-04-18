@@ -17,9 +17,9 @@
     <link rel="stylesheet" href="css/element-ui.css">
 
     <script type="text/javascript">
-        function openNotice(url) {
-            window.open(url, '站内公告', 'height=400, width=400, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no');
-        }
+        // function openNotice(url) {
+        //     window.open(url, '站内公告', 'height=400, width=400, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no');
+        // }
     </script>
 </head>
 <body>
@@ -27,10 +27,10 @@
 
 </div>
 <div class="block clearfix" id="app">
-<%--    <el-button @click="visible = true">按钮</el-button>--%>
-<%--    <el-dialog :visible.sync="visible" title="Hello world">--%>
-<%--        <p>欢迎使用 Element</p>--%>
-<%--    </el-dialog>--%>
+    <%--    <el-button @click="visible = true">按钮</el-button>--%>
+    <%--    <el-dialog :visible.sync="visible" title="Hello world">--%>
+    <%--        <p>欢迎使用 Element</p>--%>
+    <%--    </el-dialog>--%>
     <div class="AreaL">
         <!--销售排行-->
         <div class="box">
@@ -82,12 +82,12 @@
         <div class="AreaR">
             <div class="AreaM clearfix">
                 <div id="focus">
-<%--                    <img src="images/before/540.jpg"/>--%>
-                    <div >
-                        <span class="demonstration">默认 Hover 指示器触发</span>
-                        <el-carousel height="150px">
-                            <el-carousel-item v-for="item in 4" :key="item">
-                                <h3>{{ item }}</h3>
+                    <%--                    <img src="images/before/540.jpg"/>--%>
+                    <%--         ----------------           轮播图       --------------    --%>
+                    <div>
+                        <el-carousel height="295px" width="540px">
+                            <el-carousel-item v-for="item in imgList" :key="item">
+                                <img :src="item" class="image">
                             </el-carousel-item>
                         </el-carousel>
                     </div>
@@ -104,7 +104,8 @@
                             <ul>
                                 <c:forEach items="${noticelist}" var="nt">
                                     <li>
-                                        <a href="javascript:openNotice('${pageContext.request.contextPath}/adminNotice/selectANotice?id=${nt.id}');">${nt.ntitle}</a>
+                                        <a href="javascript:;"
+                                           @click="openNotice('${pageContext.request.contextPath}/selectANotice?id=${nt.id}')">${nt.ntitle}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -164,24 +165,46 @@
     .el-carousel__item:nth-child(2n+1) {
         background-color: #d3dce6;
     }
+
+    .image {
+        width: 100%;
+        display: block;
+    }
+
 </style>
 <!-- 先引入 Vue -->
 <!-- 引入组件库 -->
 <script src="css/vue.js"></script>
 <script src="css/element-ui.js"></script>
+<script src="css/vue-resource.js"></script>
+
 <script>
     new Vue({
         el: '#app',
         data: function () {
             return {
-                visible: false,
-                activeIndex: '1',
-                activeIndex2: '1'
+                imgList: ['images/before/2.jpg', 'images/before/3.jpg', 'images/before/4.jpg'],
             }
         },
         methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
+            },
+            openNotice(url) {
+                const h = this.$createElement;
+                this.$http.get(url)
+                    .then((success) => {
+                        console.log(success);
+                        this.$notify({
+                            title: success.body.ntitle,
+                            dangerouslyUseHTMLString: true,
+                            message: h('i', {style: 'color: teal'}, success.body.ncontent + success.body.ntime)
+                        });
+                    }, (error) => {
+                        console.log(error);
+                    })
+
+
             }
         }
     })

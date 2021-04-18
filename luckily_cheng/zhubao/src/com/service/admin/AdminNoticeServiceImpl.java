@@ -1,4 +1,5 @@
 package com.service.admin;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +30,11 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
     public String deleteNotice(Integer id) {
         adminNoticeDao.deleteNotice(id);
         return "forward:/adminNotice/deleteNoticeSelect";
+    }
+
+    @Override
+    public String selectANotice( Integer id) {
+        return JSON.toJSONString(adminNoticeDao.selectANotice(id));
     }
 
 }
