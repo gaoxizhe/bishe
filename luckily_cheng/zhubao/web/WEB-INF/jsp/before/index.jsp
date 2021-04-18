@@ -27,10 +27,10 @@
 
 </div>
 <div class="block clearfix" id="app">
-    <el-button @click="visible = true">按钮</el-button>
-    <el-dialog :visible.sync="visible" title="Hello world">
-        <p>欢迎使用 Element</p>
-    </el-dialog>
+<%--    <el-button @click="visible = true">按钮</el-button>--%>
+<%--    <el-dialog :visible.sync="visible" title="Hello world">--%>
+<%--        <p>欢迎使用 Element</p>--%>
+<%--    </el-dialog>--%>
     <div class="AreaL">
         <!--销售排行-->
         <div class="box">
@@ -82,7 +82,15 @@
         <div class="AreaR">
             <div class="AreaM clearfix">
                 <div id="focus">
-                    <img src="images/before/540.jpg"/>
+<%--                    <img src="images/before/540.jpg"/>--%>
+                    <div >
+                        <span class="demonstration">默认 Hover 指示器触发</span>
+                        <el-carousel height="150px">
+                            <el-carousel-item v-for="item in 4" :key="item">
+                                <h3>{{ item }}</h3>
+                            </el-carousel-item>
+                        </el-carousel>
+                    </div>
                 </div>
             </div>
             <div class="AreaRR clearfix">
@@ -140,7 +148,23 @@
     </div>
 </div>
 </body>
+<style>
+    .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 0.75;
+        line-height: 150px;
+        margin: 0;
+    }
 
+    .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+    }
+
+    .el-carousel__item:nth-child(2n+1) {
+        background-color: #d3dce6;
+    }
+</style>
 <!-- 先引入 Vue -->
 <!-- 引入组件库 -->
 <script src="css/vue.js"></script>
