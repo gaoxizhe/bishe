@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>欢迎使用路人丁OA</title>
+    <title>欢迎使用教师OA</title>
     <meta name="keywords" content="HTML5 Bootstrap 3 Admin Template UI Theme" />
     <meta name="description" content="AbsoluteAdmin - A Responsive HTML5 Admin UI Framework">
     <meta name="author" content="AbsoluteAdmin">
@@ -19,7 +19,7 @@
         <section id="content">
             <div class="admin-form theme-info mw500" id="login">
                 <div class="content-header">
-                    <h1> 路人丁OA</h1>
+                    <h1> 教师OA</h1>
                     <p class="lead">欢迎使用教师自动化管理系统</p>
                 </div>
                 <div class="panel mt30 mb25">

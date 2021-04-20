@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title> 路人丁OA--欢迎使用路人丁OA系统 </title>
+    <title> 教师OA--欢迎使用教师OA系统 </title>
 
     <link rel="stylesheet" type="text/css" href="/assets/skin/default_skin/css/theme.css">
     <link rel="stylesheet" type="text/css" href="/assets/admin-tools/admin-forms/css/admin-forms.css">
@@ -17,7 +17,7 @@
     <header class="navbar navbar-fixed-top navbar-shadow">
         <div class="navbar-branding">
             <a class="navbar-brand" href="dashboard.html">
-                <b>路人丁</b>OA
+                <b>教师</b>OA
             </a>
             <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
         </div>
