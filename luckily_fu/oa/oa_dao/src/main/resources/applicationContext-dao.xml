@@ -1,0 +1,32 @@
+﻿<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 开启注解扫描 -->
+    <context:component-scan base-package="com.fgy.oa.dao"/>
+
+    <!-- 数据源 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://47.94.175.90:3306/oa?useUnicode=true&amp;characterEncoding=utf-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <!-- sessionFactory -->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 给实体类起别名 -->
+        <property name="typeAliasesPackage" value="com.fgy.oa.domain"/>
+    </bean>
+
+    <!-- mapper 扫描器 ：用来产生代理对象 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.fgy.oa.dao"/>
+    </bean>
+
+</beans>

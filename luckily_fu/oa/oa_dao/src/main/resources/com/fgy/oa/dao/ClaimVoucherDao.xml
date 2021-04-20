@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fgy.oa.dao.ClaimVoucherDao">
+    <!-- 报销单resultMap -->
+    <resultMap id="claimVoucherMap" type="claimVoucher">
+        <id property="id" column="id" javaType="int"/>
+        <result property="cause" column="cause" javaType="string"/>
+        <result property="create_sn" column="create_sn" javaType="string"/>
+        <result property="create_time" column="create_time" javaType="date"/>
+        <result property="next_deal_sn" column="next_deal_sn" javaType="string"/>
+        <result property="total_amount" column="total_amount" javaType="double"/>
+        <result property="status" column="status" javaType="string"/>
+        <association property="creater" column="create_sn" javaType="employee">
+            <result property="name" column="cname" javaType="string"/>
+            <result property="post" column="cpost" javaType="string"/>
+        </association>
+        <association property="dealer" column="next_deal_sn" javaType="employee">
+            <result property="name" column="dname" javaType="string"/>
+            <result property="post" column="dpost" javaType="string"/>
+        </association>
+    </resultMap>
+
+    <!-- 查询封装结果SQL -->
+    <sql id="selectResultSQL">
+        select cv.*,ce.name cname,ce.post cpost,d.name dname,d.post dpost
+        from claim_voucher cv
+        left join employee ce on ce.sn=cv.create_sn
+        left join employee d on d.sn = cv.next_deal_sn
+        where
+    </sql>
+
+    <!-- 根据报销单id查询报销单 -->
+    <select id="select" resultMap="claimVoucherMap" parameterType="int">
+        <include refid="selectResultSQL"></include>
+        cv.id=#{id}
+    </select>
+
+    <!-- 根据创建人编号查询报销单 -->
+    <select id="selectByCreateSn" resultMap="claimVoucherMap" parameterType="string">
+        <include refid="selectResultSQL"></include>
+        cv.create_sn=#{csn} order by cv.create_time desc
+    </select>
+    <!-- 根据待处理人编号查询报销单 -->
+    <select id="selectByNextDealSn" resultMap="claimVoucherMap" parameterType="string">
+        <include refid="selectResultSQL"></include>
+        cv.next_deal_sn=#{ndsn} order by cv.create_time desc
+    </select>
+
+</mapper>

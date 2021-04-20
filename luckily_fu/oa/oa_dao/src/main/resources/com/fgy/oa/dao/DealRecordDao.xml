@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fgy.oa.dao.DealRecordDao">
+    <!-- 处理记录resultMap -->
+    <resultMap id="dealRecordMap" type="dealRecord">
+        <id property="id" column="id" javaType="int"/>
+        <result property="claim_voucher_id" column="claim_voucher_id" javaType="int"/>
+        <result property="deal_sn" column="deal_sn" javaType="string"/>
+        <result property="deal_time" column="deal_time" javaType="date"/>
+        <result property="deal_way" column="deal_way" javaType="string"/>
+        <result property="deal_result" column="deal_result" javaType="string"/>
+        <result property="comment" column="comment" javaType="string"/>
+        <association property="dealer" column="next_deal_sn" javaType="employee">
+            <result property="name" column="ename" javaType="string"/>
+            <result property="post" column="epost" javaType="string"/>
+        </association>
+    </resultMap>
+
+    <!-- 根据报销单编号查询处理记录 -->
+    <select id="selectByClaimVoucher" resultMap="dealRecordMap">
+        select d.*,e.name ename,e.post epost from deal_record d
+        left join employee e on d.deal_sn = e.sn
+        where d.claim_voucher_id=#{cvid} order by d.deal_time;
+    </select>
+</mapper>
