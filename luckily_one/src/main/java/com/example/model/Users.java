@@ -24,4 +24,5 @@ public class Users {
     private String roleName;
     private String roleDescribe;
     private String address;
+    private Integer professionId;
 }
