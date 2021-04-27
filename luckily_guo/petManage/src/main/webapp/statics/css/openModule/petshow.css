@@ -37,7 +37,7 @@ ul.am-dropdown-content>li>a { color: white; font-size: 16px;}
 ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover { background: #ff5656; color: #fff;transition: background-color ease .3s;}
 .am-icon-caret-down:before { font-size: 8px;}
 .amz-container { max-width: 1500px; margin: 0 auto;}
-.am-topbar-logo img{    width: 105px;height: 50px; vertical-align: top;padding: 5px;  }
+.am-topbar-logo img{    width: 65px;height: 50px; vertical-align: top;padding: 5px;  }
 .am-list, .am-topbar { margin-bottom: 0;}
 .get {background: url(../../img/openModule/banner_bg.png) top center repeat;color: #fff;text-align: center;min-height: 60px;}
 .get-title {display: inline-block; padding-top: 25px;}

@@ -4,7 +4,7 @@
 <div class="container-fluid" style="width: calc(100% - 250px);margin-left: 250px;overflow: auto;">
     <div class="row top">
         <div class="pull-left"><shiro:principal property="userName"/></div>
-        <div class="pull-right top-position">爱宠乐 <span style="margin:0 5px;">/</span><span class="top-position-name">宠物店管理</span></div>
+        <div class="pull-right top-position">宠物猫 <span style="margin:0 5px;">/</span><span class="top-position-name">宠物店管理</span></div>
     </div>
     <div class="row shop-member">
         <div class="col-lg-12 shop-member-content">

@@ -20,7 +20,7 @@
                 <div class="get_font_left get-title-font">已经有</div>
                 <div class="get_font_center " id="banner_num"></div>
                 <div class="get_font_rigth get-title-font">位用户使用</div>
-                <div class="font_line get-title-font" >爱宠乐</div>
+                <div class="font_line get-title-font" >宠物猫信息管理系统</div>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="container about-all"  >
         <div class="row" >
             <div class="col-sm-12" style="text-align: center;font-size: 26px;margin-bottom: 20px;" >
-                爱宠乐
+                宠物猫信息管理系统
             </div>
         </div>
         <div class="row" >
@@ -49,7 +49,7 @@
         <div class="hover ehover13">
             <img class="img-responsive"  src="${pageContext.request.contextPath}/statics/img/openModule/a2.jpg"  alt="">
             <div class="overlay" style="margin-top: 100px;">
-                <h2 style="padding-top: 120px;">爱宠乐宠物店申请</h2>
+                <h2 style="padding-top: 120px;">宠物猫宠物店申请</h2>
                 <shiro:authenticated>
                     <button class="info " data-toggle="modal" data-target="#modal13">
                         <a href="${pageContext.request.contextPath}/open/applyPetShop.html/0" style="color: white;height: 800px;" >申请使用</a>
@@ -76,7 +76,7 @@
                         <div class="box box-img">
                             <img src="${pageContext.request.contextPath}${img}" class="img-fluid">
                             <div class="box-content">
-                                <h3 class="title">爱宠乐</h3>
+                                <h3 class="title">宠物猫</h3>
                                 <span class="post">宠物店管理界面</span>
                             </div>
                         </div>

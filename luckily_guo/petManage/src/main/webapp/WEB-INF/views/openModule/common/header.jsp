@@ -3,7 +3,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
-    <title>爱宠乐官网</title>
+    <title>宠物猫官网</title>
     <!-- 基本的jquery和bootstrap -->
     <link href="${pageContext.request.contextPath}/statics/widget/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="${pageContext.request.contextPath}/statics/js/jquery-1.12.4.min.js"></script>
@@ -25,7 +25,7 @@
     <div class="amz-container">
         <h1 class="am-topbar-brand">
             <a href="index.html" class="am-topbar-logo">
-                <img alt="Logo" src="${pageContext.request.contextPath}/statics/img/logo.png" /> <%--<span>爱宠乐</span>--%>
+                <img alt="Logo" src="${pageContext.request.contextPath}/statics/img/logo2.png" width="65px" /> <%--<span>宠物猫</span>--%>
             </a>
         </h1>
         <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse-5'}">
@@ -43,18 +43,18 @@
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/open/encyclopedias.html">
-                        宠物百科
+                        萌猫百科
                     </a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/open/information.html">
                         <!-- 萌宠趣闻 -->
-                        萌宠资讯
+                        萌猫资讯
                     </a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/open/petShop.html">
-                        宠物店铺
+                        萌猫店铺
                     </a>
                 </li>
                 <shiro:hasAnyRoles name="petShop,general,admin,applyingPetShop" >
@@ -84,28 +84,28 @@
                     <shiro:hasAnyRoles name="petShop,admin">
                         <li>
                             <a href="${pageContext.request.contextPath}/petIndex.html" target="_blank">
-                                我的宠物店
+                                我的猫店
                             </a>
                         </li>
                     </shiro:hasAnyRoles>
                     <shiro:hasAnyRoles name="general,admin">
                         <li>
                             <a href="${pageContext.request.contextPath}/open/applyPetShop.html/0" >
-                                申请宠物店
+                                申请萌猫店
                             </a>
                         </li>
                     </shiro:hasAnyRoles>
                     <shiro:hasAnyRoles name="applyingPetShop,admin">
                         <li>
                             <a href="${pageContext.request.contextPath}/open/applyPetShopMsg.html" >
-                                宠物店申请中
+                                萌猫店申请中
                             </a>
                         </li>
                     </shiro:hasAnyRoles>
                     <shiro:hasAnyRoles name="forbiddenPetShop">
                         <li>
                             <a href="${pageContext.request.contextPath}/open/applyPetShopMsg.html" >
-                                宠物店禁用
+                                萌猫店禁用
                             </a>
                         </li>
                     </shiro:hasAnyRoles>

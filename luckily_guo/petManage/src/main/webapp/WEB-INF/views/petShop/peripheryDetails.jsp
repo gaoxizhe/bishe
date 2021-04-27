@@ -5,7 +5,7 @@
 <div class="container-fluid" style="width: calc(100% - 250px);margin-left: 250px;overflow: auto;">
     <div class="row top">
         <div class="pull-left" id="petShopBigName"></div>
-        <div class="pull-right top-position">爱宠乐 <span style="margin:0 5px;">/</span>商品管理<span style="margin:0 5px;">/</span></span>宠物周边<span style="margin:0 5px;">/</span><span class="top-position-name">周边商品详情</span></div>
+        <div class="pull-right top-position">宠物猫 <span style="margin:0 5px;">/</span>商品管理<span style="margin:0 5px;">/</span></span>宠物周边<span style="margin:0 5px;">/</span><span class="top-position-name">周边商品详情</span></div>
     </div>
     <div class="row add-pet">
         <div class="col-lg-12" style="padding: 0;">

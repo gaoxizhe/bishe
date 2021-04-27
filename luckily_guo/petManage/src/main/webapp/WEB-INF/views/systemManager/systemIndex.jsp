@@ -6,7 +6,7 @@
         <div class="pull-left">
             <shiro:principal property="userName"/>
         </div>
-        <div class="pull-right top-position">爱宠乐 <span style="margin:0 5px;">/</span><span class="top-position-name">主页</span></div>
+        <div class="pull-right top-position">宠物猫 <span style="margin:0 5px;">/</span><span class="top-position-name">主页</span></div>
     </div>
     <div class="container-fluid">
         <div class="row top-title">

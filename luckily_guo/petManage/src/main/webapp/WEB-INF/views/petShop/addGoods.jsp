@@ -5,7 +5,7 @@
     <div class="row top">
         <div class="pull-left" id="petShopBigName"></div>
         <div class="pull-left" readonly id="addPageName" data="${pageName}"></div>
-        <div class="pull-right top-position">爱宠乐 <span style="margin:0 5px;">/</span>商品管理<span style="margin:0 5px;">/</span><span class="top-position-name">新增商品</span></div>
+        <div class="pull-right top-position">宠物猫 <span style="margin:0 5px;">/</span>商品管理<span style="margin:0 5px;">/</span><span class="top-position-name">新增商品</span></div>
     </div>
     <div class="row add-pet">
         <div class="col-lg-12" style="padding: 0;">

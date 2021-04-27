@@ -3,7 +3,7 @@
 <div class="container-fluid" style="width: calc(100% - 250px);margin-left: 250px;overflow: auto;">
     <div class="row top">
         <div class="pull-left" id="petShopBigName"></div>
-        <div class="pull-right top-position">爱宠乐 <span style="margin:0 5px;">/</span>分析报告<span style="margin:0 5px;">/</span><span class="top-position-name">用户情况</span></div>
+        <div class="pull-right top-position">宠物猫 <span style="margin:0 5px;">/</span>分析报告<span style="margin:0 5px;">/</span><span class="top-position-name">用户情况</span></div>
     </div>
     <div class="row data-table">
         <div class="col-lg-6 ">

@@ -6,35 +6,35 @@
     <div class="am-g am-imglist">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-body" id="petCategory" data="狗狗">
+                <div class="card-body" id="petCategory" data="猫">
                     <ul class="nav nav-tabs nav-justified">
+<%--                        <li class="active">--%>
+<%--                            <a data-toggle="tab" href="#dog-basic">狗狗</a>--%>
+<%--                        </li>--%>
                         <li class="active">
-                            <a data-toggle="tab" href="#dog-basic">狗狗</a>
-                        </li>
-                        <li >
                             <a data-toggle="tab" href="#cat-basic">猫</a>
                         </li>
-                        <li >
-                            <a data-toggle="tab" href="#rabbit-basic">兔子</a>
-                        </li>
-                        <li >
-                            <a data-toggle="tab" href="#mouse-basic">老鼠</a>
-                        </li>
-                        <li >
-                            <a data-toggle="tab" href="#bird-basic">宠物鸟</a>
-                        </li>
-                        <li >
-                            <a data-toggle="tab" href="#tortoise-basic">宠物龟</a>
-                        </li>
-                        <li >
-                            <a data-toggle="tab" href="#fish-basic">宠物鱼</a>
-                        </li>
-                        <li >
-                            <a data-toggle="tab" href="#other-basic">其它</a>
-                        </li>
-                        <li >
-                            <a data-toggle="tab" href="#select-basic">查询</a>
-                        </li>
+<%--                        <li >--%>
+<%--                            <a data-toggle="tab" href="#rabbit-basic">兔子</a>--%>
+<%--                        </li>--%>
+<%--                        <li >--%>
+<%--                            <a data-toggle="tab" href="#mouse-basic">老鼠</a>--%>
+<%--                        </li>--%>
+<%--                        <li >--%>
+<%--                            <a data-toggle="tab" href="#bird-basic">宠物鸟</a>--%>
+<%--                        </li>--%>
+<%--                        <li >--%>
+<%--                            <a data-toggle="tab" href="#tortoise-basic">宠物龟</a>--%>
+<%--                        </li>--%>
+<%--                        <li >--%>
+<%--                            <a data-toggle="tab" href="#fish-basic">宠物鱼</a>--%>
+<%--                        </li>--%>
+<%--                        <li >--%>
+<%--                            <a data-toggle="tab" href="#other-basic">其它</a>--%>
+<%--                        </li>--%>
+<%--                        <li >--%>
+<%--                            <a data-toggle="tab" href="#select-basic">查询</a>--%>
+<%--                        </li>--%>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade active in classification" id="dog-basic" >
@@ -66,21 +66,7 @@
                                 <span >貂色</span>
                                 <span >其它颜色</span>
                             </div>
-                            <div class="classification-body petFunction">
-                                <strong>功能:</strong>
-                                <span class="active">不限</span>
-                                <span >伴侣犬</span>
-                                <span >牧羊犬</span>
-                                <span >梗类犬</span>
-                                <span >守卫犬</span>
-                                <span >枪猎犬</span>
-                                <span >看家犬</span>
-                                <span >雪橇犬</span>
-                                <span >玩赏犬</span>
-                                <span >搜救犬</span>
-                                <span >导盲犬</span>
-                                <span >其它</span>
-                            </div>
+
                         </div>
                         <div class="tab-pane fade classification" id="cat-basic">
                             <div class="classification-body petShape" >

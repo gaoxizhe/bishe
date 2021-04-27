@@ -6,7 +6,7 @@
     <div class="row top">
         <div class="pull-left" id="petShopBigName"></div>
         <div class="pull-left" readonly="" id="addPageName" data="${pageName}"></div>
-        <div class="pull-right top-position">爱宠乐 <span style="margin:0 5px;">/</span>商品管理<span style="margin:0 5px;">/</span></span>
+        <div class="pull-right top-position">宠物猫 <span style="margin:0 5px;">/</span>商品管理<span style="margin:0 5px;">/</span></span>
             <c:if test="${pageName=='pet'}">
                 宠物列表
             </c:if>

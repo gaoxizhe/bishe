@@ -26,6 +26,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/admin")
 @Slf4j
+
 public class GraduateStudentController {
 
     @Resource

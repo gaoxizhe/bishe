@@ -3,13 +3,13 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>爱宠乐宠物管理平台</title>
+    <title>宠物猫管理平台</title>
 </head>
 <body>
 <div class="container-fluid login-all" >
     <div class="col-lg-4 login-body"  >
         <div class="form-horizontal" <%--action="${pageContext.request.contextPath}/loginCheck"--%> >
-            <span class="heading">爱宠乐登录</span>
+            <span class="heading">宠物猫登录</span>
             <div class="form-group">
                 <input type="text" name="username" id="username" class="form-control"  placeholder="请输入手机号码">
                 <i class="fa fa-user"></i>
@@ -41,7 +41,7 @@
     </div>
     <div class="col-lg-4 register-body" >
         <div class="form-horizontal" <%--action="${pageContext.request.contextPath}/loginCheck"--%> >
-            <span class="heading">爱宠乐账号注册</span>
+            <span class="heading">宠物猫账号注册</span>
             <div class="form-group">
                 <input type="text" id="registerNickName"  class="form-control"  placeholder="请输入昵称">
                 <i class="fa fa-user"></i>
@@ -60,7 +60,7 @@
                 <i class="fa fa-lock"></i>
             </div>
             <div class="form-group">
-                <input type="text"  class="form-control pull-left" id="inputVerificationCode" style="width:350px;"   placeholder="请输入短信验证码" >
+                <input type="text"  class="form-control pull-left" id="inputVerificationCode" style="width:150px;"   placeholder="请输入短信验证码" >
                 <i class="fa fa-check"></i>
                 <div class="pull-right">
                     <button class="btn btn-info" id="VerificationCode">获取验证码</button>
@@ -75,7 +75,7 @@
 
     <div class="col-lg-4 findPassword-body" >
         <div class="form-horizontal" <%--action="${pageContext.request.contextPath}/loginCheck"--%> >
-            <span class="heading">爱宠乐账号找回</span>
+            <span class="heading">宠物猫账号找回</span>
             <div class="form-group findPwdOne">
                 <input type="text" id="findPwdPhone"  class="form-control"  placeholder="请输入手机号">
                 <i class="fa fa-user"></i>

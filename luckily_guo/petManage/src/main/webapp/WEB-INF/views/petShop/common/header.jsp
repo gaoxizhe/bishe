@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>爱宠乐宠物店</title>
+    <title>宠物猫宠物店</title>
     <!-- 基本的jquery和bootstrap -->
     <link href="${pageContext.request.contextPath}/statics/widget/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="${pageContext.request.contextPath}/statics/js/jquery-1.12.4.min.js"></script>
@@ -25,7 +25,7 @@
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top ">
-    <div class="pull-left"><a href="${pageContext.request.contextPath}/index.html" class="logo"><img alt="Logo" src="${pageContext.request.contextPath}/statics/img/logo.png" /> <%--<span>爱宠乐</span>--%></a></div>
+    <div class="pull-left"><a href="${pageContext.request.contextPath}/index.html" class="logo"><img alt="Logo" src="${pageContext.request.contextPath}/statics/img/logo.png" /> <%--<span>宠物猫</span>--%></a></div>
     <div class="pull-right nav-right">
         <div class="pull-left nav-right1" style="width: 100%;right: 200px;">
             <div class="news-all">
@@ -56,7 +56,7 @@
                 <shiro:hasRole name="admin">
                     <a href="${pageContext.request.contextPath}/system/systemIndex.html" ><div class="person person-all-msg"><i class="fa fa-bars"></i>系统管理</div></a>
                 </shiro:hasRole>
-                <a href="${pageContext.request.contextPath}/open/index.html" ><div class="person person-all-msg"><i class="fa fa-desktop"></i>爱宠乐官网</div></a>
+                <a href="${pageContext.request.contextPath}/open/index.html" ><div class="person person-all-msg"><i class="fa fa-desktop"></i>宠物猫官网</div></a>
                 <a href="${pageContext.request.contextPath}/logout"><div class="person logout"><i class="fa fa-sign-out"></i>退出登录</div></a>
             </div>
         </div>
