@@ -20,7 +20,7 @@
                 <a href="javascript:;" class="fa fa-question-circle" id="findPasswordBtn" title="找回密码"></a>
             </div>
             <div class="form-group">
-                <input type="text" id="inputCode"  class="form-control pull-left" style="width:360px;"   placeholder="请输入校验码" >
+                <input type="text" id="inputCode"  class="form-control pull-left" style="width:180px;"   placeholder="请输入校验码" >
                 <i class="fa fa-check"></i>
                 <div class="pull-right">
                     <canvas id="checkCodeCanvas" width="120" height="36"></canvas>
