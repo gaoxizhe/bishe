@@ -31,10 +31,11 @@ public class StudentCompetitionController {
     @Resource
     private StudentCompetitionService StudentCompetitionService;
 
-
     @GetMapping("/student_competition/list")
     //page=1&limit=10
-    public RestListResponse<StudentCompetition> StudentCompetitionList(@RequestParam(value = "page") Integer page, @RequestParam(value = "limit") Integer limit) {
+    public RestListResponse<StudentCompetition> StudentCompetitionList(@RequestParam(value = "page") Integer page,
+                                                                       @RequestParam(value = "limit") Integer limit,
+                                                                       @RequestParam(value = "level", required = false) String level) {
         if (page == null || page < 0) {
             page = 0;
         }
@@ -44,7 +45,7 @@ public class StudentCompetitionController {
 
         log.info("page: {} , limit : {}", page, limit);
 
-        PageInfo<StudentCompetition> info = StudentCompetitionService.getStudentCompetitionList(page, limit);
+        PageInfo<StudentCompetition> info = StudentCompetitionService.getStudentCompetitionList(page, limit, level);
 
         RestListResponse<StudentCompetition> response = new RestListResponse<>();
         RestResponsePage responsePage = new RestResponsePage();
@@ -56,7 +57,6 @@ public class StudentCompetitionController {
         response.setPage(responsePage);
         return response;
     }
-
 
     @PostMapping("/student_competition")
     public RestResponseBase updateStudentCompetition(@RequestParam Map<String, Object> params) {
@@ -70,6 +70,7 @@ public class StudentCompetitionController {
         StudentCompetition.setCompetitionName((String) params.get("competitionName"));
         StudentCompetition.setProjectId(params.get("projectId") == null || params.get("projectId").equals("") ? 0 : Integer.parseInt(params.get("projectId").toString()));
         StudentCompetition.setDate((String) params.get("date"));
+        StudentCompetition.setLevel((String) params.get("level"));
         StudentCompetition.setAwards((String) params.get("awards"));
         StudentCompetition.setWorkload((String) params.get("workload"));
 
@@ -87,10 +88,8 @@ public class StudentCompetitionController {
         return restResponseBase;
     }
 
-
     @DeleteMapping("/student_competition/{id}")
     public RestResponseBase updateStudentCompetition(@PathVariable("id") Integer id) {
-
 
         RestResponseBase restResponseBase = new RestResponseBase();
         restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);

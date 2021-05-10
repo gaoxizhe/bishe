@@ -33,7 +33,9 @@ public class WorkController {
 
     @GetMapping("/work/list")
     //page=1&limit=10
-    public RestListResponse<Work> WorkList(@RequestParam(value = "page") Integer page, @RequestParam(value = "limit") Integer limit) {
+    public RestListResponse<Work> WorkList(@RequestParam(value = "page") Integer page,
+                                           @RequestParam(value = "limit") Integer limit,
+                                           @RequestParam(value = "related" ,required = false) String related) {
         if (page == null || page < 0) {
             page = 0;
         }
@@ -43,7 +45,7 @@ public class WorkController {
 
         log.info("page: {} , limit : {}", page, limit);
 
-        PageInfo<Work> info = WorkService.getWorkList(page, limit);
+        PageInfo<Work> info = WorkService.getWorkList(page, limit,related);
 
         RestListResponse<Work> response = new RestListResponse<>();
         RestResponsePage responsePage = new RestResponsePage();
@@ -69,6 +71,7 @@ public class WorkController {
         work.setPhone((String) params.get("phone"));
         work.setContacts((String) params.get("contacts"));
         work.setContactUnit((String) params.get("contactUnit"));
+        work.setRelated((String) params.get("related"));
 
         RestResponseBase restResponseBase = new RestResponseBase();
         restResponseBase.setMsg(StatusConstant.Common.SUCCESS_MSG);

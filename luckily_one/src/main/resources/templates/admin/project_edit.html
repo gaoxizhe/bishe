@@ -23,6 +23,13 @@
                    class="layui-input" th:value="${data.data.instructor}">
         </div>
     </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">年份</label>
+        <div class="layui-input-block">
+            <input type="text" id="year" name="year" required lay-verify="required" placeholder="请输入姓名" autocomplete="off"
+                   class="layui-input" th:value="${data.data.year}">
+        </div>
+    </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">项目名称</label>
@@ -54,13 +61,7 @@
         </div>
     </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">年份</label>
-        <div class="layui-input-block">
-            <input type="text" name="year" required lay-verify="required" placeholder="请输入姓名" autocomplete="off"
-                   class="layui-input" th:value="${data.data.year}">
-        </div>
-    </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label">完成情况</label>
         <div class="layui-input-block">
@@ -74,12 +75,27 @@
     <div class="layui-form-item">
         <label class="layui-form-label">经费</label>
         <div class="layui-input-block">
+            <input type="text" name="funding" required lay-verify="required" placeholder="请输入经费" autocomplete="off"
+                   class="layui-input" th:value="${data.data.funding}">
 <!--            funding 无/校级/省级/国家级-->
-            <select name="funding" lay-filter="aihao" lay-search>
-                <option value="无" th:selected="${data.data.funding == '无'}">无</option>
-                <option value="校级" th:selected="${data.data.funding == '校级'}" >校级</option>
-                <option value="省级" th:selected="${data.data.funding == '省级'}" >省级</option>
-                <option value="国家级" th:selected="${data.data.funding == '国家级'}" >国家级</option>
+<!--            <select name="funding" lay-filter="aihao" lay-search>-->
+<!--                <option value="无" th:selected="${data.data.funding == '无'}">无</option>-->
+<!--                <option value="校级" th:selected="${data.data.funding == '校级'}" >校级</option>-->
+<!--                <option value="省级" th:selected="${data.data.funding == '省级'}" >省级</option>-->
+<!--                <option value="国家级" th:selected="${data.data.funding == '国家级'}" >国家级</option>-->
+<!--            </select>-->
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">级别</label>
+        <div class="layui-input-block">
+            <!--            funding 无/校级/省级/国家级-->
+            <select name="level" lay-filter="aihao" lay-search>
+                <option value="无" th:selected="${data.data.level == '无'}">无</option>
+                <option value="国家级" th:selected="${data.data.level == '国家级'}" >国家级</option>
+                <option value="省级" th:selected="${data.data.level == '省级'}" >省级</option>
+                <option value="校级" th:selected="${data.data.level == '校级'}" >校级</option>
             </select>
         </div>
     </div>
@@ -108,9 +124,10 @@
 </body>
 <script type="text/javascript" th:inline="javascript">
     //Demo
-    layui.use('form', function () {
+    layui.use(['form','laydate'], function () {
 
         let form = layui.form;
+        var laydate = layui.laydate;
 
         //监听提交
         form.on('submit(formDemo)', function (data) {
@@ -118,6 +135,12 @@
             xadmin.close();
             xadmin.father_reload();
             return true;
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#year' //指定元素
+            ,type: 'year'
         });
     });
 </script>

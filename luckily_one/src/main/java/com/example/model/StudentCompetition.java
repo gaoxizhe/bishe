@@ -12,6 +12,7 @@ public class StudentCompetition {
   private Integer projectId;
   private String projectName;
   private String date;
+  private String level;
   private String awards;
   private String workload;
 }

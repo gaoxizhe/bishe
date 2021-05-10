@@ -9,7 +9,7 @@
 
 <div class="x-nav">
             <span class="layui-breadcrumb">
-                <a><cite>学生管理</cite></a>
+                <a><cite>大创项目</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
        onclick="location.reload()" title="刷新">
@@ -21,14 +21,41 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header">
-<!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
-<!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
-<!--                    </button>-->
-                    <button class="layui-btn" onclick="xadmin.open('添加','toProjectEdit/0',800,300)">
+                    <!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
+                    <!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
+                    <!--                    </button>-->
+                    <button class="layui-btn" onclick="xadmin.open('添加','toProjectEdit/0',900,600)">
                         <i class="layui-icon layui-icon-add-1">
                         </i>添加
                     </button>
+
                 </div>
+                <div style="border: 1px solid gainsboro;padding: 3px;border-radius: 3px;margin: auto 10px">
+                    <div style="width: 300px;display: inline-block">
+                        <label class="layui-form-label">年份：</label>
+                        <div class="layui-input-block" style="width: 200px">
+                            <input type="text" id="year" name="year" class="layui-input" width="200px">
+                        </div>
+                    </div>
+
+                    <div style="width: 300px;display: inline-block;margin-left: 100px">
+                        <label class="layui-form-label">级别：</label>
+                        <div class="layui-input-block" style="width: 200px;">
+
+                            <select id="level" name="level" lay-filter="aihao" lay-search class="layui-input">
+                                <option value="无">无</option>
+                                <option value="国家级">国家级</option>
+                                <option value="省级">省级</option>
+                                <option value="校级">校级</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="layui-btn" id="search" style="margin-left: 100px">
+                        <i class="layui-icon layui-icon-search">
+                        </i>搜索
+                    </button>
+                </div>
+
                 <div class="layui-card-body ">
 
 
@@ -47,16 +74,23 @@
 </script>
 
 <script>
-    layui.use(['form', 'layer', 'table', 'util'],
+    layui.use(['form', 'layer', 'table', 'util', 'laydate'],
         function () {
             let table = layui.table;
             let util = layui.util;
             let layer = layui.layer;
+            var laydate = layui.laydate;
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#year' //指定元素
+                , type: 'year'
+            });
+
 
             table.render({
                 id: 'idTest',
                 elem: '#category'
-                ,page: true
+                , page: true
                 , url: '/admin/project/list'
                 , height: 600
                 , parseData: function (res) { //res 即为原始返回的数据
@@ -70,13 +104,14 @@
                 }
                 , cols: [
                     [
-                        {checkbox: true, LAY_CHECKED: false, filter: 'test', width: 80}
-                        , {field: 'id', width: 80, sort: true, title: 'id'}
+
+                        {field: 'id', width: 80, sort: true, title: 'id'}
                         , {field: 'applicant', title: '申请人'}
                         , {field: 'instructor', title: '指导教师'}
                         , {field: 'name', title: '项目名称'}
                         , {field: 'member', title: '团队成员'}
-                        , {field: 'approvalStatus', title: '批准情况',templet: function (data) {
+                        , {
+                        field: 'approvalStatus', title: '批准情况', templet: function (data) {
                             let html = '';
                             let stringify = JSON.stringify(data);
                             let approvalStatus = data.approvalStatus;
@@ -89,9 +124,11 @@
 
                             return html;
 
-                        }}
+                        }
+                    }
                         , {field: 'year', title: '年份'}
-                        , {field: 'completion', title: '完成情况',templet: function (data) {
+                        , {
+                        field: 'completion', title: '完成情况', templet: function (data) {
                             let html = '';
                             let stringify = JSON.stringify(data);
                             let completion = data.completion;
@@ -104,8 +141,10 @@
 
                             return html;
 
-                        }}
+                        }
+                    }
                         , {field: 'funding', title: '经费'}
+                        , {field: 'level', title: '级别'}
                         , {field: 'workload', title: '工作量'}
                         , {width: 200, align: 'center', toolbar: '#barDemo', title: '操作'}
                     ]
@@ -113,12 +152,33 @@
 
             });
 
+            $('#search').click(function () {
+                console.info('click');
+                let year = $('#year').val()
+                let level = $('#level').val()
+                table.reload('idTest', {
+                    url: '/admin/project/list'
+                    // ,methods:"post"
+                    , request: {
+                        pageName: 'page' //页码的参数名称，默认：page
+                        , limitName: 'limit' //每页数据量的参数名，默认：limit
+                    }
+                    , where: {
+                        year: year,
+                        level: level
+                    }
+                    , page: {
+                        curr: 1
+                    }
+                });
+            })
+
             table.on('tool(test)', function (obj) {
                 let checkStatus = table.checkStatus(obj.data.id);
                 switch (obj.event) {
                     case 'edit':
                         layer.msg('编辑');
-                        xadmin.open('编辑分类', 'toProjectEdit/' + obj.data.id, 900,600)
+                        xadmin.open('编辑分类', 'toProjectEdit/' + obj.data.id, 900, 600)
                         break;
                     case 'del':
                         layer.msg('删除');

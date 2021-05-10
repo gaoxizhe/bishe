@@ -4,7 +4,6 @@ package com.example.dao;/**
  */
 
 import com.example.model.Project;
-import com.example.model.Student;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,10 +13,12 @@ import java.util.List;
  * @ClassName ProFessionDao
  * @Author Mr.Gao
  * @Date 2021/3/23 下午10:16
- * @Description TODO | 
+ * @Description TODO |
  */
 @Repository
 public interface ProjectDao {
+    List<Project> getProjectPageListBySearch(@Param("year") Integer year,@Param("level") String level);
+
     List<Project> getProjectPageList();
 
     Project getProjectById(@Param("id") Integer id);

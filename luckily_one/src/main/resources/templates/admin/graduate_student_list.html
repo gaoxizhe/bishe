@@ -9,7 +9,7 @@
 
 <div class="x-nav">
             <span class="layui-breadcrumb">
-                <a><cite>学生参赛</cite></a>
+                <a><cite>考研情况</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
        onclick="location.reload()" title="刷新">
@@ -21,14 +21,42 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header">
-<!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
-<!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
-<!--                    </button>-->
+                    <!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
+                    <!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
+                    <!--                    </button>-->
                     <button class="layui-btn" onclick="xadmin.open('添加','toGraduateStudentEdit/0',900,400)">
                         <i class="layui-icon layui-icon-add-1">
                         </i>添加
                     </button>
                 </div>
+
+
+                <div style="border: 1px solid gainsboro;padding: 3px;border-radius: 3px;margin: auto 10px">
+                    <div style="width: 300px;display: inline-block">
+                        <label class="layui-form-label">考研年份：</label>
+                        <div class="layui-input-block" style="width: 200px">
+                            <input type="text" id="year" name="year" class="layui-input" width="200px">
+                        </div>
+                    </div>
+
+                    <div style="width: 300px;display: inline-block;margin-left: 100px">
+                        <label class="layui-form-label">专业类型：</label>
+                        <div class="layui-input-block" style="width: 200px;">
+
+                            <select id="type" name="type" lay-filter="aihao" lay-search class="layui-input">
+                                <option value="无">无</option>
+                                <option value="本专业">本专业</option>
+                                <option value="非本专业">非本专业</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="layui-btn" id="search" style="margin-left: 100px">
+                        <i class="layui-icon layui-icon-search">
+                        </i>搜索
+                    </button>
+                </div>
+
+
                 <div class="layui-card-body ">
 
 
@@ -47,16 +75,21 @@
 </script>
 
 <script>
-    layui.use(['form', 'layer', 'table', 'util'],
+    layui.use(['form', 'layer', 'table', 'laydate', 'util'],
         function () {
             let table = layui.table;
             let util = layui.util;
             let layer = layui.layer;
-
+            var laydate = layui.laydate;
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#year' //指定元素
+                , type: 'year'
+            });
             table.render({
                 id: 'idTest',
                 elem: '#category'
-                ,page: true
+                , page: true
                 , url: '/admin/graduate_student/list'
                 , height: 600
                 , parseData: function (res) { //res 即为原始返回的数据
@@ -73,6 +106,8 @@
                         {checkbox: true, LAY_CHECKED: false, filter: 'test', width: 80}
                         , {field: 'id', width: 80, sort: true, title: 'id'}
                         , {field: 'name', title: '学生姓名'}
+                        , {field: 'year', title: '考研年份'}
+                        , {field: 'type', title: '专业类型'}
                         , {field: 'school', title: '报考学校'}
                         , {field: 'major', title: '专业'}
                         , {field: 'degree', title: '学位类别'}
@@ -84,12 +119,33 @@
 
             });
 
+            $('#search').click(function () {
+                console.info('click');
+                let year = $('#year').val()
+                let type = $('#type').val()
+                table.reload('idTest', {
+                    url: '/admin/graduate_student/list'
+                    // ,methods:"post"
+                    , request: {
+                        pageName: 'page' //页码的参数名称，默认：page
+                        , limitName: 'limit' //每页数据量的参数名，默认：limit
+                    }
+                    , where: {
+                        year: year,
+                        type: type
+                    }
+                    , page: {
+                        curr: 1
+                    }
+                });
+            })
+
             table.on('tool(test)', function (obj) {
                 let checkStatus = table.checkStatus(obj.data.id);
                 switch (obj.event) {
                     case 'edit':
                         layer.msg('编辑');
-                        xadmin.open('编辑分类', 'toGraduateStudentEdit/' + obj.data.id, 900,600)
+                        xadmin.open('编辑分类', 'toGraduateStudentEdit/' + obj.data.id, 900, 600)
                         break;
                     case 'del':
                         layer.msg('删除');

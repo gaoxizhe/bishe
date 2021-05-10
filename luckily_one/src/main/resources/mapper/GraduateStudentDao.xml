@@ -4,10 +4,10 @@
     <insert id="insertGraduateStudent">
         insert into graduate_student(name, school,
                                      major, degree, admission_category,
-                                     student_type, year)
+                                     student_type, year, type)
         VALUES (#{name}, #{school},
                 #{major}, #{degree}, #{admissionCategory},
-                #{studentType}, #{year});
+                #{studentType}, #{year}, #{type});
 
     </insert>
     <update id="updateGraduateStudentById">
@@ -34,16 +34,39 @@
             <if test="year != null">
                 year = #{year},
             </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
         </set>
         where id = #{id}
     </update>
     <delete id="deleteGraduateStudentById">
-        delete from graduate_student where  id = #{id}
+        delete
+        from graduate_student
+        where id = #{id}
     </delete>
     <select id="getGraduateStudentPageList" resultType="com.example.model.GraduateStudent">
-        select * from graduate_student order by id asc
+        select *
+        from graduate_student
+        order by id asc
     </select>
     <select id="getGraduateStudentById" resultType="com.example.model.GraduateStudent">
-        select * from graduate_student where id = #{id}
+        select *
+        from graduate_student
+        where id = #{id}
+    </select>
+    <select id="getGraduateStudentPageListBySearch" resultType="com.example.model.GraduateStudent">
+        select *
+        from graduate_student
+        <where>
+            <if test="year != null">
+                and year = #{year}
+            </if>
+
+            <if test="type != null and type != '无'.toString()">
+                and type = #{type}
+            </if>
+        </where>
+        order by id asc
     </select>
 </mapper>

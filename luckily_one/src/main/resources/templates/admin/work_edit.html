@@ -27,6 +27,18 @@
                    class="layui-input" th:value="${data.data.employmentUnit}">
         </div>
     </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">与所学专业是否相关</label>
+        <div class="layui-input-block">
+            <!--            funding 无/校级/省级/国家级-->
+            <select name="related" lay-filter="aihao" lay-search>
+                <option value="无" th:selected="${data.data.related == '无'}">无</option>
+                <option value="是" th:selected="${data.data.related == '是'}" >是</option>
+                <option value="否" th:selected="${data.data.related == '否'}" >否</option>
+            </select>
+        </div>
+    </div>
+
 
     <div class="layui-form-item">
         <label class="layui-form-label">单位性质</label>

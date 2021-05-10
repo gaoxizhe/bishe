@@ -3,10 +3,10 @@
 <mapper namespace="com.example.dao.ProjectDao">
     <insert id="insertProject" parameterType="com.example.model.Project">
         insert into project (applicant, instructor, name, member,
-                                        approval_status, year, completion, funding,
+                                        approval_status, year, completion, funding,level,
                                         workload)
         values (#{applicant}, #{instructor}, #{name}, #{member},
-            #{approvalStatus}, #{year}, #{completion}, #{funding},
+            #{approvalStatus}, #{year}, #{completion}, #{funding},#{level},
             #{workload})
     </insert>
     <update id="updateProjectById" parameterType="com.example.model.Project">
@@ -42,6 +42,11 @@
             <if test="funding != null">
                 funding = #{funding},
             </if>
+
+            <if test="level != null">
+                level = #{level},
+            </if>
+
             <if test="workload != null">
                 workload = #{workload},
             </if>
@@ -58,5 +63,18 @@
     </select>
     <select id="getProjectById" resultType="com.example.model.Project" parameterType="java.lang.Integer">
         select * from project where id = #{id}
+    </select>
+    <select id="getProjectPageListBySearch" resultType="com.example.model.Project">
+        select * from project
+        <where>
+            <if test="year != null">
+               and year = #{year}
+            </if>
+
+            <if test="level != null and level != '无'.toString()">
+               and   level = #{level}
+            </if>
+        </where>
+        order by id asc
     </select>
 </mapper>

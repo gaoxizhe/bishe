@@ -35,7 +35,10 @@ public class GraduateStudentController {
 
     @GetMapping("/graduate_student/list")
     //page=1&limit=10
-    public RestListResponse<GraduateStudent> GraduateStudentList(@RequestParam(value = "page") Integer page, @RequestParam(value = "limit") Integer limit) {
+    public RestListResponse<GraduateStudent> GraduateStudentList(@RequestParam(value = "page") Integer page,
+                                                                 @RequestParam(value = "limit") Integer limit,
+                                                                 @RequestParam(value = "year",required = false) Integer year,
+                                                                 @RequestParam(value = "type",required = false) String type) {
         if (page == null || page < 0) {
             page = 0;
         }
@@ -45,7 +48,7 @@ public class GraduateStudentController {
 
         log.info("page: {} , limit : {}", page, limit);
 
-        PageInfo<GraduateStudent> info = GraduateStudentService.getGraduateStudentList(page, limit);
+        PageInfo<GraduateStudent> info = GraduateStudentService.getGraduateStudentList(page, limit,year,type);
 
         RestListResponse<GraduateStudent> response = new RestListResponse<>();
         RestResponsePage responsePage = new RestResponsePage();
@@ -71,6 +74,8 @@ public class GraduateStudentController {
         GraduateStudent.setDegree((String) params.get("degree"));
         GraduateStudent.setAdmissionCategory((String) params.get("admissionCategory"));
         GraduateStudent.setStudentType((String) params.get("studentType"));
+        GraduateStudent.setType((String) params.get("type"));
+        GraduateStudent.setYear((String) params.get("year"));
 
 
         RestResponseBase restResponseBase = new RestResponseBase();

@@ -28,9 +28,9 @@ public class GraduateStudentService {
 
 
 
-    public PageInfo<GraduateStudent> getGraduateStudentList(Integer page, Integer limit) {
+    public PageInfo<GraduateStudent> getGraduateStudentList( Integer page, Integer limit, Integer year,String type) {
         PageHelper.startPage(page, limit);
-        List<GraduateStudent> pageList = GraduateStudentDao.getGraduateStudentPageList();
+        List<GraduateStudent> pageList = GraduateStudentDao.getGraduateStudentPageListBySearch(year,type);
 
         return new PageInfo<>(pageList);
 
@@ -46,15 +46,15 @@ public class GraduateStudentService {
     }
 
     public void updateGraduateStudent(GraduateStudent GraduateStudent) {
-        Calendar cale = null;
-        cale = Calendar.getInstance();
-        int year = cale.get(Calendar.YEAR);
-        int month = cale.get(Calendar.MONTH) + 1;
-        if (month < 9) {
-            year--;
-        }
-
-        GraduateStudent.setYear(String.valueOf(year));
+//        Calendar cale = null;
+//        cale = Calendar.getInstance();
+//        int year = cale.get(Calendar.YEAR);
+//        int month = cale.get(Calendar.MONTH) + 1;
+//        if (month < 9) {
+//            year--;
+//        }
+//
+//        GraduateStudent.setYear(String.valueOf(year));
 
         if (GraduateStudent.getId() == null || GraduateStudent.getId().equals(0)) {
             GraduateStudentDao.insertGraduateStudent(GraduateStudent);

@@ -4,10 +4,10 @@
     <insert id="insertWork">
         insert into work (student, employment_unit,
                           unit_nature, work, time,
-                          phone, contacts, contact_unit)
+                          phone, contacts, contact_unit, related)
         VALUES (#{student}, #{employmentUnit},
                 #{unitNature}, #{work}, #{time},
-                #{phone}, #{contacts}, #{contactUnit})
+                #{phone}, #{contacts}, #{contactUnit}, #{related})
     </insert>
     <update id="updateWorkById">
         update work
@@ -37,6 +37,10 @@
             <if test="contactUnit != null">
                 contact_unit = #{contactUnit},
             </if>
+
+            <if test="related != null">
+                related = #{related},
+            </if>
         </set>
         where id = #{id}
     </update>
@@ -55,10 +59,11 @@
                w.phone,
                contacts,
                contact_unit,
-               si.name as studentName
+               si.name as studentName,
+               w.related
         from work w
                  left join student_info si on si.id = w.student
-        order  by w.id asc
+        order by w.id asc
     </select>
     <select id="getWorkById" resultType="com.example.model.Work">
         select w.id,
@@ -70,9 +75,31 @@
                w.phone,
                contacts,
                contact_unit,
-               si.name as studentName
+               si.name as studentName,
+               w.related
         from work w
                  left join student_info si on si.id = w.student
         where w.id = #{id}
+    </select>
+    <select id="getWorkPageListBySearch" resultType="com.example.model.Work">
+        select w.id,
+        student,
+        employment_unit,
+        unit_nature,
+        work,
+        time,
+        w.phone,
+        contacts,
+        contact_unit,
+        si.name as studentName,
+        w.related
+        from work w
+        left join student_info si on si.id = w.student
+        <where>
+            <if test="related != null and related != '无'.toString()">
+                and related = #{related}
+            </if>
+        </where>
+        order by w.id asc
     </select>
 </mapper>

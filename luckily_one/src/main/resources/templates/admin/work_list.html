@@ -21,14 +21,40 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header">
-<!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
-<!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
-<!--                    </button>-->
+                    <!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
+                    <!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
+                    <!--                    </button>-->
                     <button class="layui-btn" onclick="xadmin.open('添加','toWorkEdit/0',1000,600)">
                         <i class="layui-icon layui-icon-add-1">
                         </i>添加
                     </button>
                 </div>
+
+                <div style="border: 1px solid gainsboro;padding: 3px;border-radius: 3px;margin: auto 10px">
+
+
+                    <div style="width: 400px;display: inline-block;margin-left: 10px">
+                        <label class="layui-form-label">与所学专业是否相关：</label>
+                        <div class="layui-form-label" style="width: 150px;">
+
+                            <select id="related" name="related" lay-filter="aihao" lay-search class="layui-input">
+                                <option value="无">无</option>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </div>
+                        <div class="layui-form-label">
+                            <button class="layui-btn" id="search" style="margin-left: 100px">
+                                <i class="layui-icon layui-icon-search">
+                                </i>搜索
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
                 <div class="layui-card-body ">
 
 
@@ -56,7 +82,7 @@
             table.render({
                 id: 'idTest',
                 elem: '#category'
-                ,page: true
+                , page: true
                 , url: '/admin/work/list'
                 , height: 600
                 , parseData: function (res) { //res 即为原始返回的数据
@@ -76,6 +102,7 @@
                         , {field: 'studentName', title: '姓名'}
                         , {field: 'employmentUnit', title: '就业单位'}
                         , {field: 'unitNature', title: '单位性质'}
+                        , {field: 'related', title: '与所学专业是否相关'}
                         , {field: 'work', title: '从事工作'}
                         , {field: 'time', title: '就业时间'}
                         , {field: 'phone', title: '联系方式'}
@@ -86,13 +113,30 @@
                 ]
 
             });
-
+            $('#search').click(function () {
+                console.info('click');
+                let related = $('#related').val()
+                table.reload('idTest', {
+                    url: '/admin/work/list'
+                    // ,methods:"post"
+                    , request: {
+                        pageName: 'page' //页码的参数名称，默认：page
+                        , limitName: 'limit' //每页数据量的参数名，默认：limit
+                    }
+                    , where: {
+                        related: related
+                    }
+                    , page: {
+                        curr: 1
+                    }
+                });
+            })
             table.on('tool(test)', function (obj) {
                 let checkStatus = table.checkStatus(obj.data.id);
                 switch (obj.event) {
                     case 'edit':
                         layer.msg('编辑');
-                        xadmin.open('编辑分类', 'toWorkEdit/' + obj.data.id, 900,600)
+                        xadmin.open('编辑分类', 'toWorkEdit/' + obj.data.id, 900, 600)
                         break;
                     case 'del':
                         layer.msg('删除');

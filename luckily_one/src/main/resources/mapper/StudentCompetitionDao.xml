@@ -4,10 +4,10 @@
     <insert id="insertStudentCompetition" parameterType="com.example.model.StudentCompetition">
         insert into student_competition(host, team, teacher,
                                         competition_name, project_id, date,
-                                        awards, workload)
+                                        awards, workload,level)
         values (#{host}, #{team}, #{teacher},
                 #{competitionName}, #{projectId}, #{date},
-                #{awards}, #{workload})
+                #{awards}, #{workload},#{level})
     </insert>
     <update id="updateStudentCompetitionById" parameterType="com.example.model.StudentCompetition">
         update student_competition
@@ -36,6 +36,9 @@
             <if test="workload != null">
                 workload = #{workload},
             </if>
+            <if test="level != null">
+                level = #{level},
+            </if>
         </set>
         where id = #{id}
     </update>
@@ -54,6 +57,7 @@
                sc.date,
                sc.awards,
                sc.workload,
+               sc.level,
                p.name projectName
 
         from student_competition sc
@@ -71,10 +75,33 @@
                sc.date,
                sc.awards,
                sc.workload,
+               sc.level,
                p.name projectName
 
         from student_competition sc
                  left join project p on sc.project_id = p.id
         where sc.id = #{id}
+    </select>
+    <select id="getStudentCompetitionPageListBySearch" resultType="com.example.model.StudentCompetition">
+        select sc.id,
+               sc.host,
+               sc.team,
+               sc.teacher,
+               sc.competition_name competitionName,
+               sc.project_id projectId,
+               sc.date,
+               sc.awards,
+               sc.workload,
+               sc.level,
+               p.name projectName
+
+        from student_competition sc
+                 left join project p on sc.project_id = p.id
+        <where>
+            <if test="level != null and level != '无'.toString()">
+                and sc.level = #{level}
+            </if>
+        </where>
+        order by sc.id asc
     </select>
 </mapper>

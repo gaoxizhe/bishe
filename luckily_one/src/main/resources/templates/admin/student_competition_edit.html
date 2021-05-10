@@ -8,11 +8,24 @@
 
     <input type="hidden" name="id" class="layui-input" th:value="${data.data.id}">
 
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">主持人</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" name="host" required lay-verify="required" placeholder="请输入主持人姓名" autocomplete="off"-->
+<!--                   class="layui-input" th:value="${data.data.host}">-->
+<!--        </div>-->
+<!--    </div>-->
+
     <div class="layui-form-item">
-        <label class="layui-form-label">主持人</label>
+        <label class="layui-form-label">级别</label>
         <div class="layui-input-block">
-            <input type="text" name="host" required lay-verify="required" placeholder="请输入主持人姓名" autocomplete="off"
-                   class="layui-input" th:value="${data.data.host}">
+            <!--            funding 无/校级/省级/国家级-->
+            <select name="level" lay-filter="aihao" lay-search>
+                <option value="无" th:selected="${data.data.level == '无'}">无</option>
+                <option value="国家级" th:selected="${data.data.level == '国家级'}" >国家级</option>
+                <option value="省级" th:selected="${data.data.level == '省级'}" >省级</option>
+                <option value="校级" th:selected="${data.data.level == '校级'}" >校级</option>
+            </select>
         </div>
     </div>
 

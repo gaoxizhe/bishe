@@ -18,6 +18,7 @@ import java.util.List;
 @Repository
 public interface StudentCompetitionDao {
     List<StudentCompetition> getStudentCompetitionPageList();
+    List<StudentCompetition> getStudentCompetitionPageListBySearch(@Param("level") String level);
 
     StudentCompetition getStudentCompetitionById(@Param("id") Integer id);
 

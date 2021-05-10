@@ -15,6 +15,10 @@ public class Project {
   private String year;
   private Integer completion;
   private String funding;
+  /**
+   * 级别
+   */
+  private String level;
   private String workload;
 
 

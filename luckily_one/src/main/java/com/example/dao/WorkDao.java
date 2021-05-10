@@ -13,11 +13,13 @@ import java.util.List;
  * @ClassName ProFessionDao
  * @Author Mr.Gao
  * @Date 2021/3/23 下午10:16
- * @Description TODO | 
+ * @Description TODO |
  */
 @Repository
 public interface WorkDao {
     List<Work> getWorkPageList();
+
+    List<Work> getWorkPageListBySearch(@Param("related") String related);
 
     Work getWorkById(@Param("id") Integer id);
 

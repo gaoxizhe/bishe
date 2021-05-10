@@ -17,4 +17,5 @@ public class Work {
     private String phone;
     private String contacts;
     private String contactUnit;
+    private String related;
 }

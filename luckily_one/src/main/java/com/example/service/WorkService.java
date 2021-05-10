@@ -27,9 +27,9 @@ public class WorkService {
 
 
 
-    public PageInfo<Work> getWorkList(Integer page, Integer limit) {
+    public PageInfo<Work> getWorkList(Integer page, Integer limit, String related) {
         PageHelper.startPage(page, limit);
-        List<Work> pageList = WorkDao.getWorkPageList();
+        List<Work> pageList = WorkDao.getWorkPageListBySearch(related);
 
         return new PageInfo<>(pageList);
 

@@ -19,6 +19,8 @@ import java.util.List;
 public interface GraduateStudentDao {
     List<GraduateStudent> getGraduateStudentPageList();
 
+    List<GraduateStudent> getGraduateStudentPageListBySearch(@Param("year") Integer year,@Param("type") String type);
+
     GraduateStudent getGraduateStudentById(@Param("id") Integer id);
 
     void insertGraduateStudent(GraduateStudent GraduateStudent);

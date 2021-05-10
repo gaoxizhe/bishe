@@ -12,4 +12,5 @@ public class GraduateStudent {
     private String admissionCategory;
     private String studentType;
     private String year;
+    private String type;
 }

@@ -4,9 +4,7 @@ package com.example.service;/**
  */
 
 import com.example.dao.ProjectDao;
-import com.example.dao.StudentDao;
 import com.example.model.Project;
-import com.example.model.Student;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -29,10 +27,9 @@ public class ProjectService {
 
 
 
-    public PageInfo<Project> getProjectList(Integer page, Integer limit) {
+    public PageInfo<Project> getProjectList(Integer page, Integer limit,Integer year,String level) {
         PageHelper.startPage(page, limit);
-        List<Project> pageList = projectDao.getProjectPageList();
-
+        List<Project> pageList = projectDao.getProjectPageListBySearch(year,level);
         return new PageInfo<>(pageList);
 
     }

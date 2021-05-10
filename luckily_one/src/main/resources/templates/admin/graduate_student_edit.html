@@ -15,6 +15,25 @@
                    class="layui-input" th:value="${data.data.name}">
         </div>
     </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">考研年份</label>
+        <div class="layui-input-block">
+            <input type="text" id="year" name="year" required lay-verify="required" placeholder="请输入考研年份" autocomplete="off"
+                   class="layui-input" th:value="${data.data.year}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">专业类型</label>
+        <div class="layui-input-block">
+            <!--            funding 无/校级/省级/国家级-->
+            <select name="type" lay-filter="aihao" lay-search>
+                <option value="无" th:selected="${data.data.type == '无'}">无</option>
+                <option value="本专业" th:selected="${data.data.type == '本专业'}" >本专业</option>
+                <option value="非本专业" th:selected="${data.data.type == '非本专业'}" >非本专业</option>
+            </select>
+        </div>
+    </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">报考学校</label>
@@ -80,9 +99,15 @@
 </body>
 <script type="text/javascript" th:inline="javascript">
     //Demo
-    layui.use('form', function () {
+    layui.use(['form','laydate'], function () {
 
         let form = layui.form;
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#year' //指定元素
+            ,type: 'year'
+        });
 
         //监听提交
         form.on('submit(formDemo)', function (data) {

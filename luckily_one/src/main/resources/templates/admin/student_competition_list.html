@@ -21,19 +21,36 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header">
-<!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
-<!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
-<!--                    </button>-->
+                    <!--                    <button class="layui-btn layui-btn-danger" onclick="deleteAll()">-->
+                    <!--                        <i class="layui-icon layui-icon-delete"></i>批量删除-->
+                    <!--                    </button>-->
                     <button class="layui-btn" onclick="xadmin.open('添加','toStudentCompetitionEdit/0',1000,600)">
                         <i class="layui-icon layui-icon-add-1">
                         </i>添加
                     </button>
                 </div>
+                <div style="border: 1px solid gainsboro;padding: 3px;border-radius: 3px;margin: auto 10px">
+
+
+                    <div style="width: 300px;display: inline-block;margin-left: 100px">
+                        <label class="layui-form-label">级别：</label>
+                        <div class="layui-input-block" style="width: 200px;">
+
+                            <select id="level" name="level" lay-filter="aihao" lay-search class="layui-input">
+                                <option value="无">无</option>
+                                <option value="国家级">国家级</option>
+                                <option value="省级">省级</option>
+                                <option value="校级">校级</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="layui-btn" id="search" style="margin-left: 100px">
+                        <i class="layui-icon layui-icon-search">
+                        </i>搜索
+                    </button>
+                </div>
                 <div class="layui-card-body ">
-
-
                     <table lay-filter="test" id="category"></table>
-
                 </div>
             </div>
         </div>
@@ -56,7 +73,7 @@
             table.render({
                 id: 'idTest',
                 elem: '#category'
-                ,page: true
+                , page: true
                 , url: '/admin/student_competition/list'
                 , height: 600
                 , parseData: function (res) { //res 即为原始返回的数据
@@ -70,15 +87,16 @@
                 }
                 , cols: [
                     [
-                        {checkbox: true, LAY_CHECKED: false, filter: 'test', width: 80}
-                        , {field: 'id', width: 80, sort: true, title: 'id'}
-                        , {field: 'host', title: '主持人'}
+                        // {checkbox: true, LAY_CHECKED: false, filter: 'test', width: 80}
+                        {field: 'id', width: 80, sort: true, title: 'id'}
+                        // , {field: 'host', title: '主持人'}
                         , {field: 'team', title: '团队成员'}
                         , {field: 'teacher', title: '指导教师'}
                         , {field: 'competitionName', title: '大赛名称'}
                         , {field: 'projectName', title: '参赛项目名称'}
                         , {field: 'date', title: '日期'}
                         , {field: 'awards', title: '获奖情况'}
+                        , {field: 'level', title: '级别'}
                         , {field: 'workload', title: '工作量'}
                         , {width: 200, align: 'center', toolbar: '#barDemo', title: '操作'}
                     ]
@@ -86,12 +104,31 @@
 
             });
 
+            $('#search').click(function () {
+                console.info('click');
+                let level = $('#level').val()
+                table.reload('idTest', {
+                    url: '/admin/student_competition/list'
+                    // ,methods:"post"
+                    , request: {
+                        pageName: 'page' //页码的参数名称，默认：page
+                        , limitName: 'limit' //每页数据量的参数名，默认：limit
+                    }
+                    , where: {
+                        level: level
+                    }
+                    , page: {
+                        curr: 1
+                    }
+                });
+            })
+
             table.on('tool(test)', function (obj) {
                 let checkStatus = table.checkStatus(obj.data.id);
                 switch (obj.event) {
                     case 'edit':
                         layer.msg('编辑');
-                        xadmin.open('编辑分类', 'toStudentCompetitionEdit/' + obj.data.id, 900,600)
+                        xadmin.open('编辑分类', 'toStudentCompetitionEdit/' + obj.data.id, 900, 600)
                         break;
                     case 'del':
                         layer.msg('删除');

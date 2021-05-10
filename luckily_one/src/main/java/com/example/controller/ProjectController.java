@@ -37,7 +37,10 @@ public class ProjectController {
 
     @GetMapping("/project/list")
     //page=1&limit=10
-    public RestListResponse<Project> projectList(@RequestParam(value = "page") Integer page, @RequestParam(value = "limit") Integer limit) {
+    public RestListResponse<Project> projectList(@RequestParam(value = "page") Integer page,
+                                                 @RequestParam(value = "limit") Integer limit,
+                                                 @RequestParam(value = "year",required = false) Integer year,
+                                                 @RequestParam(value = "level",required = false) String level) {
         if (page == null || page < 0) {
             page = 0;
         }
@@ -47,7 +50,7 @@ public class ProjectController {
 
         log.info("page: {} , limit : {}", page, limit);
 
-        PageInfo<Project> info = projectService.getProjectList(page, limit);
+        PageInfo<Project> info = projectService.getProjectList(page, limit,year,level);
 
         RestListResponse<Project> response = new RestListResponse<>();
         RestResponsePage responsePage = new RestResponsePage();
@@ -75,6 +78,7 @@ public class ProjectController {
         project.setYear((String) params.get("year"));
         project.setCompletion(params.get("completion") == null || params.get("completion").equals("") ? 0 : Integer.parseInt(params.get("completion").toString()));
         project.setFunding((String) params.get("funding"));
+        project.setLevel((String) params.get("level"));
         project.setWorkload((String) params.get("workload"));
 
         RestResponseBase restResponseBase = new RestResponseBase();

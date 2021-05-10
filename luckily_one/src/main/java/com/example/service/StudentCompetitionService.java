@@ -27,9 +27,9 @@ public class StudentCompetitionService {
 
 
 
-    public PageInfo<StudentCompetition> getStudentCompetitionList(Integer page, Integer limit) {
+    public PageInfo<StudentCompetition> getStudentCompetitionList(Integer page, Integer limit, String level) {
         PageHelper.startPage(page, limit);
-        List<StudentCompetition> pageList = StudentCompetitionDao.getStudentCompetitionPageList();
+        List<StudentCompetition> pageList = StudentCompetitionDao.getStudentCompetitionPageListBySearch(level);
 
         return new PageInfo<>(pageList);
 
