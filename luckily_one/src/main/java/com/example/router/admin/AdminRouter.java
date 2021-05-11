@@ -65,7 +65,10 @@ public class AdminRouter {
         Welcome welcome = commonService.getCount();
         model.addAttribute("data", welcome);
 
-        model.addAttribute("dataJson", JSON.toJSONString(welcome.getGraduateDetails()));
+        List<GraduateDetail> graduateDetails = welcome.getGraduateDetails();
+        model.addAttribute("dataJson", JSON.toJSONString(graduateDetails));
+        model.addAttribute("infoHeight", graduateDetails.size()* 80);
+
         return "admin/welcome";
     }
 

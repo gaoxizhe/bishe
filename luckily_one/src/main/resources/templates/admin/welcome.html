@@ -63,7 +63,7 @@
 <!--                        </div>-->
 <!--                        <br/>-->
 <!--                    </div>-->
-                    <div id="container" style="height: 200px"></div>
+                    <div id="container"  style="height: 500px"></div>
 
                 </div>
             </div>
@@ -74,74 +74,79 @@
 <!--<script type="text/javascript" th:src="@{/lib/eachts.min.js}"></script>-->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 <script type="text/javascript" th:inline="javascript">
-    var dom = document.getElementById("container");
-    var myChart = echarts.init(dom);
-    var app = {};
-    var option;
+    window.onload = function () {
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        var option;
 
 
 
-    option = {
-        title: {
-            text: '考研信息',
-            subtext: '数据来统计'
-        },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'shadow'
-            }
-        },
-        legend: {
-            data: ['报名人数', '录取人数']
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        xAxis: {
-            type: 'value',
-            boundaryGap: [0, 0.01]
-        },
-        yAxis: {
-            type: 'category',
-            // data: ['2020届', '2021届']
-            data: []
-        },
-        series: [
-            {
-                name: '报名人数',
-                type: 'bar',
-                // data: [22, 44]
+        option = {
+            title: {
+                text: '考研信息',
+                subtext: '数据来统计'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {
+                data: ['报名人数', '录取人数']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                // data: ['2020届', '2021届']
                 data: []
             },
-            {
-                name: '录取人数',
-                type: 'bar',
-                // data: [33, 55]
-                data: []
-            }
-        ]
+            series: [
+                {
+                    name: '报名人数',
+                    type: 'bar',
+                    // data: [22, 44]
+                    data: []
+                },
+                {
+                    name: '录取人数',
+                    type: 'bar',
+                    // data: [33, 55]
+                    data: []
+                }
+            ]
+        };
+
+        var graduateDetails = [[${dataJson}]];
+        graduateDetails = JSON.parse(graduateDetails);
+        // let length = graduateDetails.length;
+        // dom.style.height = 80*length + 'px';
+        console.info(graduateDetails)
+        //[{"bNumber":2,"lNumber":1,"percentage":0,"year":"2021"},
+        // {"bNumber":1,"lNumber":1,"percentage":100,"year":"2020"}]
+        for (const key in graduateDetails) {
+            // console.info(key);
+            let graduateDetail = graduateDetails[key];
+            option.yAxis.data.push(graduateDetail.year + ' 届')
+            option.series[0].data.push(graduateDetail.bNumber)
+            option.series[1].data.push(graduateDetail.lNumber)
+        }
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+
     };
-
-    var graduateDetails = [[${dataJson}]];
-    graduateDetails = JSON.parse(graduateDetails);
-    //[{"bNumber":2,"lNumber":1,"percentage":0,"year":"2021"},
-    // {"bNumber":1,"lNumber":1,"percentage":100,"year":"2020"}]
-    for (const key in graduateDetails) {
-        // console.info(key);
-        let graduateDetail = graduateDetails[key];
-        option.yAxis.data.push(graduateDetail.year + ' 届')
-        option.series[0].data.push(graduateDetail.bNumber)
-        option.series[1].data.push(graduateDetail.lNumber)
-    }
-
-    if (option && typeof option === 'object') {
-        myChart.setOption(option);
-    }
-
 </script>
 </body>
 </html>
